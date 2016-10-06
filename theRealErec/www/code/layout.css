@@ -18,8 +18,8 @@
 /* 약관 */
 .agree_btnbox { height:60px; }
 .agree_btn { margin:0 20px; padding:0 5px 0 5px; border:1px solid #539bff; color:#fff; font-size:1.8em; font-weight:400; text-align:center; line-height:60px; cursor:pointer; background:#539bff; -webkit-border-radius:10; -moz-border-radius:10; border-radius:10px; }
-.agree_logobox { text-align:center; height:150px;}
-.agree_logobox img { width:100%; max-width:400px; }
+.agree_logobox { text-align:center; height:100px;}
+.agree_logobox img { width:100%; max-width:300px; }
 .alen_allcheck { padding-bottom:20px; }
 
 
