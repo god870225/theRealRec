@@ -18,8 +18,8 @@
 /* 약관 */
 .agree_btnbox { height:60px; }
 .agree_btn { margin:0 20px; padding:0 5px 0 5px; border:1px solid #539bff; color:#fff; font-size:1.8em; font-weight:400; text-align:center; line-height:60px; cursor:pointer; background:#539bff; -webkit-border-radius:10; -moz-border-radius:10; border-radius:10px; }
-.agree_logobox { text-align:center; height:150px;}
-.agree_logobox img { width:100%; max-width:400px; }
+.agree_logobox { text-align:center; height:100px;}
+.agree_logobox img { width:100%; max-width:400px;}
 .alen_allcheck { padding-bottom:20px; }
 
 
@@ -45,8 +45,9 @@
 
 .profile_box { background:#539bff; padding-bottom:30px; }
 .pf_photo { float:left; width:60px; height:60px; border:5px solid #fff; border-radius:10px; margin:20px 0 0 15px; }
-.pf_txt { float:left; width:70px; margin:20px 0 0 5px; color:#fff; }
+.pf_txt { float:left; width:120px; margin:10px 0 0 10px; color:#fff; }
 .pf_txt h2 { line-height:25px; font-size:14px; padding-bottom:5px; }
+.pf_txt h1 { line-height:13px; font-size:12px; padding-bottom:5px; }
 .pf_txt p { line-height:13px; font-size:10px; }
 .left_menu li { position:relative; width:100%; height:60px; border-bottom:1px solid #3c3c3c; }
 .left_menu li a { display:block; line-height:60px; color:#e5e5e5; font-size:0.75em; padding-left:60px; }
