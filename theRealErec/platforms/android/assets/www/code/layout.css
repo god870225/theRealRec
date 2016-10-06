@@ -16,11 +16,18 @@
 .login_btn { margin:0 20px; padding:0 100px 0 5px; border:1px solid #dac300; color:#3c3136; font-size:1.8em; font-weight:400; text-align:center; line-height:60px; background:url(../common/log_btn.png) no-repeat right; cursor:pointer;  -webkit-border-radius:10; -moz-border-radius:10; border-radius:10px; }
 
 /* 약관 */
-.agree_btnbox { height:60px; }
+.agree_btnbox { height:60px; margin-bottom:50px; }
 .agree_btn { margin:0 20px; padding:0 5px 0 5px; border:1px solid #539bff; color:#fff; font-size:1.8em; font-weight:400; text-align:center; line-height:60px; cursor:pointer; background:#539bff; -webkit-border-radius:10; -moz-border-radius:10; border-radius:10px; }
 .agree_logobox { text-align:center; height:150px;}
 .agree_logobox img { width:100%; max-width:400px; }
 .alen_allcheck { padding-bottom:20px; }
+
+
+.agree_tab { position:relative; padding-left:50px; }
+.agree_chbox { position:absolute; top:0; left:0; width:50px; border-right:1px solid #e5e5e5; }
+.agree_chbox .item-content { padding-top:5px;}
+.agree_detail { }
+
 
 
 .join_box { margin:35px 20px; font-size:1.1em; background:#fff; padding:0px 0 0px 0; border:1px solid #ddd; }
@@ -1394,10 +1401,6 @@ html.ios-gt-8 .notifications .item-title { font-weight: 600; }
 .disabled [disabled],
 [disabled] .disabled,
 [disabled] [disabled] { opacity: 1; }
-
-
-
-
 
 
 

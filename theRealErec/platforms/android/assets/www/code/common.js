@@ -18,7 +18,21 @@ $(function () {
 	$activate_scrollator4.trigger('click');
 });
 
-function isNull(val)
+
+
+ 
+$(document).ready(function(){
+  $("#allCheck").on("click",function(){
+
+   var _value = $(this).is(":checked");
+   $('input:checkbox[name="subCheck"]').each(function () { 
+    this.checked = _value; 
+   });
+  });
+ });
+ 
+ 
+ function isNull(val)
 {
     if (val == null || val == undefined || val == "") {
     	return true;
