@@ -188,14 +188,14 @@
                                 
                             	<li class="full_input"><input type="text" placeholder="이메일"  id="eMail" maxlength="30"></li>
                                 
-                            	<li class="full_input"><input type="text" onkeydown = "onlyNumberInput()" placeholder="생년월일(ex:901010)"  id="birthDay" maxlength="6"></li>
+                            	<li class="full_input"><input type="text" onkeydown = "onlyNumberInput()" placeholder="생년월일(ex:19901010)"  id="birthDay" maxlength="8"></li>
                             	
                                 
                             	<li>
                                 <div class="alen_radio_box" id ="sexDiv">
                                     <div class="alen_table_half">
                                     <label class="label-radio item-content">
-                                      <input type="radio" name="sex" value="01">
+                                      <input type="radio" name="sex" value="1">
                                       <div class="item-inner">
                                         <div class="item-title" id="man">남자</div>
                                       </div>
@@ -205,7 +205,7 @@
                                     
                                     <div class="alen_table_half alen_table_last">
                                     <label class="label-radio item-content">
-                                      <input type="radio" name="sex" value="02">
+                                      <input type="radio" name="sex" value="0">
                                       <div class="item-inner">
                                         <div class="item-title" id="woman">여자</div>
                                       </div>
@@ -271,7 +271,7 @@
                                 <div class="alen_radio_box" >
                                     <div class="alen_table_half">
                                     <label class="label-radio item-content">
-                                      <input type="radio" name="nation" value="01">
+                                      <input type="radio" name="nation" value="1">
                                       <div class="item-inner">
                                         <div class="item-title">내국인</div>
                                       </div>
@@ -281,7 +281,7 @@
                                     
                                     <div class="alen_table_half alen_table_last">
                                     <label class="label-radio item-content">
-                                      <input type="radio" name="nation" value="02">
+                                      <input type="radio" name="nation" value="2">
                                       <div class="item-inner">
                                         <div class="item-title">외국인</div>
                                       </div>
@@ -425,12 +425,84 @@
 <script type="text/javascript">
 //전체동의여부 변수값.
 var agreeDiv = false;
+var reSendYn = false;
+var smsSvcTxSeqno = "";
+var smsMemId = "V27340000000";   		  
+var smsServerIp = "x";      
+var smsSiteUrl = "117.52.97.40:80"; 	  
+var smsSiteDomain = "샤샥스토어"; 
+var smsEndPointURL = "http://tsafe.ok-name.co.kr:29080/KcbWebService/OkNameService"; 	
+var smsLogPath = "/LOGS";
+
+
 $(document).ready(function(){
+	
+	
+	//smsSvcTxSeqno = toDay+($("#telNo").val());
+
+	
 	$("#recNum").click(function(){
 		time = "10";
 		clearInterval(runCount);
 		fncCountDown();
 		//setInterval("startCountDown()", 1000);
+		
+		var a  = new Date();	
+		var year  = a.getFullYear();
+		var month = a.getMonth()+1;
+		var date = a.getDate();
+		var hours = a.getHours();
+		var minutes = a.getMinutes();
+		var seconds = a.getSeconds();
+		var toDay = String(year)+String(month)+String(date)+String(hours)+String(minutes)+String(seconds);
+		var smsSvcTxSeqno = toDay+($("#telNo").val());
+		var smsReSndYn = "";
+		var smsRsv1 = "0";
+		var smsRsv2 = "0";
+		var smsRqstMsrCd = "10";  
+		var smsRqstCausCd = "00";
+		var smsOption = "J";
+	
+		alert(smsSvcTxSeqno);
+		
+		if(reSendYn){
+			//재전송시
+			smsReSndYn = "Y";	
+		}else{
+			//최초전송시
+			smsReSndYn = "N";	
+		}
+//-----------------------------------------
+//KCB 본인확인 번호요청
+//-----------------------------------------
+		
+		  $.ajax({
+		        type: "post",
+		        url : commonIp()+"/theReal/receipt/KcbCertified.do",
+		        data: {
+		        		smsSvcTxSeqno   : smsSvcTxSeqno,
+			        	smsName  		: alltrim($("#userNm").val()),  
+			        	smsBirthday		: alltrim($("#birthDay").val())	,
+			        	smsGender		: $(':radio[name="sex"]:checked').val(),
+			        	smsNation     	: $(':radio[name="nation"]:checked').val(),
+			        	smsComCd  		: $(':radio[name="tservice"]:checked').val(),  
+			        	smsMbphnNo		: alltrim($("#telNo").val()),
+			        	smsReSndYn 		: smsReSndYn ,
+			        	smsRsv1 		: smsRsv1, 
+			        	smsRsv2 		: smsRsv2, 
+			        	smsRqstMsrCd 	: smsRqstMsrCd, 
+						smsRqstCausCd 	: smsRqstCausCd, 
+						smsMemId 		: smsMemId, 
+						smsServerIp 	: smsServerIp, 
+						smsSiteUrl 		: smsSiteUrl, 
+						smsSiteDomain 	: smsSiteDomain, 
+						smsEndPointURL	: smsEndPointURL, 
+						smsLogPath 		: smsLogPath, 
+						smsOption 		: smsOption 
+		        	},
+		        success: fnSucData,
+		        error: whenError
+		    	});				
 	})
 	
  	$(".alen_allcheck").click(function(){
@@ -507,6 +579,8 @@ $(document).ready(function(){
 			return false;
 		}		
 		
+		
+		
 	    $.ajax({
 	        type: "post",
 	        url : commonIp()+"/theReal/receipt/appMemberInsert.do",
@@ -527,6 +601,45 @@ $(document).ready(function(){
 	})
 	
 });
+//-----------------------------------------
+//KCB 본인인증  검증 처리
+//-----------------------------------------
+
+		
+	/* 	var smsCertNo = certNum; 
+		var smsOption = "M";
+	
+	 $.ajax({
+	        type: "post",
+	        url : commonIp()+"/theReal/receipt/KcbVerification.do",
+	        data: {
+	        	data: {
+	        		smsSvcTxSeqno  : smsSvcTxSeqno,
+		        	smsMbphnNo		: alltrim($("#telNo").val()),
+					smsMemId 		: smsMemId, 
+					smsServerIp 	: smsServerIp, 
+					smsEndPointURL	: smsEndPointURL, 
+					smsLogPath 		: smsLogPath, 
+					smsOption 		: smsOption 
+		        },
+	        },
+	        success: fnSucData,
+	        error: whenError
+	    	});				
+	
+	 */
+	
+	
+
+
+	
+		
+	
+
+	
+
+
+
 
 
 	var min = 0;
