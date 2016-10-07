@@ -20,16 +20,16 @@ $(function () {
 
 
 
- 
+/* 
 $(document).ready(function(){
   $("#allCheck").on("click",function(){
-
+alert();
    var _value = $(this).is(":checked");
    $('input:checkbox[name="subCheck"]').each(function () { 
     this.checked = _value; 
    });
   });
- });
+ });*/
  
  
  function isNull(val)
