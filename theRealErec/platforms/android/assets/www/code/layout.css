@@ -8,10 +8,12 @@
 .top_menu { background:#fff; border-bottom:1px solid #e5e5e5;}
 
 /* 로그인 */
-.login_page { background:#fae100; }
-.login_box { height:100%; padding-top:100px; }
-.login_img { height:520px; text-align:center; margin:0 20px; padding-bottom:80px; }
-.login_img img { width:100%; max-width:400px; }
+/* .login_page { background:#fae100; } */
+.login_page { background:#73ACF2; }
+/* .login_box { height:100%; padding-top:100px; } */
+.login_box { height:100%; padding-top:30px; }
+.login_img { height:350px; text-align:center; margin:0 20px; padding-bottom:80px; }
+.login_img img { width:100%; max-width:350px; }
 .login_btnbox { position:absolute; bottom:20px; width:100%; height:60px; }
 .login_btn { margin:0 20px; padding:0 100px 0 5px; border:1px solid #dac300; color:#3c3136; font-size:1.8em; font-weight:400; text-align:center; line-height:60px; background:url(../common/log_btn.png) no-repeat right; cursor:pointer;  -webkit-border-radius:10; -moz-border-radius:10; border-radius:10px; }
 
@@ -135,10 +137,19 @@
 .mcon_btn { position:absolute; bottom:10px; left:20px; width:40px; height:14px;}
 .mcon_btn a { font-family:Tahoma, Geneva, sans-serif; font-size:10px; color:#456faa; padding-right:6px; background:url(../common/mcon_ar.gif) no-repeat right; }
 
-
-
-
-
+/* === Forms === */
+.list-block input[type="text"],
+.list-block input[type="password"],
+.list-block input[type="search"],
+.list-block input[type="email"],
+.list-block input[type="tel"],
+.list-block input[type="url"],
+.list-block input[type="date"],
+.list-block input[type="datetime-local"],
+.list-block input[type="time"],
+.list-block input[type="number"],
+.full_input select,
+.list-block textarea { -webkit-appearance:none; -moz-appearance:none; -ms-appearance:none; appearance: none; box-sizing: border-box; border: none; background: none; border-radius: 0 0 0 0; box-shadow:none; display:block; padding:0px; margin:0; width:100%; height:48px; color:#666; font-size:1.1em; font-family:inherit; padding:0 20px; }
 
 
 
@@ -1408,3 +1419,25 @@ html.ios-gt-8 .notifications .item-title { font-weight: 600; }
 
 /*=설유진 추가 css=*/
 .alen_table_half2 { width:50%; float:left; border-right:1px solid #e5e5e5; }
+.foot_info2 { font-size:0.5em; color:#999; line-height:16px; padding:10px 20px; letter-spacing:0.02em; }
+.foot_info2 .copytxt { padding:20px 0 0 0; }
+.foot_box2 { padding:10px 0; }
+.foot_box2 .foot_btn { width:48%; margin-right:1%; float:left; background:#fff; }
+.foot_box2 .foot_btn a { display:block; padding:5px 0; font-size:0.5em; color:#333; text-align:center; }
+.alen_outbox2 { box-shadow:1px 2px 3px #ddd; }
+
+.login_auto{font-size:15px; color:#3c3136;
+margin:10px 20px 10px 20px;
+top:110px;
+left:20px; 
+cursor:pointer; }
+
+.join_box2 { margin:10px 20px 15px 20px; font-size:1.1em; background:#fff; padding:0px 0 0px 0; border:1px solid #ddd; }
+.join_box2 li { border-bottom:1px solid #e5e5e5; height:50px; }
+.join_box2 li:last-child { border-bottom:1px solid #fff; }
+
+.agree_btnbox1 { height:60px; margin-bottom:50px; }
+.agree_btn1 { margin:10px 0px 10px 20px; padding:0 1px 0 1px; border:1px solid #539bff; color:#fff; font-size:1.6em; font-weight:400; text-align:center; line-height:60px; cursor:pointer; background:#539bff; -webkit-border-radius:10; -moz-border-radius:10; border-radius:10px; }
+.agree_btnbox2 { height:60px; margin-bottom:50px; }
+.agree_btn2 { margin:10px 20px 10px 0px; padding:0 1px 0 1px; border:1px solid #539bff; color:#fff; font-size:1.6em; font-weight:400; text-align:center; line-height:60px; cursor:pointer; background:#539bff; -webkit-border-radius:10; -moz-border-radius:10; border-radius:10px; }
+

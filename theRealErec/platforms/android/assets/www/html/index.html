@@ -31,6 +31,9 @@
     <link rel="stylesheet" href="../css/my-app.css">
     
 	<script src="../code/common.js"></script>
+	
+<script type="text/javascript" charset="utf-8" src="../cordova.js"></script>
+<script type="text/javascript" charset="utf-8" src="../telephonenumber.js"></script>
     
 </head>
 
@@ -219,10 +222,10 @@
                         <a href="#" >MORE</a>
                         </div>
                         
-                    	<div class="main_content">
+                    	<div class="main_content" >
                         	<h2>최근사용내역</h2>
-                        	<ul>
-                            	<li>
+                        	<ul id="curMainData">
+<!--                             	<li>
                                 <div class="mlat01">2016-08-24</div>
                                 <div class="mlat02">삼성카드</div>
                                 <div class="mlat03">세븐일레븐</div>
@@ -244,7 +247,7 @@
                                 <div class="mlat03">세븐일레븐</div>
                                 <div class="mlat04">3.900원</div>
                                 <hr>
-                                </li>
+                                </li> -->
                             </ul>
                         </div>
                     </div>
@@ -441,8 +444,12 @@
 
 <script>
 
+var request = new Request();
 
 $(document).ready(function(){
+	document.addEventListener("deviceready", onDeviceReady, false);
+	
+	
 	// main_slider
   $('.mainslider').bxSlider({
 	  auto: true,
@@ -491,8 +498,99 @@ $(document).ready(function(){
 });
 
 curUseData */
+function startCurData(idParam){
+
+}
+function onDeviceReady() {
+
+    var curUuid = device.uuid;
+
+			console.log("device.uuid:"+device.uuid);
+
+            var telephoneNumber = cordova.require("cordova/plugin/telephonenumber");
+            
+            
+            telephoneNumber.get(function(result) {
+            	var telNo = request.getParameter('telNo');
+            	var uuId = request.getParameter('uuId');
+                    result = result.replace( "+82", "0");
+                    console.log("result = " + result);
+                    console.log("telNo = " + telNo);
+                    console.log("uuId = " + uuId);
+                    console.log("result = " + result);
+                    console.log("curUuid = " + curUuid);
+                $.ajax({
+                    type: "post",
+                    url : commonIp()+"/theReal/receipt/compareUuId.do",
+                    data: {
+                    	dbTelNo : telNo,
+                    	dbUuId  :  uuId,
+                    	curTelNo : result,
+                    	curUuid  :  curUuid,
+                    	
+                    },
+                    success: fnComUuIdSucData,
+                    error: whenError
+                	});	            	
+                }, function() {
+                });
 
 
+}
+
+function fnComUuIdSucData(resData){
+	console.log(resData)
+	if(resData == 1){
+		alert("정상로그인 되었습니다.");
+	    $.ajax({
+	        type: "post",
+	        url : commonIp()+"/theReal/receipt/startCurData.do",
+	        data: {
+	        	telNo  	: request.getParameter('telNo'),  
+	        },
+	        success: fnSucData,
+	        error: whenError
+	    	});			
+	}else{
+		alert("정보가 틀립니다.");
+	}
+}
+
+function fnSucData(resdata){
+	 var str = "";
+	var resultData = resdata.resultMap;
+	var uuId = "";
+	var telNo = "";
+	var cardCashDiv = "";
+	resultCnt = resultData.length;
+	if(resultData.length>0){
+		for(var i=0; i<resultData.length; i++){
+			if(resultData[i].CARD_ICOM == ""){
+				cardCashDiv = "현금"		
+			}else{
+				cardCashDiv = resultData[i].CARD_ICOM;	
+			}
+			console.log("resultData[i].CARD_ICOM:"+resultData[i].CARD_ICOM);
+			console.log("cardCashDiv:"+cardCashDiv);
+			str += '<li>';
+			str += '<div class="mlat01">'+resultData[i].SALES_PRINT_DATE+'</div>';
+			str += '<div class="mlat02">'+cardCashDiv+'</div>';
+			str += '<div class="mlat03">'+resultData[i].SHOP_NAME+'</div>';
+			str += '<div class="mlat04">'+resultData[i].SALES_PAID_AMT+'</div>';
+			
+			str += '</li>';		            
+            
+		}
+		$("#curMainData").append(str);
+	}		 
+		 
+	else{
+		alert("로그인 정보가 틀렸습니다.");
+	}
+}
+function whenError(){
+		alert("실패.");
+}
 </script>
 
 <script type="text/javascript" src="../js/framework7.js"></script>

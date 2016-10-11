@@ -187,6 +187,8 @@
                             	<li class="full_input"><input type="text" placeholder="이름" id="userNm" maxlength="10" ></li>
                                 
                             	<li class="full_input"><input type="text" placeholder="이메일"  id="eMail" maxlength="30"></li>
+
+                            	<li class="full_input"><input type="text" placeholder="비밀번호"  id="pwd" maxlength="30"></li>
                                 
                             	<li class="full_input"><input type="text" onkeydown = "onlyNumberInput()" placeholder="생년월일(ex:19901010)"  id="birthDay" maxlength="8"></li>
                             	
@@ -220,9 +222,20 @@
                         
                     	<div class="join_box">
                         	<ul>
+                        	
+	                          	<li class="full_input">
+	                               <select id="selectTelCom">
+	                                   <option value="01">SKT</option>
+	                                   <option value="02">KT</option>
+	                                   <option value="03">LGu+</option>
+	                                   <option value="04">알뜰폰 SKT</option>
+	                                   <option value="05">알뜰폰 KT</option>
+	                                   <option value="06">알뜰폰 LGu+</option>
+	                               </select>
+	                             </li>                                     
                             	<li class="full_input"><input type="text" placeholder="휴대폰 번호" id="telNo"></li>
-                                
-                            	<li>
+                            	<li class="full_input"><input type="text" placeholder="유일키번호" id="uuId"></li>
+  <!--                           	<li>
                                 <div class="alen_radio_box">
                                     <div class="alen_table_quad">
                                     <label class="label-radio item-content">
@@ -265,7 +278,7 @@
                                     <hr>
                                 
                                 </div>
-                                </li>
+                                </li> -->
                                 
                             	<li>
                                 <div class="alen_radio_box" >
@@ -420,89 +433,95 @@
 <script type="text/javascript" src="../js/framework7.js"></script>
 
 <script type="text/javascript" src="../js/my-app.js"></script>
-
+   <script type="text/javascript" charset="utf-8" src="../cordova.js"></script>
+<script type="text/javascript" charset="utf-8" src="../telephonenumber.js"></script>
 <input value="activate scrollator" id="activate_scrollator4" type="button"  style="display:none;">
 <script type="text/javascript">
 //전체동의여부 변수값.
 var agreeDiv = false;
 var reSendYn = false;
-var smsSvcTxSeqno = "";
-var smsMemId = "V27340000000";   		  
+//var smsSvcTxSeqno = "";
+var smsMemId = "V27340000000";           
 var smsServerIp = "x";      
-var smsSiteUrl = "117.52.97.40:80"; 	  
+var smsSiteUrl = "117.52.97.40:80";      
 var smsSiteDomain = "샤샥스토어"; 
-var smsEndPointURL = "http://tsafe.ok-name.co.kr:29080/KcbWebService/OkNameService"; 	
+//var smsEndPointURL = "http://safe.ok-name.co.kr/KcbWebService/OkNameService";    
+var smsEndPointURL ="http://tsafe.ok-name.co.kr:29080/KcbWebService/OkNameService";    
 var smsLogPath = "/LOGS";
+var a  = new Date();   
+var year  = a.getFullYear();
+var month = a.getMonth()+1;
+var date = a.getDate();
+var hours = a.getHours();
+var minutes = a.getMinutes();
+var seconds = a.getSeconds();
+var toDay = String(year)+String(month)+String(date)+String(hours)+String(minutes)+String(seconds);
+var smsSvcTxSeqno = "";
 
 
 $(document).ready(function(){
 	
-	
+	document.addEventListener("deviceready", onDeviceReady, false);
 	//smsSvcTxSeqno = toDay+($("#telNo").val());
-
+/* 	$("#pwd").keyup(function(event){
+	            if (!(event.keyCode >=37 && event.keyCode<=40)) {
+	                var inputVal = $(this).val();
+	                $(this).val(inputVal.replace(/[^a-z0-9]/gi,''));
+	            }
+	});		 */
 	
 	$("#recNum").click(function(){
-		time = "10";
+		time = "180";
 		clearInterval(runCount);
 		fncCountDown();
 		//setInterval("startCountDown()", 1000);
 		
-		var a  = new Date();	
-		var year  = a.getFullYear();
-		var month = a.getMonth()+1;
-		var date = a.getDate();
-		var hours = a.getHours();
-		var minutes = a.getMinutes();
-		var seconds = a.getSeconds();
-		var toDay = String(year)+String(month)+String(date)+String(hours)+String(minutes)+String(seconds);
-		var smsSvcTxSeqno = toDay+($("#telNo").val());
-		var smsReSndYn = "";
-		var smsRsv1 = "0";
-		var smsRsv2 = "0";
-		var smsRqstMsrCd = "10";  
-		var smsRqstCausCd = "00";
-		var smsOption = "J";
-	
-		alert(smsSvcTxSeqno);
-		
-		if(reSendYn){
-			//재전송시
-			smsReSndYn = "Y";	
-		}else{
-			//최초전송시
-			smsReSndYn = "N";	
-		}
+	      var smsSvcTxSeqno = toDay+($("#telNo").val());
+	      var smsReSndYn = "";
+	      var smsRsv1 = "0";
+	      var smsRsv2 = "0";
+	      var smsRqstMsrCd ="10";  
+	      var smsRqstCausCd = "00";
+	      var smsOption = "JU";   
+	      
+	      if(reSendYn){
+	         //재전송시
+	         smsReSndYn = "Y";   
+	      }else{
+	         //최초전송시
+	         smsReSndYn = "N";   
+	      }
 //-----------------------------------------
 //KCB 본인확인 번호요청
 //-----------------------------------------
 		
 		  $.ajax({
-		        type: "post",
-		        url : commonIp()+"/theReal/receipt/KcbCertified.do",
-		        data: {
-		        		smsSvcTxSeqno   : smsSvcTxSeqno,
-			        	smsName  		: alltrim($("#userNm").val()),  
-			        	smsBirthday		: alltrim($("#birthDay").val())	,
-			        	smsGender		: $(':radio[name="sex"]:checked').val(),
-			        	smsNation     	: $(':radio[name="nation"]:checked').val(),
-			        	smsComCd  		: $(':radio[name="tservice"]:checked').val(),  
-			        	smsMbphnNo		: alltrim($("#telNo").val()),
-			        	smsReSndYn 		: smsReSndYn ,
-			        	smsRsv1 		: smsRsv1, 
-			        	smsRsv2 		: smsRsv2, 
-			        	smsRqstMsrCd 	: smsRqstMsrCd, 
-						smsRqstCausCd 	: smsRqstCausCd, 
-						smsMemId 		: smsMemId, 
-						smsServerIp 	: smsServerIp, 
-						smsSiteUrl 		: smsSiteUrl, 
-						smsSiteDomain 	: smsSiteDomain, 
-						smsEndPointURL	: smsEndPointURL, 
-						smsLogPath 		: smsLogPath, 
-						smsOption 		: smsOption 
-		        	},
-		        success: fnSucData,
-		        error: whenError
-		    	});				
+              type: "post",
+              url : commonIp()+"/theReal/receipt/KcbCertified.do",
+              data: {
+                    smsSvcTxSeqno   : smsSvcTxSeqno,
+                    smsName        : alltrim($("#userNm").val()),  
+                    smsBirthday      : alltrim($("#birthDay").val())   ,
+                    smsGender      : $(':radio[name="sex"]:checked').val(),
+                    smsNation        : $(':radio[name="nation"]:checked').val(),
+                    smsComCd  		: $("#selectTelCom option:selected").val(),  
+                    smsMbphnNo      : alltrim($("#telNo").val()),
+                    smsReSndYn       : smsReSndYn ,
+                    smsRsv1       : smsRsv1, 
+                    smsRsv2       : smsRsv2, 
+                    smsRqstMsrCd    : smsRqstMsrCd, 
+                  smsRqstCausCd    : smsRqstCausCd, 
+                  smsMemId       : smsMemId, 
+                  smsServerIp    : smsServerIp, 
+                  smsSiteUrl       : smsSiteUrl, 
+                  smsSiteDomain    : smsSiteDomain, 
+                  smsEndPointURL   : smsEndPointURL, 
+                  smsLogPath       : smsLogPath, 
+                  smsOption       : smsOption 
+                 },
+              success: fnCertSucData,
+              error: whenError
+             }); 		
 	})
 	
  	$(".alen_allcheck").click(function(){
@@ -518,17 +537,24 @@ $(document).ready(function(){
 	})
 	
 	
-	
-	
 	$("#agreeComple").click(function(){
     	var userNm = alltrim($("#userNm").val());
     	var eMail = alltrim($("#eMail").val());
     	var birthDay = alltrim($("#birthDay").val());
 		var sex = $(':radio[name="sex"]:checked').val();
 		var nation = $(':radio[name="nation"]:checked').val();
-		var tService = $(':radio[name="tservice"]:checked').val();
+		var tService = $("#selectTelCom option:selected").val();
     	var certNum = alltrim($("#certNum").val());
     	var telNo = alltrim($("#telNo").val());
+    	var pwd = alltrim($("#pwd").val());
+    	var uuId = alltrim($("#uuId").val());
+
+  		if(!chkPwd(pwd)){
+  			alert("비밀번호");
+			$('#pwd').val('');
+			$('#pwd').focus();
+			return false;
+  		}    		
     	
     	//전체 체크박스 갯수 구하기
 		var totalChkLen = $("input[name*='subCheck']").length ;
@@ -580,7 +606,6 @@ $(document).ready(function(){
 		}		
 		
 		
-		
 	    $.ajax({
 	        type: "post",
 	        url : commonIp()+"/theReal/receipt/appMemberInsert.do",
@@ -592,7 +617,8 @@ $(document).ready(function(){
 	        	nation  		: nation,  
 	        	tService		: tService,
 	        	telNo 		: telNo ,
-	        	kakao 		: certNum+birthDay 
+	        	uuId 			: uuId, 
+	        	pwd 			: pwd, 
 	        },
 	        success: fnSucData,
 	        error: whenError
@@ -631,7 +657,26 @@ $(document).ready(function(){
 	
 	
 
+     function onDeviceReady() {
 
+         var uuid = device.uuid;
+
+				console.log("device.uuid:"+device.uuid);
+
+                 var telephoneNumber = cordova.require("cordova/plugin/telephonenumber");
+                 
+                 
+                 telephoneNumber.get(function(result) {
+                         console.log("result = " + result);
+                         result = result.replace( "+82", "0");
+						$("#telNo").val(result);          
+						$("#uuId").val(result+uuid);          
+                     }, function() {
+                    	 $("#telNo").val("");     
+                     });
+
+
+     }
 	
 		
 	
@@ -692,6 +737,10 @@ function fnSucData(resdata){
 		alert("성공.");
 		location.href='index.html';
 	}
+}
+
+function fnCertSucData(resdata){
+alert("인증번호를 3분내에 입력하세요");
 }
 
 function whenError(){

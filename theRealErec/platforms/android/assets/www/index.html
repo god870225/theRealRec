@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -9,10 +10,10 @@
     
     <title>더리얼마케팅 전자영수증</title>
     
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
     <link rel="stylesheet" media="all" href="code/layout.css" />
     <link rel="stylesheet" media="all" href="code/common.css" />
-<script src="http://117.52.97.40/download/kakao.min.js"></script>
+<!--     <script type="text/javascript" charset="utf-8" src="cordova.js"></script> -->
+   <!--  <script type="text/javascript" charset="utf-8" src="cordova_plugins.js"></script> -->
 <!-- <script src="code/kakao.min.js"></script> -->
     <!-- main -->
 	<script src="code/jquery.bxslider.min.js"></script>
@@ -39,21 +40,75 @@
 	<div class="container login_box">
     	<div class="login_img"><img src="common/log_img.png"></div>
     </div>
+                    	<div class="join_box2">
+                        	<ul>
+                            	<li class="full_input"><input type="text" placeholder="이메일" id="eMail" maxlength="30"  value ="god870225@nate.com"></li>
+                            	<li class="full_input"><input type="text" placeholder="비밀번호"  id="password" maxlength="30" value = "tjfdbwls12!"></li>
+                            </ul>	
+                        </div>
+<div class="login_auto" >
+<label for="auto">
+<input type="checkbox" id="auto" name="autoLgn" style="cursor:pointer;"/>자동로그인
+</label>
+</div> 
+                      	<li>
+                               <div>
+                                 <div class="agree_btn1" style="width: 43%; float: left;">로그인</div>
+                               </div>
+                                <div>
+                                 <div class="agree_btn2" style="width: 43%; float: right;">회원가입</div>
+                               </div>
+                       </li>                  
     
+
+                  
+                    <div class="foot_info2">
+                
+                    	<div class="foot_box2">
+                        	<div class="foot_btn alen_outbox2">
+                            <a href="#">아이디 찾기</a>
+                            </div>
+                            
+                        	<div class="foot_btn alen_outbox2">
+                            <a href="#">비밀번호 찾기</a>
+                            </div>
+                            
+                            <hr>
+                        </div>                       
+                         
     </div>
 
-    <div class="login_btnbox">
+<!--     <div class="login_btnbox">
     <a id="kakao-login-btn"></a>
-<!-- <a href="http://alpha-developers.kakao.com/logout"></a> -->
+<a href="http://alpha-developers.kakao.com/logout"></a>
 	    <div class="login_btn">카카오톡으로 시작하기</div>
-    </div>
+    </div> -->
     
 
 <input value="activate scrollator" id="activate_scrollator4" type="button"  style="display:none;">
 <script type="text/javascript">
-$(document).ready(function(){
+ 	//var id = window.localStorage.getItem("id");
+	//var pw = window.localStorage.getItem("pw");	 
+	 $(document).ready(function(){
+	  	//var storage = window.localStorage;
+	  	//localStorage.removeItem("id");
+	  	//localStorage.removeItem("pw");
+
+    	//document.addEventListener("deviceready", onDeviceReady, false);
+/* 	 	if(id != "" || id != null){
+			$.ajax({
+		        type: "post",
+		        url : commonIp()+"/theReal/receipt/lgnChk.do",
+		        data: {
+		        	eMail	 	: id,
+		        	pwd 		: pw
+		        },
+		        success: fnSucData,
+		        error: whenError
+		    	});		
+		} */
 	//window.open("https://kauth.kakao.com/oauth/authorize?client_id=1833d1ffa4cf255672268f3a02fbeab0&redirect_uri=http://117.52.97.40/theReal/receipt/kakaoLgn.do&response_type=code"); 
-	$(".login_btn").click(function(){
+	$(".agree_btn2").click(function(){
 		location.href='./html/agree.html';
 		
 /* 	    $.ajax({
@@ -66,28 +121,64 @@ $(document).ready(function(){
 	    	});		 */		
 		
 	})
+	
+	
+	$(".agree_btn1").click(function(){
+		$.ajax({
+	        type: "post",
+	        url : commonIp()+"/theReal/receipt/lgnChk.do",
+	        data: {
+	        	eMail	 	: $("#eMail").val(),
+	        	pwd 		: $("#password").val()
+	        },
+	        success: fnSucData,
+	        error: whenError
+	    	});		
+	})
 })
-function fnSucData(resdata){
-	alert(resdata);
-	if(resdata == "1"){
-		alert("성공.");
+
+ function fnSucData(resdata){
+		 
+	var resultData = resdata.resultMap;
+	var uuId = "";
+	var telNo = "";
+	resultCnt = resultData.length;
+	if(resultData.length>0){
+		for(var i=0; i<resultData.length; i++){
+			uuId = resultData[i].UUID;
+			telNo = resultData[i].TEL_NO;
+			console.log(resultData[i].UUID);
+			console.log(resultData[i].TEL_NO);
+		}
+ 		if($("input[name*='autoLgn']").is(":checked")){
+			//window.localStorage.setItem("id", $('#eMail').val());
+        	//window.localStorage.setItem("pw", $('#password').val());				
+		};
+		location.href='./html/index.html?uuId='+uuId+'&telNo='+telNo;
+	}		 
+		 
+	else{
+		alert("로그인 정보가 틀렸습니다.");
 	}
-}
+	
+
+	
+	
+};
 
 function whenError(){
 	alert("실패.");
-}
+};
 
-function onDeviceReady() {
-    var element = document.getElementById('deviceProperties');
-    element.innerHTML = 'Device Model: '    + device.model    + '<br />' +
-                        'Device Cordova: '  + device.cordova  + '<br />' +
-                        'Device Platform: ' + device.platform + '<br />' +
-                        'Device UUID: '     + device.uuid     + '<br />' +
-                        'Device Version: '  + device.version  + '<br />';
-}
+/* function onDeviceReady() {
+    //var element = document.getElementById('deviceProperties');
+    console.log('Device Model: '    + device.model +
+                        'Device Cordova: '  + device.cordova  +
+                        'Device Platform: ' + device.platform  +
+                        'Device UUID: '     + device.uuid     );
+} */
 
-document.addEventListener("deviceready", onDeviceReady, false);
+/* document.addEventListener("deviceready", onDeviceReady, false); */
 </script>
 </body>
 </html>
