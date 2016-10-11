@@ -25,8 +25,12 @@
     <feature name="InAppBrowser">
         <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
     </feature>
+    
+    <feature name="TelephoneNumber" >
+        <param name="android-package" value="com.simonmacdonald.cordova.plugins.TelephoneNumber"/>
+    </feature>
     <allow-intent href="market:*" />
-    <name>HelloCordova</name>
+    <name>TheReal</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
     </description>
