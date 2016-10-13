@@ -36,6 +36,9 @@
         },
         "cordova-plugin-media": {
             "PACKAGE_NAME": "com.theReal.Erec"
+        },
+        "com.phonegap.plugins.PushPlugin": {
+            "PACKAGE_NAME": "com.theReal.Erec"
         }
     },
     "dependent_plugins": {
