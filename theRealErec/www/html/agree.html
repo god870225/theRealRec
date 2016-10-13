@@ -269,30 +269,21 @@
 <script type="text/javascript" src="../js/my-app.js"></script>
 
 <input value="activate scrollator" id="activate_scrollator4" type="button"  style="display:none;">
-<
+
 <script type="text/javascript">
 //전체동의여부 변수값.
 var agreeDiv = false;
 $(document).ready(function(){
 	
-	//전체동의버튼클릭여부 체크
-	$(".alen_allcheck").click(function(){
-		
-		var chkDiv = $("input[name*='ks-checkbox']").is(":checked");
-
-		if(!chkDiv){
-			agreeDiv=true;
-		}else{
-			agreeDiv=false;
-		}
-	})
-	
 	//동의버튼 클릭 시 동의 안되면 체크안내메시지 동의 되어있으면 join페이지이동
 	$(".agree_btn").click(function(){
-		if(!agreeDiv){
+		var chkDiv = $("input[name*='ks-checkbox']").is(":checked");
+		if(!chkDiv){
+			agreeDiv=false;
 			alert("동의해주시기바랍니다.");
 			return false;
 		}else{
+			agreeDiv=true;
 			location.href='html/join.html';
 		}
 	})

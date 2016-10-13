@@ -18,7 +18,21 @@ $(function () {
 	$activate_scrollator4.trigger('click');
 });
 
-function isNull(val)
+
+
+/* 
+$(document).ready(function(){
+  $("#allCheck").on("click",function(){
+alert();
+   var _value = $(this).is(":checked");
+   $('input:checkbox[name="subCheck"]').each(function () { 
+    this.checked = _value; 
+   });
+  });
+ });*/
+ 
+ 
+ function isNull(val)
 {
     if (val == null || val == undefined || val == "") {
     	return true;
@@ -93,3 +107,106 @@ function checkByte(obj,maxByte,viewAreaID) {
 		cutOverText(obj,maxByte,viewAreaID);
 	}
 }
+
+function onlyNumberInput(){
+	var code = window.event.keyCode;
+
+ 	if ((code > 34 && code < 41) || (code > 47 && code < 58) || (code > 95 && code < 106) || code == 8 || code == 9 || code == 46){
+  		window.event.returnValue = true;
+  		return;
+ 	}
+ 	window.event.returnValue = false;
+}
+
+
+function emailcheck(strValue)
+{
+var regExp = /[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
+//입력을 안했으면
+if(strValue.lenght == 0)
+{return false;}
+//이메일 형식에 맞지않으면
+if (!strValue.match(regExp))
+{return false;}
+return true;
+}
+
+//개발IP셋팅
+function commonIp(){
+	var commonIp = "";
+	var dev = false;
+	if(dev){
+		commonIp = "http://192.168.0.39:8080";
+		//commonIp = "117.52.97.40";
+	}else{
+		commonIp = "http://117.52.97.40:80";
+	}
+	return commonIp; 
+}
+
+
+function chkPwd(str){
+
+	 var pw = str;
+
+	 var num = pw.search(/[0-9]/g);
+
+	 var eng = pw.search(/[a-z]/ig);
+
+	 var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+
+	 
+
+	 if(pw.length < 8 || pw.length > 20){
+
+	  alert("8자리 ~ 20자리 이내로 입력해주세요.");
+
+	  return false;
+
+	 }
+
+	 if(pw.search(/₩s/) != -1){
+
+	  alert("비밀번호는 공백업이 입력해주세요.");
+
+	  return false;
+
+	 } if(num < 0 || eng < 0 || spe < 0 ){
+
+	  alert("영문,숫자, 특수문자를 혼합하여 입력해주세요.");
+
+	  return false;
+
+	 }
+
+	 
+
+	 return true;
+
+	}
+
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+
+var Request = function()
+{
+    this.getParameter = function( name )
+    {
+        var rtnval = '';
+        var nowAddress = unescape(location.href);
+        var parameters = (nowAddress.slice(nowAddress.indexOf('?')+1,nowAddress.length)).split('&');
+        for(var i = 0 ; i < parameters.length ; i++)
+        {
+            var varName = parameters[i].split('=')[0];
+            if(varName.toUpperCase() == name.toUpperCase())
+            {
+                rtnval = parameters[i].split('=')[1];
+                break;
+            }
+        }
+        return rtnval;
+    }
+}
+

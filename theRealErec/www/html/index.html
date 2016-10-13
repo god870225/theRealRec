@@ -18,7 +18,7 @@
     <link href="../code/jquery.bxslider.css" rel="stylesheet" />
     
     <!-- modal -->
-	<script type='text/javascript' src='../code/jquery.simplemodal.js'></script>
+<!-- 	<script type='text/javascript' src='../code/jquery.simplemodal.js'></script> -->
     
     <!-- tab -->
 	<script type='text/javascript' src='../code/tabs.js'></script>
@@ -28,9 +28,12 @@
 	<link rel="stylesheet" href="../code/fm.scrollator.jquery.css" />
     
     <!-- Path to your custom app styles-->
-    <link rel="stylesheet" href="css/my-app.css">
+    <link rel="stylesheet" href="../css/my-app.css">
     
 	<script src="../code/common.js"></script>
+	
+<script type="text/javascript" charset="utf-8" src="../cordova.js"></script>
+<script type="text/javascript" charset="utf-8" src="../telephonenumber.js"></script>
     
 </head>
 
@@ -49,12 +52,12 @@
     <div class="panel panel-left panel-reveal">
     
     	<div class="profile_box">
-        	<div class="pf_photo" style="background:url(../common/profile.jpg) no-repeat center;"></div>
+        	<!-- <div class="pf_photo" style="background:url(../common/profile.jpg) no-repeat center;"></div> -->
             
             <div class="pf_txt">
-            	<h2>김종현</h2>
-                <p>쿠폰 <span>0</span>개</p>
-                <p>포인트 <span>200</span>p</p>
+<!--             	<h2>김종현</h2>    
+				<h1>alenjoe@nate.com</h1>
+				<p>쿠폰 <span>2</span>개 <span> &emsp; 포인트 </span><span>1721</span>p</p> -->
             </div>
             <hr>
         </div>
@@ -86,6 +89,11 @@
                 <a href="#">공지사항</a>
                 </li>
                 
+            	<li>
+                <div class="leftm_box leftm05"></div>
+                <a href="javascript:void(0)" id = "logOut">로그아웃</a>
+                </li>
+                
             </ul>
         </div>
 
@@ -114,10 +122,10 @@
 
                     <div class="main_center">
                         <ul class="mainslider">
-                          <li><a href="#"><img src="banner/main01.jpg" /></a></li>
-                          <li><a href="#"><img src="banner/main02.jpg" /></a></li>
-                          <li><a href="#"><img src="banner/main03.jpg" /></a></li>
-                          <li><a href="#"><img src="banner/main04.jpg" /></a></li>
+                          <li><a href="#"><img src="../banner/claro_banner1.jpg" /></a></li>
+                          <li><a href="#"><img src="../banner/ddobong_banner1.jpg" /></a></li>
+                          <li><a href="#"><img src="../banner/shabu_banner1.jpg" /></a></li>
+                          <li><a href="#"><img src="../banner/coffee_banner1.jpg" /></a></li>
                         </ul>
                     </div>
                     
@@ -128,14 +136,53 @@
                         
                         <div class="mpoint_list">
                             <div class="slide">
-                            	<div class="mpoint_item" style="background:url(banner/point01.jpg) no-repeat center;"></div>
+                            	<div class="mpoint_item" style="background:url(../banner/claro_point1.jpg) no-repeat center;"></div>
+                                <div class="mpoint_txt">
+                                <p>클라로<br>압구정점</p>
+                                <p><span>25m</span></p>
+                                </div>
+                            </div>
+                            <div class="slide">
+                            	<div class="mpoint_item" style="background:url(../banner/coffee_point1.jpg) no-repeat center;"></div>
+                                <div class="mpoint_txt">
+                                <p>커반<br>신사점</p>
+                                <p><span>102m</span></p>
+                                </div>
+                            </div>
+                            
+                            <div class="slide">
+                            	<div class="mpoint_item" style="background:url(../banner/ddobong_point1.jpg) no-repeat center;"></div>
+                                <div class="mpoint_txt">
+                                <p>또봉이통닭<br>가로수길점</p>
+                                <p><span>315m</span></p>
+                                </div>
+                            </div>
+                            
+                            <div class="slide">
+                            	<div class="mpoint_item" style="background:url(../banner/shabu_point1.jpg) no-repeat center;"></div>
+                                <div class="mpoint_txt">
+                                <p>샤브향<br>가로수길점</p>
+                                <p><span>1.2km</span></p>
+                                </div>
+                            </div>
+                            
+                          <!--  <div class="slide">
+                            	<div class="mpoint_item" style="background:url(../banner/point05.jpg) no-repeat center;"></div>
+                                <div class="mpoint_txt">
+                                <p>행당족발<br>송파점</p>
+                                <p><span>25m</span></p>
+                                </div>
+                            </div> 
+                            
+                            <div class="slide">
+                            	<div class="mpoint_item" style="background:url(../banner/point01.jpg) no-repeat center;"></div>
                                 <div class="mpoint_txt">
                                 <p>행당족발<br>송파점</p>
                                 <p><span>25m</span></p>
                                 </div>
                             </div>
                             <div class="slide">
-                            	<div class="mpoint_item" style="background:url(banner/point02.jpg) no-repeat center;"></div>
+                            	<div class="mpoint_item" style="background:url(../banner/point02.jpg) no-repeat center;"></div>
                                 <div class="mpoint_txt">
                                 <p>행당족발<br>송파점</p>
                                 <p><span>25m</span></p>
@@ -143,7 +190,7 @@
                             </div>
                             
                             <div class="slide">
-                            	<div class="mpoint_item" style="background:url(banner/point03.jpg) no-repeat center;"></div>
+                            	<div class="mpoint_item" style="background:url(../banner/point03.jpg) no-repeat center;"></div>
                                 <div class="mpoint_txt">
                                 <p>행당족발<br>송파점</p>
                                 <p><span>25m</span></p>
@@ -151,7 +198,7 @@
                             </div>
                             
                             <div class="slide">
-                            	<div class="mpoint_item" style="background:url(banner/point04.jpg) no-repeat center;"></div>
+                            	<div class="mpoint_item" style="background:url(../banner/point04.jpg) no-repeat center;"></div>
                                 <div class="mpoint_txt">
                                 <p>행당족발<br>송파점</p>
                                 <p><span>25m</span></p>
@@ -159,51 +206,12 @@
                             </div>
                             
                             <div class="slide">
-                            	<div class="mpoint_item" style="background:url(banner/point05.jpg) no-repeat center;"></div>
+                            	<div class="mpoint_item" style="background:url(../banner/point05.jpg) no-repeat center;"></div>
                                 <div class="mpoint_txt">
                                 <p>행당족발<br>송파점</p>
                                 <p><span>25m</span></p>
                                 </div>
-                            </div>
-                            
-                            <div class="slide">
-                            	<div class="mpoint_item" style="background:url(banner/point01.jpg) no-repeat center;"></div>
-                                <div class="mpoint_txt">
-                                <p>행당족발<br>송파점</p>
-                                <p><span>25m</span></p>
-                                </div>
-                            </div>
-                            <div class="slide">
-                            	<div class="mpoint_item" style="background:url(banner/point02.jpg) no-repeat center;"></div>
-                                <div class="mpoint_txt">
-                                <p>행당족발<br>송파점</p>
-                                <p><span>25m</span></p>
-                                </div>
-                            </div>
-                            
-                            <div class="slide">
-                            	<div class="mpoint_item" style="background:url(banner/point03.jpg) no-repeat center;"></div>
-                                <div class="mpoint_txt">
-                                <p>행당족발<br>송파점</p>
-                                <p><span>25m</span></p>
-                                </div>
-                            </div>
-                            
-                            <div class="slide">
-                            	<div class="mpoint_item" style="background:url(banner/point04.jpg) no-repeat center;"></div>
-                                <div class="mpoint_txt">
-                                <p>행당족발<br>송파점</p>
-                                <p><span>25m</span></p>
-                                </div>
-                            </div>
-                            
-                            <div class="slide">
-                            	<div class="mpoint_item" style="background:url(banner/point05.jpg) no-repeat center;"></div>
-                                <div class="mpoint_txt">
-                                <p>행당족발<br>송파점</p>
-                                <p><span>25m</span></p>
-                                </div>
-                            </div>
+                            </div>-->
                         </div>        
                     </div>
 
@@ -211,18 +219,18 @@
 
 					<div class="main_latest alen_outbox">
                     
-                    	<div class="mcon_bg">
+                    	<div class="mcon_bg" id="curUseData">
                         <a href="#"><img src="../common/micon01.gif"></a>
                         </div>
                         
                     	<div class="mcon_btn">
-                        <a href="#">MORE</a>
+                        <a href="#" >MORE</a>
                         </div>
                         
-                    	<div class="main_content">
+                    	<div class="main_content" >
                         	<h2>최근사용내역</h2>
-                        	<ul>
-                            	<li>
+                        	<ul id="curMainData">
+<!--                             	<li>
                                 <div class="mlat01">2016-08-24</div>
                                 <div class="mlat02">삼성카드</div>
                                 <div class="mlat03">세븐일레븐</div>
@@ -244,7 +252,7 @@
                                 <div class="mlat03">세븐일레븐</div>
                                 <div class="mlat04">3.900원</div>
                                 <hr>
-                                </li>
+                                </li> -->
                             </ul>
                         </div>
                     </div>
@@ -263,8 +271,8 @@
                                 <a href="#">MORE</a>
                                 </div>
                                 
-                                <div class="main_content">
-                                    <h2>가계부</h2>
+                                <div class="main_content" id="houdeHole">
+<!--                                     <h2>가계부</h2>
                                     
                                     <div class="main_item01">
                                     	<span class="fleft">전월</span>
@@ -274,7 +282,7 @@
                                     <div class="main_item02">
                                     	<p>당월 누적 사용액</p>
                                         <h3><span>1,378,626</span>원</h3>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 
                             </div>
@@ -293,8 +301,8 @@
                                 <a href="#">MORE</a>
                                 </div>
                                 
-                                <div class="main_content">
-                                    <h2>영수증 확인</h2>
+                                <div class="main_content" id="recConfirm">
+<!--                                     <h2>영수증 확인</h2>
                                     
                                     <div class="main_item01">
                                     	<span class="fleft">미확인 영수증</span>
@@ -309,7 +317,7 @@
                                     <div class="main_item01 last_item">
                                     	<span class="fleft">미확인 영수증</span>
                                         8<span>건</span>
-                                    </div>
+                                    </div> -->
                                     
                                 </div>
                                 
@@ -334,49 +342,49 @@
                         
                         <div class="mcoupon_list">
                             <div class="slide">
-                            	<div class="mcoupon_item" style="background:url(banner/coupon01.jpg) no-repeat center;"></div>
+                            	<div class="mcoupon_item" style="background:url(../banner/claro_coupon1.jpg) no-repeat center;"></div>
+                                <div class="mcoupon_txt">
+                                <h3>10%</h3>
+                                <p>클라로<br>압구정점</p>
+                                <p><span>10.5 ~ 11.5</span></p>
+                                </div>
+                            </div>
+                            
+                            <div class="slide">
+                            	<div class="mcoupon_item" style="background:url(../banner/ddobong_coupon1.jpg) no-repeat center;"></div>
+                                <div class="mcoupon_txt">
+                                <h3>1,000</h3>
+                                <p>또봉이동닭<br>신사점</p>
+                                <p><span>10.5 ~ 11.5</span></p>
+                                </div>
+                            </div>
+                            
+                            <div class="slide">
+                            	<div class="mcoupon_item" style="background:url(../banner/shabu_coupon1.jpg) no-repeat center;"></div>
+                                <div class="mcoupon_txt">
+                                <h3>20%</h3>
+                                <p>샤브향<br>가로수길점</p>
+                                <p><span>10.5 ~ 11.5</span></p>
+                                </div>
+                            </div>
+                            
+                            <div class="slide">
+                            	<div class="mcoupon_item" style="background:url(../banner/coffee_coupon1.jpg) no-repeat center;"></div>
+                                <div class="mcoupon_txt">
+                                <h3>20%</h3>
+                                <p>커반<br>가로수길점</p>
+                                <p><span>10.5 ~ 11.5</span></p>
+                                </div>
+                            </div>
+                            
+                            <!-- <div class="slide">
+                            	<div class="mcoupon_item" style="background:url(../banner/coupon05.jpg) no-repeat center;"></div>
                                 <div class="mcoupon_txt">
                                 <h3>30%</h3>
                                 <p>행당족발<br>송파점</p>
                                 <p><span>7.5 ~ 8.5</span></p>
                                 </div>
-                            </div>
-                            
-                            <div class="slide">
-                            	<div class="mcoupon_item" style="background:url(banner/coupon02.jpg) no-repeat center;"></div>
-                                <div class="mcoupon_txt">
-                                <h3>30%</h3>
-                                <p>행당족발<br>송파점</p>
-                                <p><span>7.5 ~ 8.5</span></p>
-                                </div>
-                            </div>
-                            
-                            <div class="slide">
-                            	<div class="mcoupon_item" style="background:url(banner/coupon03.jpg) no-repeat center;"></div>
-                                <div class="mcoupon_txt">
-                                <h3>2,000</h3>
-                                <p>행당족발<br>송파점</p>
-                                <p><span>7.5 ~ 8.5</span></p>
-                                </div>
-                            </div>
-                            
-                            <div class="slide">
-                            	<div class="mcoupon_item" style="background:url(banner/coupon04.jpg) no-repeat center;"></div>
-                                <div class="mcoupon_txt">
-                                <h3>30%</h3>
-                                <p>행당족발<br>송파점</p>
-                                <p><span>7.5 ~ 8.5</span></p>
-                                </div>
-                            </div>
-                            
-                            <div class="slide">
-                            	<div class="mcoupon_item" style="background:url(banner/coupon05.jpg) no-repeat center;"></div>
-                                <div class="mcoupon_txt">
-                                <h3>30%</h3>
-                                <p>행당족발<br>송파점</p>
-                                <p><span>7.5 ~ 8.5</span></p>
-                                </div>
-                            </div>
+                            </div> -->
                             
                         </div>        
                     </div>
@@ -385,13 +393,13 @@
                     <div class="main_event">
                     	<div class="mevent_item alen_outbox">
                         <a href="#">
-                        <img src="banner/event01.jpg">
+                        <img src="../banner/event01.jpg">
                         </a>
                         </div>
                         
                     	<div class="mevent_item alen_outbox">
                         <a href="#">
-                        <img src="banner/event02.jpg">
+                        <img src="../banner/event02.jpg">
                         </a>
                         </div>
                     </div>
@@ -441,50 +449,340 @@
 
 <script>
 
-// main_slider
+var request = new Request();
+
 $(document).ready(function(){
+	document.addEventListener("deviceready", onDeviceReady, false);
+	document.addEventListener("backbutton", onBackKeyDown, true);
+	
+	$("#logOut").click(function(){
+	  	var storage = window.localStorage;
+	  	localStorage.removeItem("id");
+	  	localStorage.removeItem("pw");		
+		location.href='../login.html';
+	})
+	
+	// main_slider
   $('.mainslider').bxSlider({
 	  auto: true,
 	  autoHover: true,
 	  randomStart: true,
 	  controls: false
   });
-});
-
-
-// point_slider
-$(document).ready(function(){
+//point_slider
   $('.mpoint_list').bxSlider({
 	  slideWidth: 130,
 	  minSlides: 2,
-	  maxSlides: 7,
+	  maxSlides: 4,
 	  moveSlides: 1,
 	  slideMargin: 10,
 	  auto: true,
 	  autoHover: true,
 	  pager: false
   });
-});
-
-// coupon_slider
-$(document).ready(function(){
+//coupon_slider
   $('.mcoupon_list').bxSlider({
 	  slideWidth: 170,
 	  minSlides: 2,
-	  maxSlides: 5,
+	  maxSlides: 4,
 	  moveSlides: 1,
 	  slideMargin: 10,
 	  auto: true,
 	  autoHover: true,
 	  pager: false,
 	  controls: false
-  });
+  });  
+  
+  $("#curUseData").click(function(){
+	  location.href='stepA_01.html';
+  })
 });
+
+
+/* 
+$(document).ready(function(){
+  
+});
+
+
+$(document).ready(function(){
+
+});
+
+curUseData */
+function startCurData(idParam){
+
+}
+function onDeviceReady() {
+	//document.addEventListener("backbutton", onBackKeyDown, true);
+    var curUuid = device.uuid;
+
+			console.log("device.uuid:"+device.uuid);
+
+            var telephoneNumber = cordova.require("cordova/plugin/telephonenumber");
+            
+            
+            telephoneNumber.get(function(result) {
+            	var telNo = request.getParameter('telNo');
+            	var uuId = request.getParameter('uuId');
+                    result = result.replace( "+82", "0");
+                    console.log("result = " + result);
+                    console.log("telNo = " + telNo);
+                    console.log("uuId = " + uuId);
+                    console.log("result = " + result);
+                    console.log("curUuid = " + curUuid);
+                $.ajax({
+                    type: "post",
+                    url : commonIp()+"/theReal/receipt/compareUuId.do",
+                    data: {
+                    	dbTelNo : telNo,
+                    	dbUuId  :  uuId,
+                    	curTelNo : result,
+                    	curUuid  :  curUuid,
+                    	
+                    },
+                    success: fnComUuIdSucData,
+                    error: whenError
+                	});	            	
+                }, function() {
+                });
+
+
+}
+
+function onBackKeyDown() {
+    navigator.notification.confirm('앱을 종료하시겠습니까?', onBackKeyDownMsg, '더리얼전자영수증', '취소, 종료');
+}
+
+function onBackKeyDownMsg(button) {
+    if(button == 2) {
+        navigator.app.exitApp();
+    }
+}
+function fnComUuIdSucData(resData){
+	console.log(resData)
+	if(resData == 1){
+		//alert("정상로그인 되었습니다.");
+
+		var date = new Date();
+		var curDate = date.getDate();
+		var firstDayOfMonth = new Date( date.getFullYear(), date.getMonth()+1 , 1 );
+		var startDate = firstDayOfMonth.getFullYear()+""+(firstDayOfMonth.getMonth() > 9 ? ''+firstDayOfMonth.getMonth(): '0'+firstDayOfMonth.getMonth());
+		var lastMonth = new Date ( firstDayOfMonth.setDate( firstDayOfMonth.getDate() - 1 ) );
+		var endDate = firstDayOfMonth.getFullYear()+""+(firstDayOfMonth.getMonth() > 9 ? ''+firstDayOfMonth.getMonth(): '0'+firstDayOfMonth.getMonth());
+	    $.ajax({
+	        type: "post",
+	        url : commonIp()+"/theReal/receipt/startCurData.do",
+	        data: {
+	        	telNo  	: request.getParameter('telNo'),  
+	        },
+	        success: fn_startCurData,
+	        error: whenError
+	    	});			
+	    	
+	    $.ajax({
+	        type: "post",
+	        url : commonIp()+"/theReal/receipt/startUserData.do",
+	        data: {
+	        	telNo  	: request.getParameter('telNo'),  
+	        },
+	        success: fn_startUserData,
+	        error: whenError
+	    	});
+	    
+	    $.ajax({
+	        type: "post",
+	        url : commonIp()+"/theReal/receipt/startSumData.do",
+	        data: {
+	        	telNo  	: request.getParameter('telNo'),  
+	        	startDate  	: startDate+"%",  
+	        	endDate  	: endDate+"%",  
+	        },
+	        success: fn_startSumData,
+	        error: whenError
+	    	});			    
+	    
+	    $.ajax({
+	        type: "post",
+	        url : commonIp()+"/theReal/receipt/startRecYnData.do",
+	        data: {
+	        	telNo  	: request.getParameter('telNo'),  
+	        	startDate  	: startDate+curDate,  
+	        	endDate  	: endDate+curDate,  
+	        },
+	        success: fn_startRecYnData,
+	        error: whenError
+	    	});			    
+	    
+		//fn_startCurData();	
+		//fn_startUserData();
+	}else{
+		alert("로그인 정보가 틀립니다. 인증화면(개발진행)");
+	}
+}
+
+/* function fn_startCurData(){
+    $.ajax({
+        type: "post",
+        url : commonIp()+"/theReal/receipt/startCurData.do",
+        data: {
+        	telNo  	: request.getParameter('telNo'),  
+        },
+        success: fn_startCurData,
+        error: whenError
+    	});		
+} */
+
+function fn_startCurData(resdata){
+	 var str = "";
+	var resultData = resdata.resultMap;
+	var cardCashDiv = "";
+	resultCnt = resultData.length;
+	if(resultData.length>0){
+		for(var i=0; i<resultData.length; i++){
+			if(resultData[i].CARD_ICOM == ""){
+				cardCashDiv = "현금"		
+			}else{
+				cardCashDiv = resultData[i].CARD_ICOM;	
+			}
+			console.log("resultData[i].CARD_ICOM:"+resultData[i].CARD_ICOM);
+			console.log("cardCashDiv:"+cardCashDiv);
+			str += '<li>';
+			str += '<div class="mlat01">'+resultData[i].SALES_PRINT_DATE+'</div>';
+			str += '<div class="mlat02">'+cardCashDiv+'</div>';
+			str += '<div class="mlat03">'+resultData[i].SHOP_NAME+'</div>';
+			str += '<div class="mlat04">'+resultData[i].SALES_PAID_AMT+'</div>';
+			
+			str += '</li>';		            
+            
+		}
+	}		 
+		 
+	else{
+		str += '<li>';
+		str += '<div>최근사용내역이 없습니다.</div>';
+		str += '</li>';		  	
+	}
+	$("#curMainData").append(str);
+}
+/* function fn_startUserData(){
+    $.ajax({
+        type: "post",
+        url : commonIp()+"/theReal/receipt/startUserData.do",
+        data: {
+        	telNo  	: request.getParameter('telNo'),  
+        },
+        success: fn_startUserData,
+        error: whenError
+    	});		
+} */
+
+function fn_startUserData(resdata){
+	 var str = "";
+	var resultData = resdata.resultMap;
+	var cardCashDiv = "";
+	resultCnt = resultData.length;
+	if(resultData.length>0){
+		for(var i=0; i<resultData.length; i++){
+			str += '<h2>'+resultData[i].EMAIL+'</h2>';
+			str += '<h1>'+resultData[i].USER_NM+'</h1>';
+			str += '<p>쿠폰 <span>2</span>개 <span> &emsp; 포인트 </span><span>1721</span>p</p>';
+		}
+	}		 
+		 
+	else{
+		str += '<h2></h2>';
+		str += '<h1></h1>';
+		str += '<p>쿠폰 <span>2</span>개 <span> &emsp; 포인트 </span><span>1721</span>p</p>';		
+	}
+	$(".pf_txt").append(str);
+}
+
+function fn_startSumData(resdata){
+	 var str = "";
+	 var totalAm = "";
+	 var totalAm2 = "";
+	var resultData = resdata.resultMap;
+	console.log(resultData);
+	resultCnt = resultData.length;
+	console.log("resultCnt:"+resultCnt);
+	if(resultData.length>0){
+		for(var i=0; i<resultData.length; i++){
+			if(!isNull(resultData[i].TOTAL_AM)){
+				totalAm = resultData[i].TOTAL_AM;
+			}else{
+				totalAm = "0";
+			}
+			if(!isNull(resultData[i].TOTAL_AM2)){
+				totalAm2 = resultData[i].TOTAL_AM2;
+			}else{
+				totalAm2 = "0";
+			}
+			str += '<h2>가계부</h2>                         ';
+			str += '<div class="main_item01">               ';
+			str += '	<span class="fleft">전월</span>     ';
+			str += numberWithCommas(totalAm)+'<span>원</span>            ';
+			str += '</div>                                  ';
+			str += '<div class="main_item02">               ';
+			str += '	<p>당월 누적 사용액</p>             ';
+			str += '    <h3><span>'+numberWithCommas(totalAm2)+'</span>원</h3>   ';
+			str += '</div>									';				
+		}
+	}		 
+	else{
+		
+		str += '<h2>가계부</h2>                         ';
+		str += '<div class="main_item01">               ';
+		str += '	<span class="fleft">전월</span>     ';
+		str += '0<span>원</span>            ';
+		str += '</div>                                  ';
+		str += '<div class="main_item02">               ';
+		str += '	<p>당월 누적 사용액</p>             ';
+		str += '    <h3><span>0</span>원</h3>   ';
+		str += '</div>	';					
+	}
+	$("#houdeHole").append(str);
+}
+
+function fn_startRecYnData(resdata){
+	 var str = "";
+	var resultData = resdata.resultMap;
+	resultCnt = resultData.length;
+	if(resultData.length>0){
+		for(var i=0; i<resultData.length; i++){
+			str += '<h2>영수증 확인(최근 한달)</h2>                         ';
+			str += '<div class="main_item01">               ';
+			str += '	<span class="fleft">미확인 영수증</span>     ';
+			str += resultData[i].TOTAL_NO_READ_CNT+'<span>건</span>            ';
+			str += '</div>                                  ';
+			str += '<div class="main_item01">               ';
+			str += '	<span class="fleft">전체 발급 건수</span>     ';
+			str += resultData[i].TOTAL_CNT+'<span>건</span>            ';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     			str += '</div>									';				
+		}
+	}		 
+	else{
+		str += '<h2>영수증 확인(최근 한달)</h2>                         ';
+		str += '<div class="main_item01">               ';
+		str += '	<span class="fleft">미확인 영수증</span>     ';
+		str += resultData[i].TOTAL_NO_READ_CNT+'<span>건</span>            ';
+		str += '</div>                                  ';
+		str += '<div class="main_item02">               ';
+		str += '	<p>전체 발급 건수</p>             ';
+		str += '    <h3><span>'+resultData[i].TOTAL_CNT+'</span>건</h3>   ';
+		str += '</div>					 ';
+	}
+	$("#recConfirm").append(str);
+}
+
+function whenError(){
+		alert("실패.");
+}
 </script>
 
-<script type="text/javascript" src="js/framework7.js"></script>
+<script type="text/javascript" src="../js/framework7.js"></script>
 
-<script type="text/javascript" src="js/my-app.js"></script>
+<script type="text/javascript" src="../js/my-app.js"></script>
 
 <input value="activate scrollator" id="activate_scrollator4" type="button"  style="display:none;">
 </body>
