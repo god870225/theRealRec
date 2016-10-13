@@ -241,6 +241,20 @@ module.exports = [
         "merges": [
             "navigator.notification"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-media/www/MediaError.js",
+        "id": "cordova-plugin-media.MediaError",
+        "clobbers": [
+            "window.MediaError"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-media/www/Media.js",
+        "id": "cordova-plugin-media.Media",
+        "clobbers": [
+            "window.Media"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -255,7 +269,8 @@ module.exports.metadata =
     "cordova-plugin-geolocation": "2.4.0",
     "cordova-plugin-inappbrowser": "1.5.0",
     "cordova-plugin-vibration": "2.1.2",
-    "cordova-plugin-dialogs": "1.3.0"
+    "cordova-plugin-dialogs": "1.3.0",
+    "cordova-plugin-media": "2.4.0"
 };
 // BOTTOM OF METADATA
 });
