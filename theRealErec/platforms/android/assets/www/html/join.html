@@ -186,7 +186,7 @@
                         	<ul>
                             	<li class="full_input"><input type="text" placeholder="이름" id="userNm" maxlength="10" ></li>
                                 
-                            	<li class="full_input"><input type="text" placeholder="이메일"  id="eMail" maxlength="30"></li>
+                            	<li class="full_input"><input type="text" placeholder="이메일"  id="eMail" maxlength="30" onblur="fn_joinChkId()"></li>
 
                             	<li class="full_input"><input type="text" placeholder="비밀번호"  id="pwd" maxlength="30"></li>
                                 
@@ -233,52 +233,8 @@
 	                                   <option value="06">알뜰폰 LGu+</option>
 	                               </select>
 	                             </li>                                     
-                            	<li class="full_input"><input type="text" placeholder="휴대폰 번호" id="telNo"></li>
-                            	<li class="full_input"><input type="text" placeholder="유일키번호" id="uuId"></li>
-  <!--                           	<li>
-                                <div class="alen_radio_box">
-                                    <div class="alen_table_quad">
-                                    <label class="label-radio item-content">
-                                      <input type="radio" name="tservice" value="01">
-                                      <div class="item-inner">
-                                        <div class="item-title">SKT</div>
-                                      </div>
-                                    </label>
-                                    </div>
-                                    
-                                    
-                                    <div class="alen_table_quad">
-                                    <label class="label-radio item-content">
-                                      <input type="radio" name="tservice" value="02">
-                                      <div class="item-inner">
-                                        <div class="item-title">KT</div>
-                                      </div>
-                                    </label>
-                                    </div>
-                                    
-                                    
-                                    <div class="alen_table_quad">
-                                    <label class="label-radio item-content">
-                                      <input type="radio" name="tservice" value="03">
-                                      <div class="item-inner">
-                                        <div class="item-title">U+</div>
-                                      </div>
-                                    </label>
-                                    </div>
-                                    
-                                    
-                                    <div class="alen_table_quad alen_table_last">
-                                    <label class="label-radio item-content">
-                                      <input type="radio" name="tservice" value="04">
-                                      <div class="item-inner">
-                                        <div class="item-title">알뜰폰</div>
-                                      </div>
-                                    </label>
-                                    </div>
-                                    <hr>
-                                
-                                </div>
-                                </li> -->
+                            	<li class="full_input"><input type="text" onkeydown = "onlyNumberInput()" placeholder="휴대폰 번호" id="telNo"></li>
+                            	<li class="full_input"><input type="hidden" placeholder="유일키번호" id="uuId"></li>
                                 
                             	<li>
                                 <div class="alen_radio_box" >
@@ -448,80 +404,95 @@ var smsSiteDomain = "샤샥스토어";
 //var smsEndPointURL = "http://safe.ok-name.co.kr/KcbWebService/OkNameService";    
 var smsEndPointURL ="http://tsafe.ok-name.co.kr:29080/KcbWebService/OkNameService";    
 var smsLogPath = "/LOGS";
-var a  = new Date();   
-var year  = a.getFullYear();
-var month = a.getMonth()+1;
-var date = a.getDate();
-var hours = a.getHours();
-var minutes = a.getMinutes();
-var seconds = a.getSeconds();
-var toDay = String(year)+String(month)+String(date)+String(hours)+String(minutes)+String(seconds);
+var a = "";
+var year = "";
+var month = "";
+var date = "";
+var hours = "";
+var minutes = "";
+var seconds = "";
+var toDay = "";
 var smsSvcTxSeqno = "";
+var smsOption = "";
 
+
+var userNm		= "";
+var eMail       = "";
+var birthDay    = "";
+var sex         = "";
+var nation      = "";
+var tService    = "";
+var smsCertNo     = "";
+var telNo       = "";
+var pwd         = "";
+var uuId        = "";
 
 $(document).ready(function(){
 	
 	document.addEventListener("deviceready", onDeviceReady, false);
-	//smsSvcTxSeqno = toDay+($("#telNo").val());
-/* 	$("#pwd").keyup(function(event){
-	            if (!(event.keyCode >=37 && event.keyCode<=40)) {
-	                var inputVal = $(this).val();
-	                $(this).val(inputVal.replace(/[^a-z0-9]/gi,''));
-	            }
-	});		 */
-	
 	$("#recNum").click(function(){
 		time = "180";
 		clearInterval(runCount);
 		fncCountDown();
-		//setInterval("startCountDown()", 1000);
 		
-	      var smsSvcTxSeqno = toDay+($("#telNo").val());
+	      
 	      var smsReSndYn = "";
 	      var smsRsv1 = "0";
 	      var smsRsv2 = "0";
 	      var smsRqstMsrCd ="10";  
 	      var smsRqstCausCd = "00";
 	      var smsOption = "JU";   
+
+	         a  = new Date();   
+	         year  = a.getFullYear();
+	         month = a.getMonth()+1;
+	         date = a.getDate();
+	         hours = a.getHours();
+	         minutes = a.getMinutes();
+	         seconds = a.getSeconds();	      
+	         toDay = String(year)+String(month)+String(date)+String(hours)+String(minutes)+String(seconds);	         
 	      
 	      if(reSendYn){
 	         //재전송시
 	         smsReSndYn = "Y";   
+
+			 smsSvcTxSeqno = toDay+($("#telNo").val());
 	      }else{
 	         //최초전송시
+			 smsSvcTxSeqno = toDay+($("#telNo").val());
 	         smsReSndYn = "N";   
 	      }
 //-----------------------------------------
 //KCB 본인확인 번호요청
 //-----------------------------------------
 		
-		  $.ajax({
-              type: "post",
-              url : commonIp()+"/theReal/receipt/KcbCertified.do",
-              data: {
-                    smsSvcTxSeqno   : smsSvcTxSeqno,
-                    smsName        : alltrim($("#userNm").val()),  
-                    smsBirthday      : alltrim($("#birthDay").val())   ,
-                    smsGender      : $(':radio[name="sex"]:checked').val(),
-                    smsNation        : $(':radio[name="nation"]:checked').val(),
-                    smsComCd  		: $("#selectTelCom option:selected").val(),  
-                    smsMbphnNo      : alltrim($("#telNo").val()),
-                    smsReSndYn       : smsReSndYn ,
-                    smsRsv1       : smsRsv1, 
-                    smsRsv2       : smsRsv2, 
-                    smsRqstMsrCd    : smsRqstMsrCd, 
-                  smsRqstCausCd    : smsRqstCausCd, 
-                  smsMemId       : smsMemId, 
-                  smsServerIp    : smsServerIp, 
-                  smsSiteUrl       : smsSiteUrl, 
-                  smsSiteDomain    : smsSiteDomain, 
-                  smsEndPointURL   : smsEndPointURL, 
-                  smsLogPath       : smsLogPath, 
-                  smsOption       : smsOption 
-                 },
-              success: fnCertSucData,
-              error: whenError
-             }); 		
+	        $.ajax({
+	              type: "post",
+	              url : commonIp()+"/theReal/receipt/KcbCertified.do",
+	              data: {
+	                    smsSvcTxSeqno     : smsSvcTxSeqno,
+	                    smsName           : alltrim($("#userNm").val()),  
+	                    smsBirthday       : alltrim($("#birthDay").val())   ,
+	                    smsGender         : $(':radio[name="sex"]:checked').val(),
+	                    smsNation         : $(':radio[name="nation"]:checked').val(),
+	                    smsComCd          : $("#selectTelCom option:selected").val(),  
+	                    smsMbphnNo        : alltrim($("#telNo").val()),
+	                    smsReSndYn        : smsReSndYn ,
+	                    smsRsv1           : smsRsv1, 
+	                    smsRsv2           : smsRsv2, 
+	                    smsRqstMsrCd      : smsRqstMsrCd, 
+	                    smsRqstCausCd     : smsRqstCausCd, 
+	                    smsMemId          : smsMemId, 
+	                    smsServerIp       : smsServerIp, 
+	                    smsSiteUrl        : smsSiteUrl, 
+	                    smsSiteDomain     : smsSiteDomain, 
+	                    smsEndPointURL    : smsEndPointURL, 
+	                    smsLogPath        : smsLogPath, 
+	                    smsOption         : smsOption 
+	                 },
+	              success: fnKcbCertified,
+	              error: whenError
+	             });  	
 	})
 	
  	$(".alen_allcheck").click(function(){
@@ -538,16 +509,16 @@ $(document).ready(function(){
 	
 	
 	$("#agreeComple").click(function(){
-    	var userNm = alltrim($("#userNm").val());
-    	var eMail = alltrim($("#eMail").val());
-    	var birthDay = alltrim($("#birthDay").val());
-		var sex = $(':radio[name="sex"]:checked').val();
-		var nation = $(':radio[name="nation"]:checked').val();
-		var tService = $("#selectTelCom option:selected").val();
-    	var certNum = alltrim($("#certNum").val());
-    	var telNo = alltrim($("#telNo").val());
-    	var pwd = alltrim($("#pwd").val());
-    	var uuId = alltrim($("#uuId").val());
+		userNm 		= alltrim($("#userNm").val());
+		eMail		= alltrim($("#eMail").val());
+		birthDay	= alltrim($("#birthDay").val());
+		sex 		= $(':radio[name="sex"]:checked').val();
+		nation 		= $(':radio[name="nation"]:checked').val();
+		tService 	= $("#selectTelCom option:selected").val();
+		smsCertNo 	= alltrim($("#certNum").val());
+		telNo 		= alltrim($("#telNo").val());
+		pwd 		= alltrim($("#pwd").val());
+		uuId 		= alltrim($("#uuId").val());	
 
   		if(!chkPwd(pwd)){
   			alert("비밀번호");
@@ -606,54 +577,30 @@ $(document).ready(function(){
 		}		
 		
 		
-	    $.ajax({
-	        type: "post",
-	        url : commonIp()+"/theReal/receipt/appMemberInsert.do",
-	        data: {
-	        	userNm  	: userNm,  
-	        	eMail   		: eMail,   
-	        	birthDay		: birthDay,
-	        	sex     		: sex,
-	        	nation  		: nation,  
-	        	tService		: tService,
-	        	telNo 		: telNo ,
-	        	uuId 			: uuId, 
-	        	pwd 			: pwd, 
-	        },
-	        success: fnSucData,
-	        error: whenError
-	    	});		
-		
+        smsOption = "MU";
+        alert("인증번호=="+smsCertNo);
+     
+        
+      $.ajax({
+             type: "post",
+             url : commonIp()+"/theReal/receipt/KcbVerification.do",
+             data: {
+                 smsSvcTxSeqno   : smsSvcTxSeqno,
+                 smsMbphnNo      : alltrim($("#telNo").val()),
+                 smsCertNo      : smsCertNo,
+                 smsMemId       : smsMemId, 
+                 smsServerIp    : smsServerIp, 
+                 smsEndPointURL   : smsEndPointURL, 
+                 smsLogPath       : smsLogPath, 
+                 smsOption       : smsOption 
+             },
+             success: fnKcbVerification,
+             error: whenError
+         });       
+         
 	})
 	
 });
-//-----------------------------------------
-//KCB 본인인증  검증 처리
-//-----------------------------------------
-
-		
-	/* 	var smsCertNo = certNum; 
-		var smsOption = "M";
-	
-	 $.ajax({
-	        type: "post",
-	        url : commonIp()+"/theReal/receipt/KcbVerification.do",
-	        data: {
-	        	data: {
-	        		smsSvcTxSeqno  : smsSvcTxSeqno,
-		        	smsMbphnNo		: alltrim($("#telNo").val()),
-					smsMemId 		: smsMemId, 
-					smsServerIp 	: smsServerIp, 
-					smsEndPointURL	: smsEndPointURL, 
-					smsLogPath 		: smsLogPath, 
-					smsOption 		: smsOption 
-		        },
-	        },
-	        success: fnSucData,
-	        error: whenError
-	    	});				
-	
-	 */
 	
 	
 
@@ -687,65 +634,118 @@ $(document).ready(function(){
 
 
 
-	var min = 0;
-	var sec = 0;
-	var time = 0;
-	var runCount;
-	
-	// 시작 함수 호출 시
-	function fncCountDown() {
-	
-	 // 입력 값 셋팅
-	
-	 if ( time.length > 0 ) {
-	  runCount = setInterval("startCountDown()", 1000);
-	
-	 } else {
-	  alert("값을 입력 해 주세요");
-	  return;
-	
-	 }
+	   var min = 0;
+	   var sec = 0;
+	   var time = 0;
+	   var runCount;
+	   
+	   // 시작 함수 호출 시
+	   function fncCountDown() {
+	   
+	    // 입력 값 셋팅
+	   
+	    if ( time.length > 0 ) {
+	     runCount = setInterval("startCountDown()", 1000);
+	   
+	    } else {
+	     alert("값을 입력 해 주세요");
+	     return;
+	   
+	    }
+	   }
+	   
+	   // 카운트 다운 및 노출하기
+	   function startCountDown() {
+	   
+	    min = parseInt((time%3600)/60);
+	    sec = time%60;
+	    console.log(min + " : " + sec);
+	    $("#certNumView").val(min + " : " + sec);
+	   
+	    // 시간이 다 됐을 시 timer 정지
+	    if ( parseInt(time) == 0 ) {
+	       $("#certNumView").val("");
+	     stopCountDown();
+	   
+	    } else {
+	     time--;
+	    }
+	   
+	   }
+
+	// 타이머 정지
+	function stopCountDown() {
+	   clearInterval(runCount);
 	}
-	
-	// 카운트 다운 및 노출하기
-	function startCountDown() {
-	
-	 min = parseInt((time%3600)/60);
-	 sec = time%60;
-	 console.log(min + " : " + sec);
-	 $("#certNumView").val(min + " : " + sec);
-	
-	 // 시간이 다 됐을 시 timer 정지
-	 if ( parseInt(time) == 0 ) {
-		 $("#certNumView").val("");
-	  stopCountDown();
-	
-	 } else {
-	  time--;
-	 }
-	
+
+	function fnSucData(resdata){
+	   alert(resdata);
+	   if(resdata == 1){
+	      alert("성공.");
+	      location.href='index.html?uuId='+uuId+'&telNo='+telNo;
+	   }
 	}
 
-// 타이머 정지
-function stopCountDown() {
-	clearInterval(runCount);
-}
-
-function fnSucData(resdata){
-	alert(resdata);
-	if(resdata == "1"){
-		alert("성공.");
-		location.href='index.html';
+	// KCB 문자인증번호 요청 
+	function fnKcbCertified(resdata){
+	   alert(resdata);
+	   if(resdata == 1){
+		reSendYn = true;
+	      alert("성공.");
+	   }
 	}
-}
 
-function fnCertSucData(resdata){
-alert("인증번호를 3분내에 입력하세요");
-}
 
-function whenError(){
-	alert("실패.");
-}
+	//KCB 문자인증번호 검증 
+	function fnKcbVerification(resdata){
+	   if(resdata == 1){
+		      $.ajax({
+		          type: "post",
+		          url : commonIp()+"/theReal/receipt/appMemberInsert.do",
+		          data: {
+		             userNm     : userNm,  
+		             eMail         : eMail,   
+		             birthDay      : birthDay,
+		             sex           : sex,
+		             nation        : nation,  
+		             tService      : tService,
+		             telNo       : telNo ,
+		             uuId          : uuId, 
+		             pwd          : pwd, 
+		          },
+		          success: fnSucData,
+		          error: whenError
+		         });  	
+	   }
+	}
+
+	function fn_joinChkId(){
+	      $.ajax({
+	          type: "post",
+	          url : commonIp()+"/theReal/receipt/joinChkId.do",
+	          data: {
+	             eMail         : alltrim($("#eMail").val()),   
+	          },
+	          success: fn_sucJoinChkId,
+	          error: whenError
+	         });  		
+	}
+
+	function fn_sucJoinChkId(resdata){
+		if(resdata == 1){
+			alert("중복 아이디 입니다.");
+			$("#eMail").val("");
+			$("#eMail").focus();
+		}
+	}
+
+	function fnCertSucData(resdata){
+	alert("인증번호를 3분내에 입력하세요");
+	}
+
+	function whenError(){
+	   alert("실패.");
+	}
 
 
 </script>
