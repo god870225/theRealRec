@@ -39,6 +39,18 @@
                         {
                             "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Vibration\"><param name=\"android-package\" value=\"org.apache.cordova.vibration.Vibration\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Notification\"><param name=\"android-package\" value=\"org.apache.cordova.dialogs.Notification\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Media\"><param name=\"android-package\" value=\"org.apache.cordova.media.AudioHandler\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -48,7 +60,7 @@
                     "/*": [
                         {
                             "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
-                            "count": 3
+                            "count": 4
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
@@ -60,6 +72,24 @@
                         },
                         {
                             "xml": "<uses-feature android:name=\"android.hardware.location.gps\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.RECORD_AUDIO\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\" />",
+                            "count": 1
+                        }
+                    ],
+                    "/manifest": [
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.VIBRATE\" />",
                             "count": 1
                         }
                     ]
@@ -90,6 +120,15 @@
             "PACKAGE_NAME": "com.theReal.Erec"
         },
         "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.theReal.Erec"
+        },
+        "cordova-plugin-vibration": {
+            "PACKAGE_NAME": "com.theReal.Erec"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.theReal.Erec"
+        },
+        "cordova-plugin-media": {
             "PACKAGE_NAME": "com.theReal.Erec"
         }
     },
@@ -314,6 +353,42 @@
                 "cordova.InAppBrowser.open",
                 "window.open"
             ]
+        },
+        {
+            "file": "plugins/cordova-plugin-vibration/www/vibration.js",
+            "id": "cordova-plugin-vibration.notification",
+            "merges": [
+                "navigator.notification",
+                "navigator"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-dialogs/www/notification.js",
+            "id": "cordova-plugin-dialogs.notification",
+            "merges": [
+                "navigator.notification"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-dialogs/www/android/notification.js",
+            "id": "cordova-plugin-dialogs.notification_android",
+            "merges": [
+                "navigator.notification"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-media/www/MediaError.js",
+            "id": "cordova-plugin-media.MediaError",
+            "clobbers": [
+                "window.MediaError"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-media/www/Media.js",
+            "id": "cordova-plugin-media.Media",
+            "clobbers": [
+                "window.Media"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -324,6 +399,9 @@
         "cordova-plugin-file-transfer": "1.6.0",
         "cordova-plugin-device": "1.1.3",
         "cordova-plugin-geolocation": "2.4.0",
-        "cordova-plugin-inappbrowser": "1.5.0"
+        "cordova-plugin-inappbrowser": "1.5.0",
+        "cordova-plugin-vibration": "2.1.2",
+        "cordova-plugin-dialogs": "1.3.0",
+        "cordova-plugin-media": "2.4.0"
     }
 }
