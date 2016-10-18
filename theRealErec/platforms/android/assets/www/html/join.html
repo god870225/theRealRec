@@ -682,6 +682,8 @@ $(document).ready(function(){
 	function fnSucData(resdata){
 	   if(resdata == 1){
 	      alert("회원가입에 성공하였습니다.");
+			window.localStorage.setItem("id", eMail);
+	       	window.localStorage.setItem("pw", pwd);				      
 	      location.href='index.html?uuId='+uuId+'&telNo='+telNo;
 	   }else{
 		   alert("회원가입에 실패하였습니다.");

@@ -8,26 +8,25 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     
     <title>더리얼마케팅 전자영수증</title>
-    
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" media="all" href="code/layout.css" />
-    <link rel="stylesheet" media="all" href="code/common.css" />
+    <link rel="stylesheet" media="all" href="../code/layout.css" />
+    <link rel="stylesheet" media="all" href="../code/common.css" />
 
     <!-- main -->
-	<script src="code/jquery.bxslider.min.js"></script>
-    <link href="code/jquery.bxslider.css" rel="stylesheet" />
+	<script src="../code/jquery.bxslider.min.js"></script>
+    <link href="../code/jquery.bxslider.css" rel="stylesheet" />
     
     <!-- tab -->
-	<script type='text/javascript' src='code/tabs.js'></script>
+	<script type='text/javascript' src='../code/tabs.js'></script>
     
     <!-- scroll -->
-	<script src="code/fm.scrollator.jquery.js"></script>
-	<link rel="stylesheet" href="code/fm.scrollator.jquery.css" />
+	<script src="../code/fm.scrollator.jquery.js"></script>
+	<link rel="stylesheet" href="../code/fm.scrollator.jquery.css" />
     
     <!-- Path to your custom app styles-->
-    <link rel="stylesheet" href="css/my-app.css">
+    <link rel="stylesheet" href="../css/my-app.css">
     
-	<script src="code/common.js"></script>
+	<script src="../code/common.js"></script>
     
 </head>
 
@@ -46,7 +45,7 @@
     <div class="panel panel-left panel-reveal">
     
     	<div class="profile_box">
-        	<div class="pf_photo" style="background:url(common/profile.jpg) no-repeat center;"></div>
+        	<!-- <div class="pf_photo" style="background:url(common/profile.jpg) no-repeat center;"></div> -->
             
             <div class="pf_txt">
             	<h2>김종현</h2>
@@ -57,33 +56,6 @@
         </div>
         
         <div class="left_menu">
-        	<ul>
-            	<li onClick="location.href='latest.html'">
-                <div class="leftm_box leftm01"></div>
-                <a href="#">최근사용내역</a>
-                </li>
-                
-            	<li onClick="location.href='history.html'">
-                <div class="leftm_box leftm02"></div>
-                <a href="#">영수증확인</a>
-                </li>
-                
-            	<li onClick="location.href='#'">
-                <div class="leftm_box leftm03"></div>
-                <a href="#">가계부</a>
-                </li>
-                
-            	<li onClick="location.href='event.html'">
-                <div class="leftm_box leftm04"></div>
-                <a href="#">이벤트</a>
-                </li>
-                
-            	<li onClick="location.href='notice.html'">
-                <div class="leftm_box leftm05"></div>
-                <a href="#">공지사항</a>
-                </li>
-                
-            </ul>
         </div>
 
     </div>
@@ -98,7 +70,7 @@
                     <div class="left">
                     <a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>
                     </div>
-                    <div class="center sliding alen_logo"><img src="common/logo.png"></div>
+                    <div class="center sliding alen_logo"><img src="../common/logo.png"></div>
 
                 </div>
                 
@@ -132,45 +104,10 @@
 
                     	<div class="latest_content" >
                         	<h2>최근사용내역</h2>
-                        	<ul>
-                            	<li>
-                                <a href="#receipt_details">
-                                <div class="mlat01">2016-08-24</div>
-                                <div class="mlaticon"><span>카페/베이커리</span></div>
-                                <div class="mlat02">삼성카드</div>
-                                <div class="mlat03">세븐일레븐</div>
-                                <div class="mlat04">3.900원</div>
-                                <hr>
-                                </a>
-                                </li>
-                                
-                            	<li>
-                                <a href="#receipt_details">
-                                <div class="mlat01">2016-08-24</div>
-                                <div class="mlaticon"><span>편의점/마트</span></div>
-                                <div class="mlat02">삼성카드</div>
-                                <div class="mlat03">세븐일레븐</div>
-                                <div class="mlat04">3.900원</div>
-                                <hr>
-                                </a>
-                                </li>
-                                
-                            	<li>
-                                <a href="#receipt_details">
-                                <div class="mlat01">2016-08-24</div>
-                                <div class="mlaticon"><span>자동차/주유</span></div>
-                                <div class="mlat02">삼성카드</div>
-                                <div class="mlat03">세븐일레븐</div>
-                                <div class="mlat04">3.900원</div>
-                                <hr>
-                                </a>
-                                </li>
+                        	<ul id = "receiptData">
                             </ul>
                         </div>
                     </div>
-                    
-
-                    
                     
                     <div class="foot_info">
                     
@@ -211,77 +148,7 @@
                         <div class="content-block">
                         
 						<div class="receipt_box">
-                        	<div class="receipt_inbox">
-	                        	<div class="rec_date"><span>2016/08/19</span> <span class="rec_right">NO:9035-0507</span><hr></div>
-                                
-                                <div class="rec_table">
-                                	<ul class="rec_tabletitle">
-                                      <li class="rec_mlat01">상품명</li>
-                                      <li class="rec_mlat02">단가</li>
-                                      <li class="rec_mlat03">수량</li>
-                                      <li class="rec_mlat04">금액</li>
-                                      <hr>
-                                    </ul>
-                                    
-                                	<ul>
-                                      <li class="rec_mlat01">콜라</li>
-                                      <li class="rec_mlat02">1,000</li>
-                                      <li class="rec_mlat03">1</li>
-                                      <li class="rec_mlat04">1,000</li>
-                                      <hr>
-                                    </ul>
-                                    
-                                	<ul>
-                                      <li class="rec_mlat01">사이다</li>
-                                      <li class="rec_mlat02">1,000</li>
-                                      <li class="rec_mlat03">1</li>
-                                      <li class="rec_mlat04">1,000</li>
-                                      <hr>
-                                    </ul>
-                                    
-                                	<ul>
-                                      <li class="rec_mlat01">환타</li>
-                                      <li class="rec_mlat02">1,000</li>
-                                      <li class="rec_mlat03">1</li>
-                                      <li class="rec_mlat04">1,000</li>
-                                      <hr>
-                                    </ul>
-                                    
-                                </div>
-                                
-                                <div class="rec_table2">
-                                	<ul>
-                                    	<li class="rec_mlat05">면세물품가액</li>
-                                    	<li class="rec_mlat06">0</li>
-                                        <hr>
-                                    </ul>
-                                    
-                                	<ul>
-                                    	<li class="rec_mlat05">과세물품가액</li>
-                                    	<li class="rec_mlat06">3,000</li>
-                                        <hr>
-                                    </ul>
-                                    
-                                	<ul>
-                                    	<li class="rec_mlat05">부가세</li>
-                                    	<li class="rec_mlat06">300</li>
-                                        <hr>
-                                    </ul>
-                                </div>
-                                
-                             	<div class="rec_table3">
-                                	<ul>
-                                    	<li class="rec_mlat07">합 계</li>
-                                    	<li class="rec_mlat08">3,000</li>
-                                        <hr>
-                                    </ul>
-                                    
-                                	<ul>
-                                    	<li class="rec_mlat07">청구금액</li>
-                                    	<li class="rec_mlat08">3,000</li>
-                                        <hr>
-                                    </ul>
-                                </div>
+                        	<div class="receipt_inbox" id ="detailRecData">
                                 
                             </div>
                         </div>
@@ -326,10 +193,255 @@
 
 
 
-<script type="text/javascript" src="js/framework7.js"></script>
+<script type="text/javascript" src="../js/framework7.js"></script>
 
-<script type="text/javascript" src="js/my-app.js"></script>
+<script type="text/javascript" src="../js/my-app.js"></script>
 
 <input value="activate scrollator" id="activate_scrollator4" type="button"  style="display:none;">
+
+<script type="text/javascript">
+	var request = new Request();
+	var telNo = request.getParameter('telNo');
+	var barcodeNo = "";
+	var dtlSeq = "";
+	$(document).ready(function(){
+		latestData();
+		commonUserData();
+		$(document).on('click','[name="receiptDetail"]',function(){
+			var seq = $(this).attr('id');
+			seq = seq.replace("seq","");
+			dtlSeq = seq;
+			barcodeNo = $("#barcodeNo"+seq).val()
+			latestDetailData(seq);
+		});				
+		
+		
+	})
+
+	
+	
+	function latestData(){
+	    $.ajax({
+	        type: "post",
+	        url : commonIp()+"/theReal/receipt/latestData.do",
+	        data: {
+	        	telNo  	: telNo
+	        },
+	        success: fn_latestData,
+	        error: whenError
+    	});				
+	};
+	
+	function latestDetailData(seq){
+	    $.ajax({
+	        type: "post",
+	        url : commonIp()+"/theReal/receipt/latestDetailData.do",
+	        data: {
+	        	telNo  	: telNo,
+	        	salesBarcode  	: barcodeNo
+	        },
+	        success: fn_latestDetailData,
+	        error: whenError
+		});				
+	};
+	
+	function fn_latestData(resdata){
+		var str = "";
+		var resultData = resdata.resultMap;
+		var cardCashDiv = "";
+		
+		$("#receiptData").empty();
+		
+		resultCnt = resultData.length;
+		
+		if(resultData.length>0){
+			for(var i=0; i<resultCnt; i++){
+				if(resultData[i].CARD_ICOM == ""){
+					cardCashDiv = "현금"		
+				}else{
+					cardCashDiv = resultData[i].CARD_ICOM;	
+				}
+				
+				str += '<li>';
+				str += '<input type="hidden" value = "'+resultData[i].SALES_BARCODE+'" id="barcodeNo'+resultData[i].SEQ+'">';
+				str += '<input type="hidden" value = "'+resultData[i].SHOP_NAME+'" id="shopName'+resultData[i].SEQ+'">';
+				str += '<input type="hidden" value = "'+resultData[i].SHOP_ADDR+'" id="shopAddr'+resultData[i].SEQ+'">';
+				str += '<input type="hidden" value = "'+resultData[i].SHOP_BIZNO+'" id="shopBizNo'+resultData[i].SEQ+'">';
+				str += '<input type="hidden" value = "'+resultData[i].SHOP_CEO+'" id="shopCeo'+resultData[i].SEQ+'">';
+				str += '<input type="hidden" value = "'+resultData[i].SHOP_TEL_NUM+'" id="shopTelNum'+resultData[i].SEQ+'">';
+				str += '<input type="hidden" value = "'+resultData[i].SHOP_CASHIER+'" id="shopCashier'+resultData[i].SEQ+'">';
+				str += '<input type="hidden" value = "'+resultData[i].SALES_DATE+'" id="salesDate'+resultData[i].SEQ+'">';
+				str += '<input type="hidden" value = "'+resultData[i].CARD_APP_NO+'" id="cardAppNo'+resultData[i].SEQ+'">';
+				str += '<input type="hidden" value = "'+resultData[i].CARD_NO+'" id="cardNo'+resultData[i].SEQ+'">';
+				str += '<input type="hidden" value = "'+resultData[i].CARD_ICOM+'" id="cardICom'+resultData[i].SEQ+'">';
+				str += '<input type="hidden" value = "'+resultData[i].CARD_INSTALLMENT+'" id="cardInstall'+resultData[i].SEQ+'">';
+				//전체부가세합
+				str += '<input type="hidden" value = "'+resultData[i].SALES_SUM_TAX_AMT+'" id="sumTaxAmt'+resultData[i].SEQ+'">';
+				//면세물품가액
+				str += '<input type="hidden" value = "'+resultData[i].SALES_SUM_DF_AMT+'" id="sumDfAmt'+resultData[i].SEQ+'">';
+				//과세물품가액
+				str += '<input type="hidden" value = "'+resultData[i].SALES_SUM_FP_AMT+'" id="sumFpAmt'+resultData[i].SEQ+'">';
+				//전체판매금액
+				str += '<input type="hidden" value = "'+resultData[i].SALES_SUM_AL_AMT+'" id="sumAlAmt'+resultData[i].SEQ+'">';
+				//전체 결제금액
+				str += '<input type="hidden" value = "'+resultData[i].SALES_PAID_AMT+'" id="sumPaidAmt'+resultData[i].SEQ+'">';
+				str += '<a href="#receipt_details" name="receiptDetail" id="seq'+resultData[i].SEQ+'">';
+				//str += '<a href="#" name="receiptDetail" id="seq'+i+'">';
+				str += '<div class="mlat01" id="mlat01'+resultData[i].SEQ+'">'+resultData[i].SALES_PRINT_DATE+'</div>';
+				str += '<div class="mlaticon" id="mlaticon'+resultData[i].SEQ+'"><span>커피</span></div>';
+				str += '<div class="mlat02" id="mlat02'+resultData[i].SEQ+'">'+cardCashDiv+'</div>';
+				str += '<div class="mlat03" id="mlat03'+resultData[i].SEQ+'">'+resultData[i].SHOP_NAME+'</div>';
+				str += '<div class="mlat04" id="mlat04'+resultData[i].SEQ+'">'+numberWithCommas(resultData[i].SALES_SUM_AL_AMT)+'</div>';
+				
+				str += '<hr>';		            
+				str += '</a>';		            
+				str += '</li>';		            
+		           
+			}
+		}else{
+			str += '<li>';
+			str += '<div>최근사용내역이 없습니다.</div>';
+			str += '</li>';		  	
+		}
+		$("#receiptData").append(str);		
+		//$("#detailRecData").empty();
+	};
+	
+	function fn_latestDetailData(resdata){
+		var str = "";
+		var resultData = resdata.resultMap;
+		var cardCashDtlDiv = "";
+		
+		$("#detailRecData").empty();
+		resultCnt = resultData.length;
+		
+		if(resultData.length>0){
+			str += ' <div class="receipt_holl">	';
+			str += ' 	<div></div>             ';
+			str += '     <div></div>             ';
+			str += '     <div></div>             ';
+			str += '     <div></div>             ';
+			str += '     <div></div>             ';
+			str += '     <div></div>             ';
+			str += '     <div></div>             ';
+			str += '     <div></div>             ';
+			str += '     <div></div>             ';
+			str += '     <div></div>             ';
+			str += '     <hr>                    ';
+			str += ' </div>					    ';
+			if($("#mlat02"+dtlSeq).text() == "현금"){
+				cardCashDtlDiv = "현금";
+				str += '<div class="rec_half">';
+				str += '	<ul>';
+				str += '      <li><div>거래종류</div><div class="rec_hcon">'+cardCashDtlDiv+'</div></li>';
+				str += '      <li><div>거래일자</div><div class="rec_hcon">'+$("#mlat01"+dtlSeq).text()+'</div></li>';
+				str += '      <hr>';
+				str += '    </ul>';
+				str += '</div>';			
+			}else{
+				str += '<div class="rec_txt01"><span>카드종류 : </span>'+	$("#cardICom"+dtlSeq).val()+'</div>';
+				str += '<div class="rec_txt01"><span>카드번호 : </span>'+	$("#cardNo"+dtlSeq).val()+'</div>';		
+				cardCashDtlDiv = "신용결제";
+				str += '<div class="rec_half">';
+				str += '	<ul>';
+				str += '      <li><div>거래종류</div><div class="rec_hcon">'+cardCashDtlDiv+'</div></li>';
+				str += '      <li><div>거래일자</div><div class="rec_hcon">'+$("#mlat01"+dtlSeq).text()+'</div></li>';
+				str += '      <li><div>승인번호</div><div class="rec_hcon">'+	$("#cardAppNo"+dtlSeq).val()+'</div></li>';
+				str += '      <li><div>할부개월수</div><div class="rec_hcon">'+	$("#cardInstall"+dtlSeq).val()+'</div></li>';
+				str += '      <hr>';
+				str += '    </ul>';
+				str += '</div>';			
+			}
+			
+			//str += '<div class="rec_date"><span id = "recDate">'+$("#mlat01"+dtlSeq).text()+'</span> <span class="rec_right" id="recRight">'+barcodeNo+'</span><hr></div>';
+			str += '<div class="rec_table">';
+			str += '<ul class="rec_tabletitle">';
+			str += '<li class="rec_mlat01">상품명</li>';
+			str += '<li class="rec_mlat02">단가</li>';
+			str += '<li class="rec_mlat03">수량</li>';
+			str += '<li class="rec_mlat04">금액</li>';
+			str += '<hr>';
+			str += '</ul>';		
+			
+			for(var i=0; i<resultCnt; i++){
+	            str += '<ul>';
+	            str += '  <li class="rec_mlat01" id="dtlGoods'+i+'">'+resultData[i].SALES_PNAME+'</li>';
+	            str += '  <li class="rec_mlat02" id="dtlPPrice'+i+'">'+numberWithCommas(resultData[i].SALES_PPRICE)+'</li>';
+	            str += '  <li class="rec_mlat03" id="dtlQty'+i+'">'+resultData[i].SALES_QTY+'</li>';
+	            str += '  <li class="rec_mlat04" id="dtlSlAmt'+i+'">'+numberWithCommas(resultData[i].SALES_SL_AMT)+'</li>';
+	            str += '  <hr>';
+	            str += '</ul>';				
+		           
+			}
+			str += '</div>';
+			
+
+			str += '<div class="rec_half">';
+			str += '	<ul>';
+			str += '      <li><div>부가세</div><div class="rec_hcon">'+numberWithCommas($("#sumTaxAmt"+dtlSeq).val())+'</div></li>';
+			str += '      <li><div>합 계</div><div class="rec_hcon">'+numberWithCommas($("#sumAlAmt"+dtlSeq).val())+'</div></li>';
+			str += '      <li><div>결제금액</div><div class="rec_hcon">'+numberWithCommas($("#sumPaidAmt"+dtlSeq).val())+'</div></li>';
+			str += '      <li><div>반환금액</div><div class="rec_hcon">'+($("#sumPaidAmt"+dtlSeq).val()-$("#sumAlAmt"+dtlSeq).val())+'</div></li>';
+			str += '      <hr>';
+			str += '    </ul>';
+			str += '</div>';
+			str += '<div class="rec_half">';
+			str += '	<ul>';
+			str += '      <li><div>업체명</div><div class="rec_hcon">'+$("#shopName"+dtlSeq).val()+'</div></li>';
+			str += '      <li><div>대표자</div><div class="rec_hcon">'+$("#shopCeo"+dtlSeq).val()+'</div></li>';
+			str += '      <li class="rec_full"><div>가맹점주소</div><div class="rec_hcon">'+$("#shopAddr"+dtlSeq).val()+'</div></li>';
+			str += '      <li class="rec_full"><div>문의연락처</div><div class="rec_hcon">'+$("#shopTelNum"+dtlSeq).val()+'</div></li>';
+			str += '      <li class="rec_full"><div>사업자번호</div><div class="rec_hcon">'+$("#shopBizNo"+dtlSeq).val()+'</div></li>';
+			str += '      <hr>';
+			str += '    </ul>';
+			str += '</div>';			
+
+/* 			str += '<div class="rec_table2">';
+			str += '	<ul>';
+			str += '    	<li class="rec_mlat05">면세물품가액</li>';
+			str += '    	<li class="rec_mlat06">'+numberWithCommas($("#sumDfAmt"+dtlSeq).val())+'</li>';
+			str += '        <hr>';
+			str += '    </ul>';
+			str += '	<ul>';
+			str += '    	<li class="rec_mlat05">과세물품가액</li>';
+			str += '    	<li class="rec_mlat06">'+numberWithCommas($("#sumFpAmt"+dtlSeq).val())+'</li>';
+			str += '        <hr>';
+			str += '    </ul>';
+			str += '	<ul>';
+			str += '    	<li class="rec_mlat05">부가세</li>';
+			str += '    	<li class="rec_mlat06">'+numberWithCommas($("#sumTaxAmt"+dtlSeq).val())+'</li>';
+			str += '        <hr>';
+			str += '    </ul>';
+			str += '</div>';
+			str += '<div class="rec_table3">';
+			str += '	<ul>';
+			str += '    	<li class="rec_mlat07">합 계</li>';
+			str += '    	<li class="rec_mlat08">'+numberWithCommas($("#sumAlAmt"+dtlSeq).val())+'</li>';
+			str += '        <hr>';
+			str += '    </ul>';
+			str += '	<ul>';
+			str += '    	<li class="rec_mlat07">결제금액</li>';
+			str += '    	<li class="rec_mlat08">'+numberWithCommas($("#sumPaidAmt"+dtlSeq).val())+'</li>';
+			str += '        <hr>';
+			str += '    </ul>';
+ 			str += '	<ul>';
+			str += '    	<li class="rec_mlat07">반환금액</li>';
+			str += '    	<li class="rec_mlat08">'+($("#sumPaidAmt"+dtlSeq).val())+'</li>';
+			str += '        <hr>';
+			str += '    </ul>'; 
+			str += '</div>';	 */	
+		}
+		$("#detailRecData").append(str);		
+	};
+	
+	
+	function whenError(){
+		alert("실패");
+	};
+	
+	
+</script>
+
+
 </body>
 </html>

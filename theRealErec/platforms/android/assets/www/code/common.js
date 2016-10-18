@@ -20,16 +20,31 @@ $(function () {
 
 
 
-/* 
+
 $(document).ready(function(){
-  $("#allCheck").on("click",function(){
+ 	$(document).on('click','#leftMenuLatest',function(){
+ 		location.href = location.href='latest.html?telNo='+request.getParameter('telNo');
+ 	});
+ 	$(document).on('click','#leftMenuHistory',function(){
+ 		location.href = location.href='latest.html?telNo='+request.getParameter('telNo');
+ 	});
+ 	$(document).on('click','#leftMenuComHistiry',function(){
+ 		location.href = location.href='latest.html?telNo='+request.getParameter('telNo');
+ 	});
+ 	$(document).on('click','#leftMenuEvent',function(){
+ 		location.href = location.href='latest.html?telNo='+request.getParameter('telNo');
+ 	});
+ 	$(document).on('click','#leftMenuNotice',function(){
+ 		location.href = location.href='latest.html?telNo='+request.getParameter('telNo');
+ 	});
+	/*   $("#allCheck").on("click",function(){
 alert();
    var _value = $(this).is(":checked");
    $('input:checkbox[name="subCheck"]').each(function () { 
     this.checked = _value; 
    });
-  });
- });*/
+  });*/
+ });
  
  
  function isNull(val)
@@ -187,6 +202,69 @@ function chkPwd(str){
 
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function commonUserData(){
+    $.ajax({
+        type: "post",
+        url : commonIp()+"/theReal/receipt/startUserData.do",
+        data: {
+        	telNo  	: request.getParameter('telNo'),  
+        },
+        success: fn_commonUserData,
+        error: fn_whenError
+	});	
+}
+
+function fn_commonUserData(resdata){
+	 var str = "";
+	 var str2 = "";
+	var resultData = resdata.resultMap;
+	var cardCashDiv = "";
+	$(".pf_txt").empty();
+	$(".left_menu").empty();
+	resultCnt = resultData.length;
+	if(resultData.length>0){
+		for(var i=0; i<resultData.length; i++){
+			str += '<h2>'+resultData[i].EMAIL+'</h2>';
+			str += '<h1>'+resultData[i].USER_NM+'</h1>';
+			str += '<p>쿠폰 <span>2</span>개 <span> &emsp; 포인트 </span><span>1721</span>p</p>';
+		}
+	}		 
+		 
+	else{
+		str += '<h2></h2>';
+		str += '<h1></h1>';
+		str += '<p>쿠폰 <span>2</span>개 <span> &emsp; 포인트 </span><span>1721</span>p</p>';		
+	}
+	$(".pf_txt").append(str);
+	str2 += '<ul>';
+	str2 += '	<li id="leftMenuLatest">';
+	str2 += '    <div class="leftm_box leftm01"></div>';
+	str2 += '    <a href="#">최근사용내역111</a>';
+	str2 += '    </li>';
+	str2 += '	<li id="leftMenuHistory">';
+	str2 += '    <div class="leftm_box leftm02"></div>';
+	str2 += '    <a href="#">영수증확인</a>';
+	str2 += '    </li>';
+	str2 += '	<li id="leftMenuComHistiry">';
+	str2 += '    <div class="leftm_box leftm03"></div>';
+	str2 += '    <a href="#">가계부</a>';
+	str2 += '    </li>';
+	str2 += '	<li id="leftMenuEvent">';
+	str2 += '    <div class="leftm_box leftm04"></div>';
+	str2 += '    <a href="#">이벤트</a>';
+	str2 += '    </li>';
+	str2 += '	<li id="leftMenuNotice">';
+	str2 += '    <div class="leftm_box leftm05"></div>';
+	str2 += '    <a href="#">공지사항</a>';
+	str2 += '    </li>';
+	str2 += '</ul>';	
+	$(".left_menu").append(str2);
+}
+
+function fn_whenError(){
+	alert("실패.");
 }
 
 
