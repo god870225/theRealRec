@@ -217,9 +217,9 @@
 
 
 
-					<div class="main_latest alen_outbox">
+					<div class="main_latest alen_outbox" id="curUseData">
                     
-                    	<div class="mcon_bg" id="curUseData">
+                    	<div class="mcon_bg" >
                         <a href="#"><img src="../common/micon01.gif"></a>
                         </div>
                         
@@ -447,7 +447,7 @@
     </div>
 
 
-<script>
+<script type="text/javascript">
 
 var request = new Request();
 var telNo = request.getParameter('telNo');
@@ -657,7 +657,7 @@ function fn_startCurData(resdata){
 	$("#curMainData").empty();
 	resultCnt = resultData.length;
 	if(resultData.length>0){
-		for(var i=0; i<resultData.length; i++){
+		for(var i=0; i<3; i++){
 			if(resultData[i].CARD_ICOM == ""){
 				cardCashDiv = "현금"		
 			}else{

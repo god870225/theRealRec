@@ -423,4 +423,3 @@ function getSysInfo(){
 	return "<b>" + getOS() + " " + getBw() + (v!="" ? " " + v : "") + "</b>";
 }
 
-
