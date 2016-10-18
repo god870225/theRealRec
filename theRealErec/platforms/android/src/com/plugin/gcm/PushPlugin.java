@@ -161,10 +161,13 @@ public class PushPlugin extends CordovaPlugin {
 
 			JSONObject jsondata = new JSONObject();
 			Iterator<String> it = extras.keySet().iterator();
+			Log.v(TAG, "it: " + it);
 			while (it.hasNext())
 			{
 				String key = it.next();
 				Object value = extras.get(key);
+				Log.v(TAG, "key: " + key);
+				Log.v(TAG, "value: " + value);
 
 				// System data from Android
 				if (key.equals("from") || key.equals("collapse_key"))

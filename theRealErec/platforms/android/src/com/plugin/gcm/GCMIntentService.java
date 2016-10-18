@@ -10,13 +10,16 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import com.plugin.gcm.WakeLocker;
 
 import com.google.android.gcm.GCMBaseIntentService;
 
 @SuppressLint("NewApi")
 public class GCMIntentService extends GCMBaseIntentService {
+	private static PowerManager.WakeLock sWakeLock;
 
 	private static final String TAG = "GCMIntentService";
 	
@@ -61,9 +64,12 @@ public class GCMIntentService extends GCMBaseIntentService {
 
 		// Extract the payload from the message
 		Bundle extras = intent.getExtras();
+		Log.d(TAG, "extras - extras: " + extras);
 		if (extras != null)
 		{
+			Log.d(TAG, "extras - PushPlugin.isInForeground: " + PushPlugin.isInForeground());
 			// if we are in the foreground, just surface the payload, else post it to the statusbar
+			Log.d(TAG, "extras.getString(message): " + extras.getString("message"));
             if (PushPlugin.isInForeground()) {
 				extras.putBoolean("foreground", true);
                 PushPlugin.sendExtras(extras);
@@ -72,9 +78,13 @@ public class GCMIntentService extends GCMBaseIntentService {
 				extras.putBoolean("foreground", false);
 
                 // Send a notification if there is a message
-                if (extras.getString("message") != null && extras.getString("message").length() != 0) {
-                    createNotification(context, extras);
-                }
+			//	Log.d(TAG, "extras.getString(message): " + extras.getString("message"));
+			//	Log.d(TAG, "extras.getString(length): " + extras.getString("message").length());
+              //  if (extras.getString("message") != null && extras.getString("message").length() != 0) {
+					createNotification(context, extras);
+                    //PushPlugin.sendExtras(extras);
+                    WakeLocker.acquire(getApplicationContext(), 10000); 
+             //   }
             }
         }
 	}
@@ -131,7 +141,9 @@ public class GCMIntentService extends GCMBaseIntentService {
 		catch(Exception e) {
 			Log.e(TAG, "Number format exception - Error parsing Notification ID" + e.getMessage());
 		}
-		
+		Log.v(TAG,"appName:"+appName);
+		Log.v(TAG,"notId:"+notId);
+		Log.v(TAG,"mBuilder.build():"+mBuilder.build());
 		mNotificationManager.notify((String) appName, notId, mBuilder.build());
 	}
 	
