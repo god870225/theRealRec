@@ -60,7 +60,6 @@
 
     </div>
     
-    
     <div class="views">
 		<div class="view view-main">
         
@@ -190,7 +189,9 @@
 
 		</div>
     </div>
-
+<div id="div_ajax_load_image">
+    <img src="../common/log_img.png" />
+</div> 
 
 
 <script type="text/javascript" src="../js/framework7.js"></script>
@@ -204,11 +205,12 @@
 	var telNo = request.getParameter('telNo');
 	var barcodeNo = "";
 	var dtlSeq = "";
+	var seq = "";
 	$(document).ready(function(){
 		latestData();
 		commonUserData();
 		$(document).on('click','[name="receiptDetail"]',function(){
-			var seq = $(this).attr('id');
+			seq = $(this).attr('id');
 			seq = seq.replace("seq","");
 			dtlSeq = seq;
 			barcodeNo = $("#barcodeNo"+seq).val()
@@ -228,6 +230,32 @@
 	        	telNo  	: telNo
 	        },
 	        success: fn_latestData,
+
+	        
+	        beforeSend: function () {
+	              var width = 0;
+	              var height = 0;
+	              var left = 0;
+	              var top = 0;
+	              width = 50;
+	              height = 50;
+
+	              top = ( $(window).height() - height ) / 2 + $(window).scrollTop();
+	              left = ( $(window).width() - width ) / 2 + $(window).scrollLeft();
+	 console.log($("#div_ajax_load_image").length)
+	              if($("#div_ajax_load_image").length != 0) {
+	                     $("#div_ajax_load_image").css({
+	                            "top": "100px",
+	                            "left": "100px"
+	                     });
+	                     $("#div_ajax_load_image").show();
+	              }
+	              else {
+	                     $('body').append('<div id="div_ajax_load_image" style="position:absolute; top:' + top + 'px; left:' + left + 'px; width:' + width + 'px; height:' + height + 'px; z-index:9999; background:#f0f0f0; filter:alpha(opacity=50); opacity:alpha*0.5; margin:auto; padding:0; "><img src="file://D:\\temp\\ajax_loader.gif" style="width:50px; height:50px;"></div>');
+	              }
+	       },	        
+	        
+	        
 	        error: whenError
     	});				
 	};
@@ -432,8 +460,13 @@
 			str += '</div>';	 */	
 		}
 		$("#detailRecData").append(str);		
+		
 	};
 	
+	
+	function fn_latestUpdateData(){
+		console.log("확인여부업데이트");
+	};
 	
 	function whenError(){
 		alert("실패");

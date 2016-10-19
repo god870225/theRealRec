@@ -228,7 +228,7 @@ function fn_commonUserData(resdata){
 		for(var i=0; i<resultData.length; i++){
 			str += '<h2>'+resultData[i].EMAIL+'</h2>';
 			str += '<h1>'+resultData[i].USER_NM+'</h1>';
-			str += '<p>쿠폰 <span>2</span>개 <span> &emsp; 포인트 </span><span>1721</span>p</p>';
+			//str += '<p>쿠폰 <span>2</span>개 <span> &emsp; 포인트 </span><span>1721</span>p</p>';
 		}
 	}		 
 		 
@@ -241,7 +241,7 @@ function fn_commonUserData(resdata){
 	str2 += '<ul>';
 	str2 += '	<li id="leftMenuLatest">';
 	str2 += '    <div class="leftm_box leftm01"></div>';
-	str2 += '    <a href="#">최근사용내역111</a>';
+	str2 += '    <a href="#">최근사용내역</a>';
 	str2 += '    </li>';
 	str2 += '	<li id="leftMenuHistory">';
 	str2 += '    <div class="leftm_box leftm02"></div>';
