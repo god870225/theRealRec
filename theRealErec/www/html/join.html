@@ -234,8 +234,6 @@
 	                               </select>
 	                             </li>                                     
                             	<li class="full_input"><input type="text" onkeydown = "onlyNumberInput()" placeholder="휴대폰 번호" id="telNo"></li>
-                            	<li class="full_input"><input type="hidden" placeholder="유일키번호" id="uuId"></li>
-                                
                             	<li>
                                 <div class="alen_radio_box" >
                                     <div class="alen_table_half">
@@ -274,6 +272,7 @@
                                     
                                     <div class="alen_table_half alen_table_last">
                                       <input readonly="readonly" type="text" placeholder="남은시간" id="certNumView" style="text-align: right;">
+                                      <input type="hidden" placeholder="유일키번호" id="uuId">
                                     </div>
                                 </div>
                                 
@@ -578,8 +577,6 @@ $(document).ready(function(){
 		
 		
         smsOption = "MU";
-        alert("인증번호=="+smsCertNo);
-     
         
       $.ajax({
              type: "post",
@@ -605,7 +602,7 @@ $(document).ready(function(){
 	
 
      function onDeviceReady() {
-    	 //onPushSet();
+    	 onPushSet();
          var uuid = device.uuid;
 
 				console.log("device.uuid:"+device.uuid);
@@ -697,7 +694,7 @@ $(document).ready(function(){
 		clearInterval(runCount);
 		fncCountDown();		
 	   }else{
-			reSendYn = true;
+			//reSendYn = true;
 		   alert("인증번호받기에 실패했습니다.");
 	   }
 	}

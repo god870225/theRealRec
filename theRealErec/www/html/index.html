@@ -497,7 +497,7 @@ $(document).ready(function(){
   });  
   
   $("#curUseData").click(function(){
-	  location.href='latest.html?telNo='+telNo;
+	  location.href='latest.html?uuId='+uuId+'&telNo='+telNo;
   })
 });
 
@@ -597,7 +597,7 @@ function fnComUuIdSucData(resData){
 	        error: whenError
 	    	});			
 	    	
-	    $.ajax({
+/* 	    $.ajax({
 	        type: "post",
 	        url : commonIp()+"/theReal/receipt/startUserData.do",
 	        data: {
@@ -605,7 +605,7 @@ function fnComUuIdSucData(resData){
 	        },
 	        success: fn_startUserData,
 	        error: whenError
-	    	});
+	    	}); */
 	    
 	    $.ajax({
 	        type: "post",
@@ -630,7 +630,7 @@ function fnComUuIdSucData(resData){
 	        success: fn_startRecYnData,
 	        error: whenError
 	    	});			    
-	    
+	    commonUserData();
 		//fn_startCurData();	
 		//fn_startUserData();
 	}else{
@@ -657,14 +657,12 @@ function fn_startCurData(resdata){
 	$("#curMainData").empty();
 	resultCnt = resultData.length;
 	if(resultData.length>0){
-		for(var i=0; i<3; i++){
-			if(resultData[i].CARD_ICOM == ""){
+		for(var i=0; i<resultData.length; i++){
+			if(isNull(resultData[i].CARD_ICOM)){
 				cardCashDiv = "현금"		
 			}else{
 				cardCashDiv = resultData[i].CARD_ICOM;	
 			}
-			console.log("resultData[i].CARD_ICOM:"+resultData[i].CARD_ICOM);
-			console.log("cardCashDiv:"+cardCashDiv);
 			str += '<li>';
 			str += '<div class="mlat01">'+resultData[i].SALES_PRINT_DATE+'</div>';
 			str += '<div class="mlat02">'+cardCashDiv+'</div>';
