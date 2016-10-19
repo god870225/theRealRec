@@ -23,19 +23,28 @@ $(function () {
 
 $(document).ready(function(){
  	$(document).on('click','#leftMenuLatest',function(){
- 		location.href = location.href='latest.html?telNo='+request.getParameter('telNo');
+ 		location.href='latest.html?uuId='+request.getParameter('uuId')+'&telNo='+request.getParameter('telNo');
  	});
  	$(document).on('click','#leftMenuHistory',function(){
- 		location.href = location.href='latest.html?telNo='+request.getParameter('telNo');
+ 		location.href='latest.html?telNo='+request.getParameter('telNo');
  	});
  	$(document).on('click','#leftMenuComHistiry',function(){
- 		location.href = location.href='latest.html?telNo='+request.getParameter('telNo');
+ 		location.href='latest.html?telNo='+request.getParameter('telNo');
  	});
  	$(document).on('click','#leftMenuEvent',function(){
- 		location.href = location.href='latest.html?telNo='+request.getParameter('telNo');
+ 		location.href='latest.html?telNo='+request.getParameter('telNo');
  	});
  	$(document).on('click','#leftMenuNotice',function(){
- 		location.href = location.href='latest.html?telNo='+request.getParameter('telNo');
+ 		location.href='latest.html?telNo='+request.getParameter('telNo');
+ 	});
+ 	$(document).on('click','.alen_logo',function(){
+ 		location.href='index.html?uuId='+request.getParameter('uuId')+'&telNo='+request.getParameter('telNo');
+ 	});
+ 	$(document).on('click','#leftMenuLogOut',function(){
+	  	var storage = window.localStorage;
+	  	localStorage.removeItem("id");
+	  	localStorage.removeItem("pw");		
+		location.href='../login.html';
  	});
 	/*   $("#allCheck").on("click",function(){
 alert();
@@ -235,7 +244,7 @@ function fn_commonUserData(resdata){
 	else{
 		str += '<h2></h2>';
 		str += '<h1></h1>';
-		str += '<p>쿠폰 <span>2</span>개 <span> &emsp; 포인트 </span><span>1721</span>p</p>';		
+		//str += '<p>쿠폰 <span>2</span>개 <span> &emsp; 포인트 </span><span>1721</span>p</p>';		
 	}
 	$(".pf_txt").append(str);
 	str2 += '<ul>';
@@ -258,6 +267,11 @@ function fn_commonUserData(resdata){
 	str2 += '	<li id="leftMenuNotice">';
 	str2 += '    <div class="leftm_box leftm05"></div>';
 	str2 += '    <a href="#">공지사항</a>';
+	str2 += '    </li>';
+	str2 += '    </li>';
+	str2 += '	<li id="leftMenuLogOut">';
+	str2 += '    <div class="leftm_box leftm05"></div>';
+	str2 += '    <a href="#">로그아웃</a>';
 	str2 += '    </li>';
 	str2 += '</ul>';	
 	$(".left_menu").append(str2);
