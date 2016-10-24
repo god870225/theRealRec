@@ -556,6 +556,7 @@ function onDeviceReady() {
                     	dbUuId  :  uuId,
                     	curTelNo : result,
                     	curUuid  :  curUuid,
+                    	pushDuv  :  "1",
                     	
                     },
                     success: fnComUuIdSucData,
@@ -635,6 +636,7 @@ function fnComUuIdSucData(resData){
 		//fn_startUserData();
 	}else{
 		alert("로그인 정보가 틀립니다. 인증화면(개발진행)");
+		location.href='../login.html';
 	}
 }
 
@@ -868,7 +870,7 @@ function onNotificationGCM (e){
       		          	dbTelNo : telNo,
       		          	dbUuId  :  uuId,
       		          	curTelNo : joinTelNo,
-      		          	
+      		          	pushDuv  :  "2",
       		          },
       		          success: fnComUuIdSucData,
       		          error: whenError
@@ -884,18 +886,19 @@ function onNotificationGCM (e){
         } else { // 푸시 메세지가 왔을 때 앱이 백그라운드로 사용되고 있을 경우
           console.log("앱이 백그라운드로 실행될 때");
         }
-    		      $.ajax({
+/*     		      $.ajax({
     		          type: "post",
     		          url : commonIp()+"/theReal/receipt/compareUuId.do",
     		          data: {
     		          	dbTelNo : telNo,
     		          	dbUuId  :  uuId,
     		          	curTelNo : joinTelNo,
-    		          	
+    		          	pushDuv  :  "3",
     		          },
     		          success: fnComUuIdSucData,
     		          error: whenError
-    		      	});	   			  
+    		      	}); */
+    		      	bagroundCallBack();    		      	
       }
 
       console.log(decodeURI(e.payload.title));
@@ -913,6 +916,50 @@ function onNotificationGCM (e){
   }
 }
 
+function bagroundCallBack(){
+	
+	var date = new Date();
+	var curDate = date.getDate();
+	var firstDayOfMonth = new Date( date.getFullYear(), date.getMonth()+1 , 1 );
+	var startDate = firstDayOfMonth.getFullYear()+""+(firstDayOfMonth.getMonth() > 9 ? ''+firstDayOfMonth.getMonth(): '0'+firstDayOfMonth.getMonth());
+	var lastMonth = new Date ( firstDayOfMonth.setDate( firstDayOfMonth.getDate() - 1 ) );
+	var endDate = firstDayOfMonth.getFullYear()+""+(firstDayOfMonth.getMonth() > 9 ? ''+firstDayOfMonth.getMonth(): '0'+firstDayOfMonth.getMonth());
+    $.ajax({
+        type: "post",
+        url : commonIp()+"/theReal/receipt/startCurData.do",
+        data: {
+        	telNo  	: request.getParameter('telNo'),  
+        },
+        success: fn_startCurData,
+        error: whenError
+    	});			
+    	
+    $.ajax({
+        type: "post",
+        url : commonIp()+"/theReal/receipt/startSumData.do",
+        data: {
+        	telNo  	: request.getParameter('telNo'),  
+        	startDate  	: startDate+"%",  
+        	endDate  	: endDate+"%",  
+        },
+        success: fn_startSumData,
+        error: whenError
+    	});			    
+    
+    $.ajax({
+        type: "post",
+        url : commonIp()+"/theReal/receipt/startRecYnData.do",
+        data: {
+        	telNo  	: request.getParameter('telNo'),  
+        	startDate  	: startDate+curDate,  
+        	endDate  	: endDate+curDate,  
+        },
+        success: fn_startRecYnData,
+        error: whenError
+    	});			    
+    commonUserData();	
+	
+}
 
 </script>
 
