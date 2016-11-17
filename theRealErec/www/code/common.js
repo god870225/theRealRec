@@ -160,7 +160,7 @@ function commonIp(){
 	var commonIp = "";
 	var dev = false;
 	if(dev){
-		commonIp = "http://192.168.0.39:8080";
+		commonIp = "http://192.168.0.51:8080";
 		//commonIp = "117.52.97.40";
 	}else{
 		commonIp = "http://117.52.97.40:80";
@@ -250,28 +250,28 @@ function fn_commonUserData(resdata){
 	str2 += '<ul>';
 	str2 += '	<li id="leftMenuLatest">';
 	str2 += '    <div class="leftm_box leftm01"></div>';
-	str2 += '    <a href="#">최근사용내역</a>';
+	str2 += '    <a href="javascript:void(0)">최근사용내역</a>';
 	str2 += '    </li>';
 	str2 += '	<li id="leftMenuHistory">';
 	str2 += '    <div class="leftm_box leftm02"></div>';
-	str2 += '    <a href="#">영수증확인</a>';
+	str2 += '    <a href="javascript:void(0)">영수증확인</a>';
 	str2 += '    </li>';
 	str2 += '	<li id="leftMenuComHistiry">';
 	str2 += '    <div class="leftm_box leftm03"></div>';
-	str2 += '    <a href="#">가계부</a>';
+	str2 += '    <a href="javascript:void(0)">가계부</a>';
 	str2 += '    </li>';
 	str2 += '	<li id="leftMenuEvent">';
 	str2 += '    <div class="leftm_box leftm04"></div>';
-	str2 += '    <a href="#">이벤트</a>';
+	str2 += '    <a href="javascript:void(0)">이벤트</a>';
 	str2 += '    </li>';
 	str2 += '	<li id="leftMenuNotice">';
 	str2 += '    <div class="leftm_box leftm05"></div>';
-	str2 += '    <a href="#">공지사항</a>';
+	str2 += '    <a href="javascript:void(0)">공지사항</a>';
 	str2 += '    </li>';
 	str2 += '    </li>';
 	str2 += '	<li id="leftMenuLogOut">';
 	str2 += '    <div class="leftm_box leftm05"></div>';
-	str2 += '    <a href="#">로그아웃</a>';
+	str2 += '    <a href="javascript:void(0)">로그아웃</a>';
 	str2 += '    </li>';
 	str2 += '</ul>';	
 	$(".left_menu").append(str2);

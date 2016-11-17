@@ -18,16 +18,17 @@
     
     <!-- tab -->
 	<script type='text/javascript' src='../code/tabs.js'></script>
-    
+
     <!-- scroll -->
 	<script src="../code/fm.scrollator.jquery.js"></script>
 	<link rel="stylesheet" href="../code/fm.scrollator.jquery.css" />
     
     <!-- Path to your custom app styles-->
     <link rel="stylesheet" href="../css/my-app.css">
-    
+    <link href="../css/monthpicker.css" rel="stylesheet" />
 	<script src="../code/common.js"></script>
-	<script type="text/javascript" charset="utf-8" src="../cordova.js"></script>
+	<script src="../js/jsArrayUtil.js"></script>
+<!-- 	<script type="text/javascript" charset="utf-8" src="../cordova.js"></script> -->
 </head>
 
 <body>
@@ -67,26 +68,26 @@
                 <div data-page="index" class="navbar-inner">
                 
                     <div class="left">
-                    <a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>
+                    <a href="javascript:void(0)" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>
                     </div>
                     <div class="center sliding alen_logo"><img src="../common/logo.png"></div>
 
                 </div>
                 
                 <div data-page="receipt_details" class="navbar-inner cached">
-                <div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
+                <div class="left sliding"><a href="javascript:void(0)" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
                 <div class="center sliding">영수증 상세 내역</div>
                 </div>
                 
                 
                 <div data-page="agree01" class="navbar-inner cached">
-                <div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
+                <div class="left sliding"><a href="javascript:void(0)" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
                 <div class="center sliding">개인정보 수집이용취급위탁 동의</div>
                 </div>
                 
                 
                 <div data-page="agree03" class="navbar-inner cached">
-                <div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
+                <div class="left sliding"><a href="javascript:void(0)" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
                 <div class="center sliding">본인확인서비스 이용약관</div>
                 </div>
                 
@@ -98,12 +99,53 @@
 			<div class="pages navbar-through toolbar-through">
                 <div data-page="index" class="page">
                     <div class="page-content">
+                    
+                    
+                    <div class="history_btnbox">
+                       
+                        <div class="history_cate">
+                            
+                            <div class="slide">
+							<a href="#"><img src="../icon/food.png"></a>
+                            <p>음식</p>
+                            </div>
+                            
+                            <div class="slide">
+							<a href="#"><img src="../icon/coffee.png"></a>
+                            <p>카페/베이커리</p>
+                            </div>
+                            
+                            <div class="slide">
+							<a href="#"><img src="../icon/mart.png"></a>
+                            <p>편의점/마트</p>
+                            </div>
+                            
+                            <div class="slide">
+							<a href="#"><img src="../icon/pay.png"></a>
+                            <p>통신</p>
+                            </div>
+                            
+                            <div class="slide">
+							<a href="#"><img src="../icon/shopping.png"></a>
+                            <p>쇼핑</p>
+                            </div>
+                            
+                            <div class="slide">
+							<a href="#"><img src="../icon/question.png"></a>
+                            <p>기타 사용처</p>
+                            </div>
+                        </div>        
+                    </div>
+                    
+                    
+                    <div id="page-container"></div>
 
 					<div class="latest_box alen_outbox">
 
+                        
                     	<div class="latest_content" >
-                        	<h2>최근사용내역</h2>
                         	<ul id = "receiptData">
+
                             </ul>
                         </div>
                     </div>
@@ -120,7 +162,7 @@
                             </div>
                             
                         	<div class="foot_btn alen_outbox">
-                            <a href="#">고객센터</a>
+                            <a href="javascript:void(0)">고객센터</a>
                             </div>
                             
                             
@@ -152,8 +194,8 @@
                             </div>
                         </div>
                         
-                        <div class="latest_btnbox" onClick="location.href=''">
-                            <div class="latest_btn">이메일 보내기</div>
+                        <div class="latest_btnbox">
+                            <div class="latest_btn" id="sendEmail">이메일 보내기</div>
                         </div>
                         
                         
@@ -193,7 +235,9 @@
     <img src="../common/log_img.png" />
 </div>  -->
 
-
+<script src="../js/monthpicker.min.js"></script>
+<script src="../js/monthpicker-dom.min.js"></script>
+<script src="../js/monthpicker.js"></script>
 <script type="text/javascript" src="../js/framework7.js"></script>
 
 <script type="text/javascript" src="../js/my-app.js"></script>
@@ -207,8 +251,8 @@
 	var barcodeNo = "";
 	var dtlSeq = "";
 	var seq = "";
-	
-	document.addEventListener("deviceready", 	function(){
+	var emailSendJsonData = null;
+/* 	document.addEventListener("deviceready", 	function(){
 		  if(device.platform.toUpperCase() == 'ANDROID'){
 		    window.plugins.pushNotification.register(successHandler,errorHandler, {
 		      //"senderID" : "912734728084", // Google GCM 서비스에서 생성한 Project Number를 입력한다.
@@ -217,9 +261,22 @@
 		    });
 		  }
 		
-		});	
+		});	 */
 	
 	$(document).ready(function(){
+		
+		  $('.history_cate').bxSlider({
+			  slideWidth: 100,
+			  minSlides: 2,
+			  maxSlides: 8,
+			  moveSlides: 1,
+			  slideMargin: 10,
+			  auto: false,
+			  autoHover: true,
+			  pager: false,
+			  controls: false
+		  });		
+		
 		latestData();
 		commonUserData();
 		$(document).on('click','[name="receiptDetail"]',function(){
@@ -228,6 +285,11 @@
 			dtlSeq = seq;
 			barcodeNo = $("#barcodeNo"+seq).val()
 			latestDetailData(seq);
+		});
+		
+		$(document).on('click','#sendEmail',function(){
+			console.log(seq);
+			callEmailSend(seq);
 		});				
 		
 		
@@ -316,6 +378,8 @@
 				str += '<input type="hidden" value = "'+resultData[i].CARD_NO+'" id="cardNo'+resultData[i].SEQ+'">';
 				str += '<input type="hidden" value = "'+resultData[i].CARD_ICOM+'" id="cardICom'+resultData[i].SEQ+'">';
 				str += '<input type="hidden" value = "'+resultData[i].CARD_INSTALLMENT+'" id="cardInstall'+resultData[i].SEQ+'">';
+				str += '<input type="hidden" value = "'+resultData[i].EMAIL+'" id="emailInfo'+resultData[i].SEQ+'">';
+				str += '<input type="hidden" value = "'+resultData[i].USER_NM+'" id="userNm'+resultData[i].SEQ+'">';
 				//전체부가세합
 				str += '<input type="hidden" value = "'+resultData[i].SALES_SUM_TAX_AMT+'" id="sumTaxAmt'+resultData[i].SEQ+'">';
 				//면세물품가액
@@ -370,6 +434,11 @@
 			str += '     <div></div>             ';
 			str += '     <hr>                    ';
 			str += ' </div>					    ';
+			var recEmailSendObj = new Object();
+			recEmailSendObj.emailInfo = $("#emailInfo"+dtlSeq).val();
+			recEmailSendObj.userInfo = $("#userNm"+dtlSeq).val();
+			var cashDivObj = new Object();
+			var cardDivObj = new Object();
 			if($("#mlat02"+dtlSeq).text() == "현금"){
 				cardCashDtlDiv = "현금";
 				str += '<div class="rec_half">';
@@ -379,6 +448,8 @@
 				str += '      <hr>';
 				str += '    </ul>';
 				str += '</div>';			
+				cashDivObj.cardCashDtlDiv = cardCashDtlDiv;
+				cashDivObj.cardCashRegDate = $("#mlat01"+dtlSeq).text();
 			}else{
 				str += '<div class="rec_txt01"><span>카드종류 : </span>'+	$("#cardICom"+dtlSeq).val()+'</div>';
 				str += '<div class="rec_txt01"><span>카드번호 : </span>'+	$("#cardNo"+dtlSeq).val()+'</div>';		
@@ -392,6 +463,13 @@
 				str += '      <hr>';
 				str += '    </ul>';
 				str += '</div>';			
+				cardDivObj.cardICom = $("#cardICom"+dtlSeq).val();
+				cardDivObj.cardNo = $("#cardNo"+dtlSeq).val();				
+				cardDivObj.cardCashDtlDiv = cardCashDtlDiv;				
+				cashDivObj.cardRegDate = $("#mlat01"+dtlSeq).text();
+				cardDivObj.cardAppNo = $("#cardAppNo"+dtlSeq).val();				
+				cardDivObj.cardInstall = $("#cardInstall"+dtlSeq).val();				
+				
 			}
 			
 			//str += '<div class="rec_date"><span id = "recDate">'+$("#mlat01"+dtlSeq).text()+'</span> <span class="rec_right" id="recRight">'+barcodeNo+'</span><hr></div>';
@@ -403,7 +481,8 @@
 			str += '<li class="rec_mlat04">금액</li>';
 			str += '<hr>';
 			str += '</ul>';		
-			
+
+			var dtlGoodsArr = new Array();
 			for(var i=0; i<resultCnt; i++){
 	            str += '<ul>';
 	            str += '  <li class="rec_mlat01" id="dtlGoods'+i+'">'+resultData[i].SALES_PNAME+'</li>';
@@ -412,7 +491,12 @@
 	            str += '  <li class="rec_mlat04" id="dtlSlAmt'+i+'">'+numberWithCommas(resultData[i].SALES_SL_AMT)+'</li>';
 	            str += '  <hr>';
 	            str += '</ul>';				
-		           
+				var dtlGoodsObj = new Object();			
+	            dtlGoodsObj.dtlGoods = resultData[i].SALES_PNAME;
+	            dtlGoodsObj.dtlPPrice = numberWithCommas(resultData[i].SALES_PPRICE);
+	            dtlGoodsObj.dtlQty = resultData[i].SALES_QTY;
+	            dtlGoodsObj.dtlSlAmt =numberWithCommas(resultData[i].SALES_SL_AMT);
+	            dtlGoodsArr.push(dtlGoodsObj);
 			}
 			str += '</div>';
 			
@@ -436,7 +520,16 @@
 			str += '      <hr>';
 			str += '    </ul>';
 			str += '</div>';			
-
+			var dtlInfoObj = new Object();
+			dtlInfoObj.sumTaxAmt = numberWithCommas($("#sumTaxAmt"+dtlSeq).val());
+			dtlInfoObj.sumAlAmt = numberWithCommas($("#sumAlAmt"+dtlSeq).val());
+			dtlInfoObj.sumPaidAmt = numberWithCommas($("#sumPaidAmt"+dtlSeq).val());
+			dtlInfoObj.sumChargeAmt = ($("#sumPaidAmt"+dtlSeq).val()-$("#sumAlAmt"+dtlSeq).val());
+			dtlInfoObj.shopName = $("#shopName"+dtlSeq).val();
+			dtlInfoObj.shopCeo = $("#shopCeo"+dtlSeq).val();
+			dtlInfoObj.shopAddr = $("#shopAddr"+dtlSeq).val();
+			dtlInfoObj.shopTelNum = $("#shopTelNum"+dtlSeq).val();
+			dtlInfoObj.shopBizNo = $("#shopBizNo"+dtlSeq).val();
 /* 			str += '<div class="rec_table2">';
 			str += '	<ul>';
 			str += '    	<li class="rec_mlat05">면세물품가액</li>';
@@ -473,7 +566,14 @@
 			str += '</div>';	 */	
 		}
 		$("#detailRecData").append(str);		
-		
+		recEmailSendObj.cashDivObj =cashDivObj;
+		recEmailSendObj.cardDivObj =cardDivObj;
+		recEmailSendObj.dtlInfoObj =dtlInfoObj;
+		recEmailSendObj.dtlGoodsArr =dtlGoodsArr;
+
+		emailSendJsonData = JSON.stringify(recEmailSendObj);
+		console.log(emailSendJsonData);
+		//alert(emailSendJsonData);
 	};
 	
 	
@@ -537,7 +637,22 @@
 	    break;
 	  }
 	}	
+
+	function callEmailSend(seq){
+	    $.ajax({
+	     type: "post",
+	     url : commonIp()+"/theReal/receipt/sendMail.do",
+	     data: {
+	    	 emailSendJsonData : emailSendJsonData
+	     },
+	     success: callEmailSendSuc,
+	     error: whenError
+	 	});
+	}	
 	
+	function callEmailSendSuc(resdata){
+		alert("완료");
+	}	
 	
 </script>
 
