@@ -112,6 +112,16 @@
                     <div class="center sliding alen_logo"><img src="../common/logo.png"></div>
 
                 </div>
+                
+                <div data-page="index" class="navbar-inner">
+                
+                    <div class="left">
+                    <a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>
+                    </div>
+                    <div class="center sliding alen_logo" ><img src="../common/logo.png"></div>
+
+                </div>                
+                
             </div>
             
         
@@ -289,7 +299,7 @@
                             
                     	</div>
                         
-                    	<div class="main_half_box">
+ <!--                    	<div class="main_half_box">
                     
                             <div class="main_book">
                             
@@ -302,7 +312,7 @@
                                 </div>
                                 
                                 <div class="main_content" id="recConfirm">
-<!--                                     <h2>영수증 확인</h2>
+                                    <h2>영수증 확인</h2>
                                     
                                     <div class="main_item01">
                                     	<span class="fleft">미확인 영수증</span>
@@ -317,13 +327,13 @@
                                     <div class="main_item01 last_item">
                                     	<span class="fleft">미확인 영수증</span>
                                         8<span>건</span>
-                                    </div> -->
+                                    </div>
                                     
                                 </div>
                                 
                             </div>
                             
-                    	</div>
+                    	</div> -->
                         
                         
                         <hr>
@@ -457,7 +467,7 @@ var joinTelNo = "";
 $(document).ready(function(){
 	document.addEventListener("deviceready", onDeviceReady, true);
 	document.addEventListener("backbutton", onBackKeyDown, true);
-	
+	commonUserData();	
 	$("#logOut").click(function(){
 	  	var storage = window.localStorage;
 	  	localStorage.removeItem("id");
@@ -498,6 +508,10 @@ $(document).ready(function(){
   
   $("#curUseData").click(function(){
 	  location.href='latest.html?uuId='+uuId+'&telNo='+telNo;
+  })
+  
+  $(".main_book").click(function(){
+	  location.href='household.html?uuId='+uuId+'&telNo='+telNo;
   })
 });
 

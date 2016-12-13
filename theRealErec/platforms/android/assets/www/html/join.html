@@ -598,8 +598,6 @@ $(document).ready(function(){
 	})
 	
 });
-	
-	
 
      function onDeviceReady() {
     	 onPushSet();
@@ -622,15 +620,6 @@ $(document).ready(function(){
 
      }
 	
-		
-	
-
-	
-
-
-
-
-
 	   var min = 0;
 	   var sec = 0;
 	   var time = 0;
@@ -706,6 +695,15 @@ $(document).ready(function(){
 	   if(resdata == 1){
 		      $.ajax({
 		          type: "post",
+		          url : commonIp()+"/theReal/receipt/telNumInit.do",
+		          data: {
+		             telNo       : telNo ,
+		          },
+		          success: fnSuctelNumInitData,
+		          error: whenError
+		         });  	
+		      $.ajax({
+		          type: "post",
 		          url : commonIp()+"/theReal/receipt/appMemberInsert.do",
 		          data: {
 		             userNm     : userNm,  
@@ -753,7 +751,9 @@ $(document).ready(function(){
 	   alert("실패.");
 	}
 	
-	
+	function fnSuctelNumInitData(){
+		
+	}
 	
 	function onPushSet(){
 		  console.log(device.platform);
