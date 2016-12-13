@@ -262,6 +262,13 @@ module.exports = [
         "clobbers": [
             "PushNotification"
         ]
+    },
+    {
+        "file": "plugins/info.asankan.phonegap.smsplugin/www/smsplugin.js",
+        "id": "info.asankan.phonegap.smsplugin.smsplugin",
+        "clobbers": [
+            "smsplugin"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -278,7 +285,8 @@ module.exports.metadata =
     "cordova-plugin-vibration": "2.1.2",
     "cordova-plugin-dialogs": "1.3.0",
     "cordova-plugin-media": "2.4.0",
-    "com.phonegap.plugins.PushPlugin": "2.5.0"
+    "com.phonegap.plugins.PushPlugin": "2.5.0",
+    "info.asankan.phonegap.smsplugin": "0.2.0"
 };
 // BOTTOM OF METADATA
 });
