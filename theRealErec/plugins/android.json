@@ -39,6 +39,9 @@
         },
         "com.phonegap.plugins.PushPlugin": {
             "PACKAGE_NAME": "com.theReal.Erec"
+        },
+        "info.asankan.phonegap.smsplugin": {
+            "PACKAGE_NAME": "com.theReal.Erec"
         }
     },
     "dependent_plugins": {
