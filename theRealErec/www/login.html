@@ -30,61 +30,184 @@
     
     
 	<script src="code/common.js"></script>
-    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <!-- <script type="text/javascript" charset="utf-8" src="cordova.js"></script> -->
     
 </head>
 
-<body class="login_page">
+<body class="login2_body">
 
-<div class="wrap">
 
-	<div class="container login_box">
-    	<div class="login_img"><img src="common/log_img.png"></div>
-    </div>
-                    	<div class="join_box2">
-                        	<ul>
-                            	<li class="full_input"><input type="text" placeholder="이메일" id="eMail" maxlength="30"  value =""></li>
-                            	<li class="full_input"><input type="text" placeholder="비밀번호"  id="password" maxlength="30" value = ""></li>
-                            </ul>	
-                        </div>
-<div class="login_auto" >
-<label for="auto">
-<input type="checkbox" id="auto" name="autoLgn" style="cursor:pointer;"/>자동로그인
-</label>
-</div> 
-                      	<li>
-                               <div>
-                                 <div class="agree_btn1" style="width: 43%; float: left;">로그인</div>
-                               </div>
-                                <div>
-                                 <div class="agree_btn2" style="width: 43%; float: right;">회원가입</div>
-                               </div>
-                       </li>                  
-    
-
-                  
-                    <div class="foot_info2">
+    <div class="views">
+		<div class="view view-main">
+        
+        
+            <div class="navbar top_menu">
                 
-                    	<div class="foot_box2">
-                        	<div class="foot_btn alen_outbox2">
-                            <a href="#">아이디 찾기</a>
+                <div data-page="search_id" class="navbar-inner cached">
+                <div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
+                <div class="center sliding">아이디 찾기</div>
+                </div>
+
+                
+                <div data-page="search_pass" class="navbar-inner cached">
+                <div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
+                <div class="center sliding">비밀번호 찾기</div>
+                </div>
+
+            </div>
+        
+			<div class="pages navbar-through toolbar-through">
+
+                <div data-page="index" class="page">
+
+                    <div class="page-content">
+                    	
+                        <div class="login2_content">
+					
+                            <div class="login2_title"><img src="common/log_title.png"></div>
+     
+                            <div class="login2_box">
+                                <ul>
+                                    <li class="full_input"><input type="text" placeholder="아이디" id="eMail" maxlength="30" value =""></li>
+                                    
+                                    <li class="full_password"><input type="password" placeholder="비밀번호" id="password" maxlength="30" value = ""></li>
+                                </ul>
                             </div>
                             
-                        	<div class="foot_btn alen_outbox2">
-                            <a href="#">비밀번호 찾기</a>
+                            
+                            <div class="log_sqbox">
+                                <div class="log_sqbtn" id="loginBtn">로그인</div>
                             </div>
                             
+                            <div class="log_auto">
+                            <label class="label-checkbox item-content">
+                              <input type="checkbox" name="ks-checkbox" value="Food">
+                              <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+                              <div class="item-inner">
+                                <div class="item-title">자동로그인 설정</div>
+                              </div>
+                            </label>
                             <hr>
-                        </div>                       
-                         
+                            </div>
+                            
+	
+						</div>
+                        
+                        <div class="login2_sub">
+							<div><a href="#search_id">아이디 찾기</a></div>
+							<div><a href="#search_pass">비밀번호 찾기</a></div>
+							<div class="login2_join" href="javascript:void(0);" id="joinBtn">회원가입</div>
+                        </div>
+                    
+                    </div>
+                </div>
+               
+               
+
+                <div data-page="search_id" class="page cached">
+                    <div class="page-content agree_acon">
+                        <div class="content-block log_block">
+                    	<div class="join_box">
+                        	<ul>
+
+                            	<li class="full_input">
+                                <select>
+                                    <option>SKT</option>
+                                    <option>KT</option>
+                                    <option>LGu+</option>
+                                    <option>알뜰폰 SKT</option>
+                                    <option>알뜰폰 KT</option>
+                                    <option>알뜰폰 LG U+</option>
+                                </select>
+                                </li>
+                                
+                            	<li class="full_input"><input type="text" placeholder="휴대폰 번호"></li>
+                                
+                               
+                            	<li>
+                                <div class="alen_table_title">
+                                <div class="tel_btn" onClick="location.href='#'">인증번호 받기</div>
+                                </div>
+                                
+                                <div class="alen_table_con">
+                                <input type="text" placeholder="인증번호입력">
+                                </div>
+                                
+                                <hr>
+                                </li>
+                                
+                            </ul>
+                            
+                            
+                        </div>
+                        
+                        <div class="agree_btnbox" onClick="location.href='index.html'">
+                            <div class="agree_btn">확인</div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div data-page="search_pass" class="page cached">
+                    <div class="page-content agree_acon">
+                        <div class="content-block log_block">
+                        
+                    	<div class="join_box">
+                        	<ul>
+                            	<li class="full_input"><input type="text" placeholder="아이디"></li>
+                            
+                            	<li class="full_input">
+                                <select>
+                                    <option>SKT</option>
+                                    <option>KT</option>
+                                    <option>LGu+</option>
+                                    <option>알뜰폰 SKT</option>
+                                    <option>알뜰폰 KT</option>
+                                    <option>알뜰폰 LG U+</option>
+                                </select>
+                                </li>
+                                
+                            	<li class="full_input"><input type="text" placeholder="휴대폰 번호"></li>
+                                
+                               
+                            	<li>
+                                <div class="alen_table_title">
+                                <div class="tel_btn" onClick="location.href='#'">인증번호 받기</div>
+                                </div>
+                                
+                                <div class="alen_table_con">
+                                <input type="text" placeholder="인증번호입력">
+                                </div>
+                                
+                                <hr>
+                                </li>
+                                
+                            </ul>
+                            
+                            
+                        </div>
+                        
+                        <div class="agree_btnbox" onClick="location.href='index.html'">
+                            <div class="agree_btn">확인</div>
+                        </div>
+                        
+                        </div>
+                    </div>
+                </div>
+
+
+			</div>
+
+		</div>
     </div>
 
-<!--     <div class="login_btnbox">
-    <a id="kakao-login-btn"></a>
-<a href="http://alpha-developers.kakao.com/logout"></a>
-	    <div class="login_btn">카카오톡으로 시작하기</div>
-    </div> -->
-    
+
+
+
+<script type="text/javascript" src="js/framework7.js"></script>
+
+<script type="text/javascript" src="js/my-app.js"></script>
 
 <input value="activate scrollator" id="activate_scrollator4" type="button"  style="display:none;">
 <script type="text/javascript">
@@ -95,14 +218,14 @@
 		/**
 		회원가입화면으로 이동
 		**/
-		$(".agree_btn2").click(function(){
+		$("#joinBtn").click(function(){
 			location.href='./html/agree.html';
 		})
 		
 		/**
 		로그인 버튼 클릭 시 함수
 		**/
-		$(".agree_btn1").click(function(){
+		$("#loginBtn").click(function(){
 			$.ajax({
 		        type: "post",
 		        url : commonIp()+"/theReal/receipt/lgnChk.do",
@@ -130,7 +253,7 @@
 				console.log(resultData[i].UUID);
 				console.log(resultData[i].TEL_NO);
 			}
-				if($("input[name*='autoLgn']").is(":checked")){
+				if($("input[name*='ks-checkbox']").is(":checked")){
 				window.localStorage.setItem("id", $('#eMail').val());
 		       	window.localStorage.setItem("pw", $('#password').val());				
 				};

@@ -27,7 +27,6 @@
     <link rel="stylesheet" href="../css/my-app.css">
     <link href="../css/monthpicker.css" rel="stylesheet" />
 	<script src="../code/common.js"></script>
-	<script src="../js/jsArrayUtil.js"></script>
 <!-- 	<script type="text/javascript" charset="utf-8" src="../cordova.js"></script> -->
 </head>
 
@@ -68,27 +67,32 @@
                 <div data-page="index" class="navbar-inner">
                 
                     <div class="left">
-                    <a href="javascript:void(0)" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>
+                    <a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>
                     </div>
                     <div class="center sliding alen_logo"><img src="../common/logo.png"></div>
 
                 </div>
                 
                 <div data-page="receipt_details" class="navbar-inner cached">
-                <div class="left sliding"><a href="javascript:void(0)" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
+                <div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
                 <div class="center sliding">영수증 상세 내역</div>
                 </div>
                 
                 
                 <div data-page="agree01" class="navbar-inner cached">
-                <div class="left sliding"><a href="javascript:void(0)" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
+                <div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
                 <div class="center sliding">개인정보 수집이용취급위탁 동의</div>
                 </div>
                 
                 
                 <div data-page="agree03" class="navbar-inner cached">
-                <div class="left sliding"><a href="javascript:void(0)" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
+                <div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
                 <div class="center sliding">본인확인서비스 이용약관</div>
+                </div>
+                
+                <div data-page="detailSearch" class="navbar-inner cached">
+                <div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
+                <div class="center sliding">상세조회</div>
                 </div>
                 
                 
@@ -100,19 +104,28 @@
                 <div data-page="index" class="page">
                     <div class="page-content">
                     
+                    <div class="history_title">
+                        <div class="history_txt">전자영수증 내역확인</div>
+                        <div class="history_total" id="totalAmount">총 10건 / 560,560원</div>
+                        <hr>
+                    </div>                    
                     
                     <div class="history_btnbox">
                        
                         <div class="history_cate">
-                            
                             <div class="slide">
-							<a href="#"><img src="../icon/food.png"></a>
-                            <p>음식</p>
+							<a href="#"><img src="../icon/car.png"></a>
+                            <p>자동차/주유</p>
                             </div>
                             
                             <div class="slide">
 							<a href="#"><img src="../icon/coffee.png"></a>
-                            <p>카페/베이커리</p>
+                            <p>카페<br>베이커리</p>
+                            </div>
+                            
+                            <div class="slide">
+							<a href="#"><img src="../icon/food.png"></a>
+                            <p>음식</p>
                             </div>
                             
                             <div class="slide">
@@ -138,7 +151,26 @@
                     </div>
                     
                     
-                    <div id="page-container"></div>
+                    <div class="history_sort">
+                    	<ul>
+<!--                           <li class="asort_up">최신순</li>
+                          <li class="asort_down">높은순</li> -->
+                          
+                          <li class="hsort_line"></li>
+                          
+                          <li id="btnToday">당일</li>
+                          <li id="btnWeek">1주일</li>
+                          <li id="btnMonth">한달</li>
+                          
+                          <li class="hsort_line"></li>
+                          
+                          <!-- <li class="hsort_detail"  id="dtlSearchBtn" href="#agree03">상세조회</li> -->
+                          <li class="hsort_detail"><a href="#detailSearch">상세조회</a></li>
+                          
+                        </ul>
+                    </div>                    
+                    
+                    <!-- <div id="page-container"></div> -->
 
 					<div class="latest_box alen_outbox">
 
@@ -223,6 +255,153 @@
                     </div>
                 </div>
                 
+                <div data-page="detailSearch" class="page cached">
+                    <div class="page-content hsh_box">
+                    
+                    <div class="alen_list_title">
+                    조회 기간
+                    </div>
+                    
+                    <div class="list-block alen_list_box">
+                        <ul>
+                            <li>
+                                <div class="item-content hsh_input"><input type="date" name="startDate" style="font-size: small;"></div>
+                                
+                                <div class="hsh_and">-</div>
+                                
+                                <div class="item-content hsh_input"><input type="date"  name="endDate" style="font-size: small;"></div>
+                                <hr>
+                            </li>
+
+                        </ul>
+                    </div>
+                    
+                    
+                    <div class="alen_list_title">
+                    조회 내용
+                    </div>
+                    
+                    <div class="list-block alen_list_box">
+                        <ul>
+                            <li>
+                                <div class="alen_radio_box">
+                                    <div class="alen_table_half alen_table_top">
+                                    <label class="label-radio item-content">
+                                      <input type="radio" name="sort_pay" value="ALL" checked>
+                                      <div class="item-inner">
+                                        <div class="item-title">전체</div>
+                                      </div>
+                                    </label>
+                                    </div>
+                                    
+                                    
+                                    <div class="alen_table_half alen_table_last alen_table_top">
+                                    <label class="label-radio item-content">
+                                      <input type="radio" name="sort_pay" value="CARD">
+                                      <div class="item-inner">
+                                        <div class="item-title">카드</div>
+                                      </div>
+                                    </label>
+                                    </div>
+                                    
+                                    
+                                    <div class="alen_table_half">
+                                    <label class="label-radio item-content">
+                                      <input type="radio" name="sort_pay" value="CASH">
+                                      <div class="item-inner">
+                                        <div class="item-title">현금</div>
+                                      </div>
+                                    </label>
+                                    </div>
+                                    
+                                    
+                                    <div class="alen_table_half alen_table_last">
+                                    <label class="label-radio item-content">
+                                      <input type="radio" name="sort_pay" value="ETC">
+                                      <div class="item-inner">
+                                        <div class="item-title">기타</div>
+                                      </div>
+                                    </label>
+                                    </div>
+                                    <hr>
+                                
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                    
+                    
+                    <div class="alen_list_title">
+                    조회 결과 순서
+                    </div>
+                    
+                    <div class="list-block alen_list_box">
+                        <ul>
+                            <li>
+                                <div class="alen_radio_box">
+                                    <div class="alen_table_half alen_table_top">
+                                    <label class="label-radio item-content">
+                                      <input type="radio" name="sort_new" value="D2" checked>
+                                      <div class="item-inner">
+                                        <div class="item-title">최신순</div>
+                                      </div>
+                                    </label>
+                                    </div>
+                                    
+                                    
+                                    <div class="alen_table_half alen_table_last alen_table_top">
+                                    <label class="label-radio item-content">
+                                      <input type="radio" name="sort_new" value="D1">
+                                      <div class="item-inner">
+                                        <div class="item-title">과거순</div>
+                                      </div>
+                                    </label>
+                                    </div>
+                                    <hr>
+                                   
+                                    
+                                    <div class="alen_table_half">
+                                    <label class="label-radio item-content">
+                                      <input type="radio" name="sort_new" value="A2">
+                                      <div class="item-inner">
+                                        <div class="item-title">높은 금액순</div>
+                                      </div>
+                                    </label>
+                                    </div>
+                                    
+                                    
+                                    <div class="alen_table_half alen_table_last">
+                                    <label class="label-radio item-content">
+                                      <input type="radio" name="sort_new" value="A1">
+                                      <div class="item-inner">
+                                        <div class="item-title">낮은 금액순</div>
+                                      </div>
+                                    </label>
+                                    </div>
+                                    <hr>
+                                
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                    
+                    
+                        
+
+                        
+                    <div class="agree_btnbox" id="searchBtn">
+                        <a href="#index"><div class="agree_btn" >조회</div></a>
+                    </div>
+
+
+
+                    
+                    
+                    </div>
+                </div>
+                
 			</div>
             
             
@@ -246,12 +425,34 @@
 
 <script type="text/javascript">
 	var request = new Request();
+	
+	var dateSrchCd  = null;
+	var startDate  = null;
+	var endDate = null;
+	var dateDivCd = null;
+	var payDivCd = null;
+	var orderByCd = null;	
+	
 	var telNo = request.getParameter('telNo');
 	var uuId = request.getParameter('uuId');
 	var barcodeNo = "";
 	var dtlSeq = "";
 	var seq = "";
 	var emailSendJsonData = null;
+
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth()+1;
+	var yyyy = today.getFullYear();
+
+	if(dd<10) {
+	    dd='0'+dd
+	} 
+
+	if(mm<10) {
+	    mm='0'+mm
+	} 
+
 /* 	document.addEventListener("deviceready", 	function(){
 		  if(device.platform.toUpperCase() == 'ANDROID'){
 		    window.plugins.pushNotification.register(successHandler,errorHandler, {
@@ -263,13 +464,75 @@
 		
 		});	 */
 	
+	function latestDivSrch(dateSrchCd,startDate,endDate,dateDivCd,payDivCd,orderByCd){
+     	    $.ajax({
+    	        type: "post",
+    	        url : commonIp()+"/theReal/receipt/latestData.do",
+    	        data: {
+    	        	telNo  	: telNo,
+    	        	dateSrchCd : dateSrchCd, 
+    	        	startDate : startDate, 
+    	        	endDate : endDate,
+    	        	dateDivCd : dateDivCd,
+    	        	payDivCd : payDivCd,
+    	        	orderByCd : orderByCd,
+    	        },
+    	        success: fn_latestData,
+    	        error: whenError
+        	});			
+		}	
+		
 	$(document).ready(function(){
+		//당일버튼 클릭 시
+        $("#btnToday").click(function(){
+        	latestDivSrch("N","N","N","TODAY","N","N");
+        });
+        
+        //일주일 버튼 클릭 시
+        $("#btnWeek").click(function(){
+        	latestDivSrch("N","N","N","WEEK","N","N");
+        });
+        
+        //한달 버튼 클릭시 
+        $("#btnMonth").click(function(){
+        	latestDivSrch("N","N","N","MONTH","N","N");
+        });
+		
+    	$("#searchBtn").click(function(){
+			
+    		//시작일자
+    		var startDateVal = $(':input[name="startDate"]').val();
+    		//종료일자
+    		var endDateVal = $(':input[name="endDate"]').val();
+    		//조회내용
+    		var sortPayVal = $(':radio[name="sort_pay"]:checked').val();
+    		//조회결과순서
+    		var sortNewVal = $(':radio[name="sort_new"]:checked').val();
+    		console.log(startDateVal);
+    		console.log(endDateVal);
+    		console.log(sortPayVal);
+    		console.log(sortNewVal);
+    		if(isNull(startDateVal)){
+    			alert("시작일자를 입력해주시기 바랍니다.");
+    			return false;
+    		}
+    		if(isNull(endDateVal)){
+    			alert("종료일자를 입력해주시기 바랍니다.");
+    			return false;
+    		}
+    		//$("#receiptData").empty();
+    		latestDivSrch("N",startDateVal,endDate,"N",sortPayVal,sortNewVal);
+    	})		
+		
+/* 		$("#dtlSearchBtn").click(function(){
+			location.href='history_search.html?uuId='+uuId+'&telNo='+telNo;
+		}) */
 		
 		  $('.history_cate').bxSlider({
-			  slideWidth: 100,
+			  slideWidth: 70,
 			  minSlides: 2,
 			  maxSlides: 8,
-			  moveSlides: 1,
+			  moveSlides: 4,
 			  slideMargin: 10,
 			  auto: false,
 			  autoHover: true,
@@ -349,6 +612,7 @@
 	};
 	
 	function fn_latestData(resdata){
+		
 		var str = "";
 		var resultData = resdata.resultMap;
 		var cardCashDiv = "";
@@ -356,7 +620,6 @@
 		$("#receiptData").empty();
 		
 		resultCnt = resultData.length;
-		
 		if(resultData.length>0){
 			for(var i=0; i<resultCnt; i++){
 				if(resultData[i].CARD_ICOM == ""){
@@ -364,6 +627,7 @@
 				}else{
 					cardCashDiv = resultData[i].CARD_ICOM;	
 				}
+				$("#totalAmount").text("총 "+resultCnt+"건 / "+resultData[i].TOTAL_AM+"원");
 				
 				str += '<li>';
 				str += '<input type="hidden" value = "'+resultData[i].SALES_BARCODE+'" id="barcodeNo'+resultData[i].SEQ+'">';
@@ -401,15 +665,16 @@
 				str += '<hr>';		            
 				str += '</a>';		            
 				str += '</li>';		            
-		           
 			}
 		}else{
 			str += '<li>';
 			str += '<div>최근사용내역이 없습니다.</div>';
-			str += '</li>';		  	
+			str += '</li>';		
+			$("#totalAmount").text("총 0건 / 0원");
 		}
 		$("#receiptData").append(str);		
 		//$("#detailRecData").empty();
+		
 	};
 	
 	function fn_latestDetailData(resdata){
@@ -439,6 +704,7 @@
 			recEmailSendObj.userInfo = $("#userNm"+dtlSeq).val();
 			var cashDivObj = new Object();
 			var cardDivObj = new Object();
+			console.log($("#mlat02"+dtlSeq).text());
 			if($("#mlat02"+dtlSeq).text() == "현금"){
 				cardCashDtlDiv = "현금";
 				str += '<div class="rec_half">';
@@ -499,14 +765,17 @@
 	            dtlGoodsArr.push(dtlGoodsObj);
 			}
 			str += '</div>';
-			
 
 			str += '<div class="rec_half">';
 			str += '	<ul>';
-			str += '      <li><div>부가세</div><div class="rec_hcon">'+numberWithCommas($("#sumTaxAmt"+dtlSeq).val())+'</div></li>';
+			str += '      <li><div>공급금액</div><div class="rec_hcon">'+numberWithCommas($("#sumFpAmt"+dtlSeq).val())+'</div></li>';
+			str += '      <li><div>부 가 세</div><div class="rec_hcon">'+numberWithCommas($("#sumTaxAmt"+dtlSeq).val())+'</div></li>';
+			str += '      <li><div>합계금액</div><div class="rec_hcon">'+numberWithCommas($("#sumPaidAmt"+dtlSeq).val())+'</div></li>';
+			str += '      <li><div>반환금액</div><div class="rec_hcon">'+($("#sumPaidAmt"+dtlSeq).val()-$("#sumAlAmt"+dtlSeq).val())+'</div></li>';
+/* 			str += '      <li><div>부가세</div><div class="rec_hcon">'+numberWithCommas($("#sumTaxAmt"+dtlSeq).val())+'</div></li>';
 			str += '      <li><div>합 계</div><div class="rec_hcon">'+numberWithCommas($("#sumAlAmt"+dtlSeq).val())+'</div></li>';
 			str += '      <li><div>결제금액</div><div class="rec_hcon">'+numberWithCommas($("#sumPaidAmt"+dtlSeq).val())+'</div></li>';
-			str += '      <li><div>반환금액</div><div class="rec_hcon">'+($("#sumPaidAmt"+dtlSeq).val()-$("#sumAlAmt"+dtlSeq).val())+'</div></li>';
+			str += '      <li><div>반환금액</div><div class="rec_hcon">'+($("#sumPaidAmt"+dtlSeq).val()-$("#sumAlAmt"+dtlSeq).val())+'</div></li>'; */
 			str += '      <hr>';
 			str += '    </ul>';
 			str += '</div>';
@@ -520,6 +789,7 @@
 			str += '      <hr>';
 			str += '    </ul>';
 			str += '</div>';			
+			
 			var dtlInfoObj = new Object();
 			dtlInfoObj.sumTaxAmt = numberWithCommas($("#sumTaxAmt"+dtlSeq).val());
 			dtlInfoObj.sumAlAmt = numberWithCommas($("#sumAlAmt"+dtlSeq).val());
@@ -572,7 +842,7 @@
 		recEmailSendObj.dtlGoodsArr =dtlGoodsArr;
 
 		emailSendJsonData = JSON.stringify(recEmailSendObj);
-		console.log(emailSendJsonData);
+		//console.log(emailSendJsonData);
 		//alert(emailSendJsonData);
 	};
 	

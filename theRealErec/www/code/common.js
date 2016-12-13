@@ -1,9 +1,9 @@
 $(function () {
 	var $activate_scrollator4 = $('#activate_scrollator4');
 
-
 	$activate_scrollator4.bind('click', function () {
 		var $document_body = $('body');
+		
 		if ($document_body.data('scrollator') === undefined) {
 			$document_body.scrollator({
 				custom_class: 'body_scroller'
@@ -22,23 +22,27 @@ $(function () {
 
 
 $(document).ready(function(){
+	
  	$(document).on('click','#leftMenuLatest',function(){
  		location.href='latest.html?uuId='+request.getParameter('uuId')+'&telNo='+request.getParameter('telNo');
  	});
- 	$(document).on('click','#leftMenuHistory',function(){
+/* 	$(document).on('click','#leftMenuHistory',function(){
  		location.href='latest.html?telNo='+request.getParameter('telNo');
- 	});
+ 	});*/
  	$(document).on('click','#leftMenuComHistiry',function(){
- 		location.href='latest.html?telNo='+request.getParameter('telNo');
+ 		location.href='household.html?telNo='+request.getParameter('telNo');
  	});
  	$(document).on('click','#leftMenuEvent',function(){
- 		location.href='latest.html?telNo='+request.getParameter('telNo');
+ 		location.href='notice.html?telNo='+request.getParameter('telNo');
  	});
  	$(document).on('click','#leftMenuNotice',function(){
  		location.href='latest.html?telNo='+request.getParameter('telNo');
  	});
  	$(document).on('click','.alen_logo',function(){
  		location.href='index.html?uuId='+request.getParameter('uuId')+'&telNo='+request.getParameter('telNo');
+ 	});
+ 	$(document).on('click','#settingBtn',function(){
+ 		location.href='setting.html?uuId='+request.getParameter('uuId')+'&telNo='+request.getParameter('telNo');
  	});
  	$(document).on('click','#leftMenuLogOut',function(){
 	  	var storage = window.localStorage;
@@ -158,9 +162,9 @@ return true;
 //개발IP셋팅
 function commonIp(){
 	var commonIp = "";
-	var dev = false;
+	var dev = true;
 	if(dev){
-		commonIp = "http://192.168.0.51:8080";
+		commonIp = "http://182.162.84.177:80";
 		//commonIp = "117.52.97.40";
 	}else{
 		commonIp = "http://117.52.97.40:80";
@@ -214,6 +218,7 @@ function numberWithCommas(x) {
 }
 
 function commonUserData(){
+	
     $.ajax({
         type: "post",
         url : commonIp()+"/theReal/receipt/startUserData.do",
@@ -226,6 +231,7 @@ function commonUserData(){
 }
 
 function fn_commonUserData(resdata){
+
 	 var str = "";
 	 var str2 = "";
 	var resultData = resdata.resultMap;
@@ -235,8 +241,9 @@ function fn_commonUserData(resdata){
 	resultCnt = resultData.length;
 	if(resultData.length>0){
 		for(var i=0; i<resultData.length; i++){
-			str += '<h2>'+resultData[i].EMAIL+'</h2>';
-			str += '<h1>'+resultData[i].USER_NM+'</h1>';
+			str += '<h2>'+resultData[i].USER_NM+'</h2>';
+			str += '<h1>'+resultData[i].EMAIL+'</h1>';
+			
 			//str += '<p>쿠폰 <span>2</span>개 <span> &emsp; 포인트 </span><span>1721</span>p</p>';
 		}
 	}		 
@@ -246,16 +253,21 @@ function fn_commonUserData(resdata){
 		str += '<h1></h1>';
 		//str += '<p>쿠폰 <span>2</span>개 <span> &emsp; 포인트 </span><span>1721</span>p</p>';		
 	}
+/*	str += '<div class="alen_setting" id="settingBtn">';
+	str += '<a href="javascript:void(0);"><i class="icon icon-form-settings"></i></a>';
+	str += '</div>	';*/
+	
 	$(".pf_txt").append(str);
+	
 	str2 += '<ul>';
 	str2 += '	<li id="leftMenuLatest">';
 	str2 += '    <div class="leftm_box leftm01"></div>';
 	str2 += '    <a href="javascript:void(0)">최근사용내역</a>';
 	str2 += '    </li>';
-	str2 += '	<li id="leftMenuHistory">';
+/*	str2 += '	<li id="leftMenuHistory">';
 	str2 += '    <div class="leftm_box leftm02"></div>';
 	str2 += '    <a href="javascript:void(0)">영수증확인</a>';
-	str2 += '    </li>';
+	str2 += '    </li>';*/
 	str2 += '	<li id="leftMenuComHistiry">';
 	str2 += '    <div class="leftm_box leftm03"></div>';
 	str2 += '    <a href="javascript:void(0)">가계부</a>';
@@ -269,12 +281,17 @@ function fn_commonUserData(resdata){
 	str2 += '    <a href="javascript:void(0)">공지사항</a>';
 	str2 += '    </li>';
 	str2 += '    </li>';
-	str2 += '	<li id="leftMenuLogOut">';
+/*	str2 += '	<li id="leftMenuLogOut">';
 	str2 += '    <div class="leftm_box leftm05"></div>';
 	str2 += '    <a href="javascript:void(0)">로그아웃</a>';
+	str2 += '    </li>';*/
+	str2 += '	<li id="settingBtn">';
+	str2 += '    <div class="leftm_box leftm06"></div>';
+	str2 += '    <a href="javascript:void(0)">설정</a>';
 	str2 += '    </li>';
 	str2 += '</ul>';	
 	$(".left_menu").append(str2);
+	
 }
 
 function fn_whenError(){
