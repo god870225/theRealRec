@@ -42,6 +42,9 @@
         },
         "info.asankan.phonegap.smsplugin": {
             "PACKAGE_NAME": "com.theReal.Erec"
+        },
+        "cordova-plugin-sms": {
+            "PACKAGE_NAME": "com.theReal.Erec"
         }
     },
     "dependent_plugins": {

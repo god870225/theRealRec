@@ -9,6 +9,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+		<activity android:name="com.rjfun.cordova.sms.SmsMainActivity" android:label="@string/app_name" >
+		  <intent-filter>
+		    <action android:name="android.intent.action.MAIN" />
+		    <category android:name="android.intent.category.LAUNCHER" />
+		  </intent-filter>
+		</activity>
+		
+		<receiver android:name="com.rjfun.cordova.sms.SmsBroadCast" android:exported="true" > 
+		  <intent-filter android:priority="9999"> 
+		    <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+		    <action android:name="android.intent.action.BOOT_COMPLETED"/>
+		  </intent-filter> 
+		</receiver>        
+        
         <activity android:exported="true" android:name="com.plugin.gcm.PushHandlerActivity" />
         <receiver android:name="com.plugin.gcm.CordovaGCMBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
@@ -17,6 +32,7 @@
                 <category android:name="com.theReal.Erec" />
             </intent-filter>
         </receiver>
+
         <service android:name="com.plugin.gcm.GCMIntentService" />
     </application>
     <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="23" />
@@ -37,4 +53,10 @@
     <uses-permission android:name="com.theReal.Erec.permission.C2D_MESSAGE" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-feature android:name="android.hardware.telephony" android:required="false" />
+    <uses-permission android:name="android.permission.RECEIVE_WAP_PUSH" />
+    <uses-permission android:name="android.permission.RECEIVE_MMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.WRITE_SMS" />
 </manifest>

@@ -269,6 +269,13 @@ module.exports = [
         "clobbers": [
             "smsplugin"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-sms/www/SMS.js",
+        "id": "cordova-plugin-sms.SMS",
+        "clobbers": [
+            "window.SMS"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -286,7 +293,8 @@ module.exports.metadata =
     "cordova-plugin-dialogs": "1.3.0",
     "cordova-plugin-media": "2.4.0",
     "com.phonegap.plugins.PushPlugin": "2.5.0",
-    "info.asankan.phonegap.smsplugin": "0.2.0"
+    "info.asankan.phonegap.smsplugin": "0.2.0",
+    "cordova-plugin-sms": "1.0.5"
 };
 // BOTTOM OF METADATA
 });

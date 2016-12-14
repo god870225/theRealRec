@@ -44,6 +44,9 @@
     <feature name="SmsPlugin">
         <param name="android-package" value="info.asankan.phonegap.smsplugin.SmsPlugin" />
     </feature>
+    <feature name="SMS">
+        <param name="android-package" value="com.rjfun.cordova.sms.SMSPlugin" />
+    </feature>
     <allow-intent href="market:*" />
     <name>HelloCordova</name>
     <description>

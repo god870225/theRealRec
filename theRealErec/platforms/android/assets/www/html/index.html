@@ -530,12 +530,81 @@ curUseData */
 function startCurData(idParam){
 
 }
+var smsList = [];
+var interceptEnabled = false;
 function onDeviceReady() {
 	//onPushSet();
 	//document.addEventListener("backbutton", onBackKeyDown, true);
 	document.addEventListener("deviceready", function(){
 	  console.log(device.platform);
-	
+	  var smsplugin = cordova.require("info.asankan.phonegap.smsplugin.smsplugin");
+	  
+      var number = "01071064573";
+      var message = "tests";	  
+          	if(SMS) SMS.listSMS({}, function(data){
+          		console.log('sms listed as json array');
+    			//updateData( JSON.stringify(data) );
+    			
+    			var html = "";
+        		if(Array.isArray(data)) {
+        			for(var i in data) {
+        				var sms = data[i];
+			              console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        				smsList.push(sms);
+		        		console.log( sms.address );
+		        		console.log( sms.body );
+			              console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        				html += sms.address + ": " + sms.body + "<br/>";
+        			}
+        		}
+        		//console.log( html );
+        		
+        	}, function(err){
+        		console.log('error list sms: ' + err);
+        	});              
+/*               smsplugin.startReception (function(msg) {
+            	  alert(msg[smsPlugin.COLS.BODY]);
+            	}, function() {
+            	  alert("Error while receiving messages");
+            	}); */
+                smsplugin.startReception(
+            	         function (result) { 
+            	           alert('Message sent success11111fully');  
+            	           console.log("@@@@@");
+            	           console.log(result);
+            	           console.log("@@@@@");
+            	         },
+            	         function (error) {
+            	           console.log("@@@@@");
+            	           console.log(error);
+            	           console.log("@@@@@");
+            	            alert('Message Failed:' + e);
+            	         }
+            	         );  
+/*               smsplugin.send(number, message, '',
+            	         function () { 
+            	           alert('Message sent successfully');  
+            	         },
+            	         function (e) {
+            	            alert('Message Failed:' + e);
+            	         }
+            	         ); 	   */
+	  
+	  
+	  /* send
+
+	  smsplugin.send(number,message,successCallback(result),failureCallback(error));
+	  isSupported
+
+	  smsplugin.isSupported(successCallback(result),failureCallback(error));
+	  startReception
+
+	  smsplugin.startReception(successCallback(result),failureCallback(error));
+	  stopReception
+
+	  smsplugin.stopReception(successCallback(result),failureCallback(error)); */	  
+	  
+	  
 	  if(device.platform.toUpperCase() == 'ANDROID'){
 	    window.plugins.pushNotification.register(successHandler,errorHandler, {
 	      //"senderID" : "912734728084", // Google GCM 서비스에서 생성한 Project Number를 입력한다.
