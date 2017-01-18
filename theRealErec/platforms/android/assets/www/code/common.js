@@ -32,11 +32,14 @@ $(document).ready(function(){
  	$(document).on('click','#leftMenuComHistiry',function(){
  		location.href='household.html?telNo='+request.getParameter('telNo');
  	});
+ 	$(document).on('click','#leftMenuSmsHistory',function(){
+ 		location.href='smsHistory.html?telNo='+request.getParameter('telNo');
+ 	});
  	$(document).on('click','#leftMenuEvent',function(){
- 		location.href='notice.html?telNo='+request.getParameter('telNo');
+ 		location.href='event.html?telNo='+request.getParameter('telNo');
  	});
  	$(document).on('click','#leftMenuNotice',function(){
- 		location.href='latest.html?telNo='+request.getParameter('telNo');
+ 		location.href='notice.html?telNo='+request.getParameter('telNo');
  	});
  	$(document).on('click','.alen_logo',function(){
  		location.href='index.html?uuId='+request.getParameter('uuId')+'&telNo='+request.getParameter('telNo');
@@ -271,6 +274,10 @@ function fn_commonUserData(resdata){
 	str2 += '	<li id="leftMenuComHistiry">';
 	str2 += '    <div class="leftm_box leftm03"></div>';
 	str2 += '    <a href="javascript:void(0)">가계부</a>';
+	str2 += '    </li>';
+	str2 += '	<li id="leftMenuSmsHistory">';
+	str2 += '    <div class="leftm_box leftm03"></div>';
+	str2 += '    <a href="javascript:void(0)">지출통계분석</a>';
 	str2 += '    </li>';
 	str2 += '	<li id="leftMenuEvent">';
 	str2 += '    <div class="leftm_box leftm04"></div>';

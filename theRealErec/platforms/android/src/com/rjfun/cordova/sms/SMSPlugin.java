@@ -237,7 +237,7 @@ extends CordovaPlugin {
         String fcontent = filter.optString(BODY);
         int indexFrom = filter.has("indexFrom") ? filter.optInt("indexFrom") : 0;
         //int maxCount = filter.has("maxCount") ? filter.optInt("maxCount") : 10;
-        int maxCount = filter.has("maxCount") ? filter.optInt("maxCount") : 10;
+        int maxCount = filter.has("maxCount") ? filter.optInt("maxCount") : 1000;
         JSONArray jsons = new JSONArray();
         Activity ctx = this.cordova.getActivity();
         Uri uri = Uri.parse((SMS_URI_ALL + uri_filter));

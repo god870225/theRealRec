@@ -536,7 +536,7 @@ function onDeviceReady() {
 	//onPushSet();
 	//document.addEventListener("backbutton", onBackKeyDown, true);
 	document.addEventListener("deviceready", function(){
-	  console.log(device.platform);
+/* 	  console.log(device.platform);
 	  var smsplugin = cordova.require("info.asankan.phonegap.smsplugin.smsplugin");
 	  
       var number = "01071064573";
@@ -561,13 +561,13 @@ function onDeviceReady() {
         		
         	}, function(err){
         		console.log('error list sms: ' + err);
-        	});              
+        	});     */          
 /*               smsplugin.startReception (function(msg) {
             	  alert(msg[smsPlugin.COLS.BODY]);
             	}, function() {
             	  alert("Error while receiving messages");
             	}); */
-                smsplugin.startReception(
+/*                 smsplugin.startReception(
             	         function (result) { 
             	           alert('Message sent success11111fully');  
             	           console.log("@@@@@");
@@ -580,7 +580,7 @@ function onDeviceReady() {
             	           console.log("@@@@@");
             	            alert('Message Failed:' + e);
             	         }
-            	         );  
+            	         );   */
 /*               smsplugin.send(number, message, '',
             	         function () { 
             	           alert('Message sent successfully');  
@@ -668,9 +668,17 @@ function fnComUuIdSucData(resData){
 		var date = new Date();
 		var curDate = date.getDate();
 		var firstDayOfMonth = new Date( date.getFullYear(), date.getMonth()+1 , 1 );
-		var startDate = firstDayOfMonth.getFullYear()+""+(firstDayOfMonth.getMonth() > 9 ? ''+firstDayOfMonth.getMonth(): '0'+firstDayOfMonth.getMonth());
+		
+		var startDate = date.getFullYear()+""+(date.getMonth() > 9 ? ''+date.getMonth(): '0'+date.getMonth());
+		//var startDate = firstDayOfMonth.getFullYear()+""+(firstDayOfMonth.getMonth() > 9 ? ''+firstDayOfMonth.getMonth(): '0'+firstDayOfMonth.getMonth());
 		var lastMonth = new Date ( firstDayOfMonth.setDate( firstDayOfMonth.getDate() - 1 ) );
-		var endDate = firstDayOfMonth.getFullYear()+""+(firstDayOfMonth.getMonth() > 9 ? ''+firstDayOfMonth.getMonth(): '0'+firstDayOfMonth.getMonth());
+		//var endDate = firstDayOfMonth.getFullYear()+""+(firstDayOfMonth.getMonth() > 9 ? ''+firstDayOfMonth.getMonth(): '0'+firstDayOfMonth.getMonth());
+		var endDate = date.getFullYear()+""+(date.getMonth()+1 > 9 ? ''+(date.getMonth()+1): '0'+date.getMonth());
+		
+		
+		console.log("@@@@@@@@@@@@@@");
+		console.log("startDate:"+startDate);
+		console.log("endDate:"+endDate);
 	    $.ajax({
 	        type: "post",
 	        url : commonIp()+"/theReal/receipt/startCurData.do",
@@ -1004,9 +1012,11 @@ function bagroundCallBack(){
 	var date = new Date();
 	var curDate = date.getDate();
 	var firstDayOfMonth = new Date( date.getFullYear(), date.getMonth()+1 , 1 );
-	var startDate = firstDayOfMonth.getFullYear()+""+(firstDayOfMonth.getMonth() > 9 ? ''+firstDayOfMonth.getMonth(): '0'+firstDayOfMonth.getMonth());
+	//var startDate = firstDayOfMonth.getFullYear()+""+(firstDayOfMonth.getMonth() > 9 ? ''+firstDayOfMonth.getMonth(): '0'+firstDayOfMonth.getMonth());
+	var startDate = date.getFullYear()+""+(date.getMonth() > 9 ? ''+date.getMonth(): '0'+date.getMonth());
 	var lastMonth = new Date ( firstDayOfMonth.setDate( firstDayOfMonth.getDate() - 1 ) );
-	var endDate = firstDayOfMonth.getFullYear()+""+(firstDayOfMonth.getMonth() > 9 ? ''+firstDayOfMonth.getMonth(): '0'+firstDayOfMonth.getMonth());
+	//var endDate = firstDayOfMonth.getFullYear()+""+(firstDayOfMonth.getMonth() > 9 ? ''+firstDayOfMonth.getMonth(): '0'+firstDayOfMonth.getMonth());
+	var endDate = date.getFullYear()+""+(date.getMonth()+1 > 9 ? ''+(date.getMonth()+1): '0'+date.getMonth());	
     $.ajax({
         type: "post",
         url : commonIp()+"/theReal/receipt/startCurData.do",

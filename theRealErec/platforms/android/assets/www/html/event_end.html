@@ -10,17 +10,17 @@
     <title>더리얼마케팅 전자영수증</title>
     
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" media="all" href="code/layout.css" />
-    <link rel="stylesheet" media="all" href="code/common.css" />
+    <link rel="stylesheet" media="all" href="../code/layout.css" />
+    <link rel="stylesheet" media="all" href="../code/common.css" />
     
     <!-- scroll -->
-	<script src="code/fm.scrollator.jquery.js"></script>
-	<link rel="stylesheet" href="code/fm.scrollator.jquery.css" />
+	<script src="../code/fm.scrollator.jquery.js"></script>
+	<link rel="stylesheet" href="../code/fm.scrollator.jquery.css" />
     
     <!-- Path to your custom app styles-->
-    <link rel="stylesheet" href="css/my-app.css">
+    <link rel="stylesheet" href="../css/my-app.css">
     
-	<script src="code/common.js"></script>
+	<script src="../code/common.js"></script>
     
 </head>
 
@@ -39,7 +39,7 @@
     <div class="panel panel-left panel-reveal">
     
     	<div class="profile_box">
-        	<div class="pf_photo" style="background:url(common/profile.jpg) no-repeat center;"></div>
+        	<!-- <div class="pf_photo" style="background:url(common/profile.jpg) no-repeat center;"></div> -->
             
             <div class="pf_txt">
             	<h2>김종현</h2>
@@ -91,7 +91,7 @@
                     <div class="left">
                     <a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>
                     </div>
-                    <div class="center sliding alen_logo" onClick="location.href='index.html'"><img src="common/logo.png"></div>
+                    <div class="center sliding alen_logo" onClick="location.href='index.html'"><img src="../common/logo.png"></div>
 
                 </div>
 
@@ -124,9 +124,9 @@
                     
                     <div class="event_tab">
                     	<ul>
-                        	<li><a href="#" onClick="location.href='event.html'">전체보기</a></li>
-                        	<li><a href="#" onClick="location.href='event_pro.html'">진행중인 이벤트</a></li>
-                        	<li><a href="#" class="active" onClick="location.href='event_end.html'">종료된 이벤트</a></li>
+                        	<li><a href="javascript:void(0)" id="event">전체보기</a></li>
+                        	<li><a href="javascript:void(0)"  id="eventPro">진행중인 이벤트</a></li>
+                        	<li><a href="javascript:void(0)"  class="active"  id="eventEnd">종료된 이벤트</a></li>
                             <hr>
                         </ul>
                     </div>
@@ -134,13 +134,13 @@
                     <div class="event_board">
                     	<div class="event_bitem alen_outbox">
                         <a href="#event_page">
-                        <img src="banner/event01.jpg">
+                        <img src="../banner/event01.jpg">
                         </a>
                         </div>
                         
                     	<div class="event_bitem alen_outbox">
                         <a href="#event_page">
-                        <img src="banner/event02.jpg">
+                        <img src="../banner/event02.jpg">
                         </a>
                         </div>
                     </div>
@@ -198,7 +198,7 @@
                                     </ul>
                                     
                                     <div class="evd_content">
-                                    <img src="img/event.jpg">
+                                    <img src="../img/event.jpg">
                                     </div>
                                     
                                 </div>
@@ -241,10 +241,31 @@
 
 
 
-<script type="text/javascript" src="js/framework7.js"></script>
+<script type="text/javascript" src="../js/framework7.js"></script>
 
-<script type="text/javascript" src="js/my-app.js"></script>
+<script type="text/javascript" src="../js/my-app.js"></script>
 
 <input value="activate scrollator" id="activate_scrollator4" type="button"  style="display:none;">
+<script type="text/javascript">
+var request = new Request();
+var telNo = request.getParameter('telNo');
+var uuId = request.getParameter('uuId');
+$(document).ready(function(){
+	
+	$("#event").click(function(){
+		location.href='event.html?telNo='+telNo;
+	})
+	
+	$("#eventPro").click(function(){
+		location.href='event_pro.html?telNo='+telNo;
+	})
+	
+	$("#eventEnd").click(function(){
+		location.href='event_end.html?telNo='+telNo;
+	})	
+	
+	commonUserData();
+})
+</script>
 </body>
 </html>

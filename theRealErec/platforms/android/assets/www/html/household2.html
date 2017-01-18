@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+    <title>더리얼마케팅 전자영수증</title>
+    
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" media="all" href="../code/layout.css" />
+    <link rel="stylesheet" media="all" href="../code/common.css" />
+
+    <!-- main -->
+	<script src="../code/jquery.bxslider.min.js"></script>
+    <link href="../code/jquery.bxslider.css" rel="stylesheet" />
+    
+    <!-- scroll -->
+	<script src="../code/fm.scrollator.jquery.js"></script>
+	<link rel="stylesheet" href="../code/fm.scrollator.jquery.css" />
+    
+    <!-- Path to your custom app styles-->
+    <link rel="stylesheet" href="../css/my-app.css">
+    
+    <!-- calendar-->
+    <link rel="stylesheet" href="../code/calendar.css">
+    <script src="../code/calendar.js"></script>
+    
+    
+	<script src="../code/common.js"></script>
+	
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <link href="../css/responsive-calendar.css" rel="stylesheet">
+    <script src="../code/responsive-calendar.js"></script>
+    
+</head>
+
+<body>
+
+
+
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar-overlay"></div>
+
+
+    <!-- Panels overlay-->
+    <div class="panel-overlay"></div>
+
+
+    <div class="panel panel-left panel-reveal">
+    
+    	<div class="profile_box">
+        	<!-- <div class="pf_photo" style="background:url(../common/profile.jpg) no-repeat center;"></div> -->
+            
+            <div class="pf_txt">
+            	<h2>김종현</h2>
+                <p>쿠폰 <span>0</span>개</p>
+                <p>포인트 <span>200</span>p</p>
+            </div>
+            <hr>
+        </div>
+        
+        <div class="left_menu">
+        	<ul>
+            	<li onClick="location.href='latest.html'">
+                <div class="leftm_box leftm01"></div>
+                <a href="#">최근사용내역</a>
+                </li>
+                
+            	<li onClick="location.href='history.html'">
+                <div class="leftm_box leftm02"></div>
+                <a href="#">영수증확인</a>
+                </li>
+                
+            	<li onClick="location.href='household.html'">
+                <div class="leftm_box leftm03"></div>
+                <a href="#">가계부</a>
+                </li>
+                
+            	<li onClick="location.href='event.html'">
+                <div class="leftm_box leftm04"></div>
+                <a href="#">이벤트</a>
+                </li>
+                
+            	<li onClick="location.href='notice.html'">
+                <div class="leftm_box leftm05"></div>
+                <a href="#">공지사항</a>
+                </li>
+                
+            </ul>
+        </div>
+
+    </div>
+    
+    
+    <div class="views">
+		<div class="view view-main">
+        
+            <div class="navbar top_menu">
+                <div data-page="index" class="navbar-inner">
+                
+                    <div class="left">
+                    <a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>
+                    </div>
+                    <div class="center sliding alen_logo"><img src="../common/logo.png"></div>
+
+                </div>
+                
+                <div data-page="house_detail" class="navbar-inner cached">
+                <div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
+                <div class="center sliding">지출 내역</div>
+                </div>
+                
+                
+                <div data-page="agree01" class="navbar-inner cached">
+                <div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
+                <div class="center sliding">개인정보 수집이용취급위탁 동의</div>
+                </div>
+                
+                
+                <div data-page="agree03" class="navbar-inner cached">
+                <div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
+                <div class="center sliding">본인확인서비스 이용약관</div>
+                </div>
+                
+                
+            </div>
+         
+            
+			
+
+			<div class="pages navbar-through toolbar-through">
+                <div data-page="index" class="page">
+                    <div class="page-content">
+
+					<div class="house_txt">
+					김종현 고객님은 10.01부터 10.24일까지<br>
+                    카드 3건, 현금 5건 총 8건 50,000원을 사용하셨습니다.
+                    </div>
+                    
+				
+   <div class="container">
+<div class="house_graph">
+                    </div>    	
+      <!-- Responsive calendar - START -->
+    	<div class="responsive-calendar">
+        <div class="controls">
+            <a class="pull-left" data-go="prev"><div class="btn btn-primary">전달</div></a>
+            <h4><span data-head-year></span> <span data-head-month id="month"></span></h4>
+            <a class="pull-right" data-go="next"><div class="btn btn-primary">다음 달</div></a>
+        </div><hr/>
+        <div class="day-headers">
+          <div class="day header">월</div>
+          <div class="day header">화</div>
+          <div class="day header">수</div>
+          <div class="day header">목</div>
+          <div class="day header">금</div>
+          <div class="day header">토</div>
+          <div class="day header">일</div>
+        </div>
+        <div class="days" data-group="days">
+          
+        </div>
+      </div>
+      <!-- Responsive calendar - END -->
+                    <div class="foot_info">
+                    
+                    	<div class="foot_box">
+                        	<div class="foot_btn alen_outbox">
+                            <a href="#agree03">이용약관</a>
+                            </div>
+                            
+                        	<div class="foot_btn alen_outbox">
+                            <a href="#agree01">개인정보 취급방침</a>
+                            </div>
+                            
+                        	<div class="foot_btn alen_outbox">
+                            <a href="#">고객센터</a>
+                            </div>
+                            
+                            
+                            <hr>
+                        </div>
+<p>
+(주)이베이 코리아   |   대표이사 : 변광윤<br>
+사업자등록번호 : 220-81-83676   |   통신판매업신고 강남 10630호<br>
+서울시 강남구 테헤란로 152 (역삼동 강남파이낸스센터)<br>
+이메일 :information@corp.auction.co.kr<br>
+고객센터 :1588-0184(오전9시~오후6시,토요일/공휴일휴무<br>
+</p>
+
+<p class="copytxt">Copyrightⓒnoname Co,.All rights reserved</p>
+                    </div>      
+    </div>                    
+                    
+
+                    
+                    
+                    </div>
+                </div>
+                
+                <div data-page="house_detail" class="page cached">
+                    <div class="page-content house_box">
+                        <div class="content-block">
+                        
+                        <div class="house_now">11월 15일</div>
+                        
+                        <div class="house_nav">
+                        	<div class="house_leftcon2">
+                            <i class="prev2"></i> </div>
+                            
+                        	<div class="house_rightcon2">
+                            <i class="next2"></i></div>
+                            
+                            <hr>
+                        </div>
+                        
+						<div class="househ_box">
+                        	<div class="househ_inbox">
+                                
+                                <div class="hh_half">
+                                	<ul>
+                                      <li class="hh_full"><div>오늘의 총 영수증 발급</div><div class="hh_hcon">4건 / 40,000원</div></li>
+                                      <li><div>현금결제</div><div class="hh_hcon">1건 / 10,000원</div></li>
+                                      <li><div>카드결제</div><div class="hh_hcon">3건 / 30,000원</div></li>
+                                      <hr>
+                                    </ul>
+                                </div>
+                                
+                                <div class="hh_table">
+                                	<ul class="hh_tabletitle">
+                                      <li class="hh_mlat01">시간</li>
+                                      <li class="hh_mlat02">업체명</li>
+                                      <li class="hh_mlat03">현금/카드</li>
+                                      <li class="hh_mlat04">금액</li>
+                                      <hr>
+                                    </ul>
+                                    
+                                	<ul>
+                                      <li class="hh_mlat01">09:30</li>
+                                      <li class="hh_mlat02">카페</li>
+                                      <li class="hh_mlat03">신사동</li>
+                                      <li class="hh_mlat04">10,000원</li>
+                                      <hr>
+                                    </ul>
+                                    
+                                	<ul>
+                                      <li class="hh_mlat01">09:30</li>
+                                      <li class="hh_mlat02">카페</li>
+                                      <li class="hh_mlat03">신사동</li>
+                                      <li class="hh_mlat04">10,000원</li>
+                                      <hr>
+                                    </ul>
+                                    
+                                	<ul>
+                                      <li class="hh_mlat01">09:30</li>
+                                      <li class="hh_mlat02">카페</li>
+                                      <li class="hh_mlat03">신사동</li>
+                                      <li class="hh_mlat04">10,000원</li>
+                                      <hr>
+                                    </ul>
+                                    
+                                </div>
+ 
+                                
+                            </div>
+                        </div>
+
+                        
+                        
+                        </div>
+                    </div>
+                </div>
+                
+                
+                
+                <div data-page="agree01" class="page cached">
+                    <div class="page-content agree_acon">
+                        <div class="content-block">
+						<iframe src="agree01.html" frameborder="0" width="100%" height="100%"></iframe>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div data-page="agree03" class="page cached">
+                    <div class="page-content agree_acon">
+                        <div class="content-block">
+						<iframe src="agree03.html" frameborder="0" width="100%" height="100%"></iframe>
+                        </div>
+                    </div>
+                </div>
+                
+			</div>
+            
+            
+            
+            
+
+		</div>
+    </div>
+    
+    
+    
+    
+
+<script>
+	var now = new Date();
+	var year = now.getFullYear();
+	var month = now.getMonth() + 1;
+	var date = now.getDate();
+	var request = new Request();
+	var telNo = request.getParameter('telNo');
+	var uuId = request.getParameter('uuId');
+
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth()+1;
+	var yyyy = today.getFullYear();
+	var month = today.getMonth()-1;
+	console.log(yyyy);
+	console.log(mm);
+	if(dd<10) {
+	    dd='0'+dd
+	} 
+
+	if(mm<10) {
+	    mm='0'+mm
+	} 	
+	console.log(yyyy);
+	console.log(mm);
+	
+	function replaceAll(content,before,after){
+	    return content.split(before).join(after);
+	}	
+	
+	$(document).ready(function(){
+
+        $(".responsive-calendar").responsiveCalendar({
+            time: yyyy+"-"+mm,
+            events: {
+              "2013-04-30": {"number": 5, "url": "http://w3widgets.com/responsive-slider"},
+              "2013-04-26": {"number": 1, "url": "http://w3widgets.com"}, 
+              "2013-05-03":{"number": 1}, 
+              "2013-06-12": {}}
+          });		
+		
+	})
+	
+</script>
+
+
+<script type="text/javascript" src="../js/framework7.js"></script>
+
+<script type="text/javascript" src="../js/my-app.js"></script>
+
+<input value="activate scrollator" id="activate_scrollator4" type="button"  style="display:none;">
+</body>
+</html>

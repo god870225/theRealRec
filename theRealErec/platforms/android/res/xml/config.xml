@@ -22,7 +22,7 @@
     <feature name="TelephoneNumber">
         <param name="android-package" value="com.simonmacdonald.cordova.plugins.TelephoneNumber" />
     </feature>
-    <name>TheReal</name>
+    <name>TheRealShop</name>
     <feature name="Geolocation">
         <param name="android-package" value="org.apache.cordova.geolocation.Geolocation" />
     </feature>
@@ -48,12 +48,12 @@
         <param name="android-package" value="com.rjfun.cordova.sms.SMSPlugin" />
     </feature>
     <allow-intent href="market:*" />
-    <name>HelloCordova</name>
+    <name>TheRealMarketing</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        theReal
     </description>
     <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+        TheRealMarketing
     </author>
     <content src="index.html" />
     <access origin="*" />
