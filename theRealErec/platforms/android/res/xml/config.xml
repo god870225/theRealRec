@@ -48,7 +48,7 @@
         <param name="android-package" value="com.rjfun.cordova.sms.SMSPlugin" />
     </feature>
     <allow-intent href="market:*" />
-    <name>TheRealMarketing</name>
+    <name>더리얼샵</name>
     <description>
         theReal
     </description>

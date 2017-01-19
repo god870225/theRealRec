@@ -28,6 +28,7 @@
     
 	<script src="code/common.js"></script>
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    
 </head>
 
 <body class="login_page">
@@ -36,10 +37,23 @@
 
 	<div class="container login_box">
     
-    	<div class="login_img"><img src="code/web_point2.png"></div>
-        
+    	<div class="login_img"><img src="code/web_point3.png"></div>
+<div style="color: white; font-size: 20px; font-weight: 500; height: 100px; position: relative; left: 5px;  top: 70%; z-index: 1; text-align: center;">
+자동 로그인 체크 중입니다...
+</div>
     
     </div>
+<!-- 	
+<body class="login_page">
+
+<div class="wrap">
+
+	<div class="container login_box">
+    
+    	<div class="login_img"><img src="code/web_point3.png"></div>
+        
+    
+    </div> -->
 
 
     
@@ -68,7 +82,7 @@ var pw = window.localStorage.getItem("pw");
 }); */
 
 $(document).ready(function(){
-	
+	//return false;
 	/**
 	자동로그인 체크로직
 	**/
