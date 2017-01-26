@@ -28,6 +28,11 @@
     <!-- <link href="../css/monthpicker.css" rel="stylesheet" /> -->
 	<script src="../code/common.js"></script>
 <!-- 	<script type="text/javascript" charset="utf-8" src="../cordova.js"></script> -->
+<style type="text/css">
+/* .on { color: blue; border: 1px solid blue; } */
+.on { }
+</style>
+
 </head>
 
 <body>
@@ -69,7 +74,7 @@
                     <div class="left">
                     <a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>
                     </div>
-                    <div class="center sliding alen_logo"><img src="../common/logo.png"></div>
+                    <div class="center sliding alen_logo" style="width: 65%"><img style="width: 65%;height: 50%;margin-left: 20%" src="../common/logo_01.png"></div>
 
                 </div>
                 
@@ -105,13 +110,13 @@
                           
                           <li class="hsort_line"></li>
 
-                          <li id="btnList">리스트</li>
-                          <li id="btnAnal">통계</li>
+                          <li name = "divPay" id="btnList">리스트</li>
+                          <li name = "divPay" id="btnAnal">통계</li>
                           
-                          <li id="btnToday">당일</li>
-                          <li id="btnWeek">1주일</li>
-                          <li id="btnMonth">한달</li>
-                          <li id="btnRef">새로고침</li>
+                          <li name = "divPay" id="btnToday">당일</li>
+                          <li name = "divPay" id="btnWeek">1주일</li>
+                          <li name = "divPay" id="btnMonth">한달</li>
+                          <li name = "divPay" id="btnRef">새로고침</li>
                           
                           <li class="hsort_line"></li>
                           
@@ -136,7 +141,7 @@
                     <div class = "chartData" id="donutchart4" style="height: 100px; width: 100%;"></div>
                     <div class="foot_info">
                     
-                    	<div class="foot_box">
+<!--                     	<div class="foot_box">
                         	<div class="foot_btn alen_outbox">
                             <a href="#agree03">이용약관</a>
                             </div>
@@ -151,10 +156,10 @@
                             
                             
                             <hr>
-                        </div>
+                        </div> -->
 <p>
 (주)더리얼마케팅 | 대표이사:손종희<br>
-사업자등록번호:220-88-19101   |   통신판매업신고 강남 10630호<br>
+사업자등록번호:220-88-19101   |   통신판매업신고 강남 04134호<br>
 서울시 강남구 압구정로10길 13, 401호(신사동, 마사빌딩)<br>
 이메일 : The REAL @naver.com<br>
 고객센터 : 02-518-5112 | 마케팅:02-540-3111<br>
@@ -265,6 +270,20 @@
 		
 
 	$(document).ready(function(){
+		
+		$('[name="divPay"]').click(function(){
+			if($('[name="divPay"]').hasClass("on")){
+				$('[name="divPay"]').removeClass("on");
+				$('[name="divPay"]').css({'color': '','border': ''});
+				$(this).addClass("on");
+				$(this).css({'color': 'blue','border': '1px solid blue'});
+				//alert($('.on').attr("id"));
+			}else{
+				$(this).addClass("on");
+				$(this).css({'color': 'blue','border': '1px solid blue'});
+			}
+		})		
+		
         	$(".chartData").hide();
 
 
@@ -315,7 +334,7 @@
         });
         //새로고침 버튼 클릭시 
         $("#btnRef").click(function(){
-        	//latestData();
+        	latestData();
         	$(".chartData").hide();
         	$(".latest_content").show();
         });
@@ -660,7 +679,7 @@
 			}
 		}else{
 			str += '<li>';
-			str += '<div class="mlat01">최근사용내역이 없습니다.</div>';
+			str += '<div style="width: 50%;margin-left: 25%";><img style="width: 80%;" src="../common/emptyList03.jpg"></div>';
 			str += '</li>';		
 			$("#totalAmount").text("총 0건 / 0원");
 		}

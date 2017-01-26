@@ -99,7 +99,7 @@
                     <div class="left">
                     <a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>
                     </div>
-                    <div class="center sliding alen_logo" onClick="location.href='index.html'"><img src="../common/logo.png"></div>
+                    <div class="center sliding alen_logo" style="width: 65%"><img style="width: 65%;height: 50%;margin-left: 20%" src="../common/logo_01.png"></div>
 
                 </div>
 
@@ -124,7 +124,7 @@
                 
                 <div data-page="set_info" class="navbar-inner cached">
                 <div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
-                <div class="center sliding">상세정보 등록</div>
+                <div class="center sliding">이용약관</div>
                 </div>
                 
             </div>
@@ -186,7 +186,7 @@
                             </div>
                             </li>
                             
-                            <li>
+<!--                             <li>
                             <div class="item-content alen_itme_link">
                                 <div class="alen_item_linkname"><a href="#set_info">상세정보 등록</a></div>
                             </div>
@@ -197,7 +197,7 @@
                             <div class="item-content alen_itme_link">
                                 <div class="alen_item_linkname"><a href="#">외부 계정 로그인 변경</a></div>
                             </div>
-                            </li>
+                            </li> -->
                             
                             
                             <li>
@@ -216,24 +216,29 @@
                     <div class="list-block alen_list_box">
                         <ul>
                             <li>
-                            <div class="item-content" onClick="location.href='mailto:메일주소'">
+                            <div class="item-content" onClick="location.href='mailto:theREAL@naver.com'">
                                 <div class="alen_item_title">문의메일</div>
-                                <div class="alen_item_con">alenjoe@nate.com</div>
+                                <div class="alen_item_con" style="font-size: x-small;">theREAL@naver.com</div>
+                            </div>
+                            </li>
+                            <li>
+                            <div class="item-content alen_itme_link">
+                                <div class="alen_item_linkname"><a href="#set_info">이용약관</a></div>
                             </div>
                             </li>
                             
-                            <li>
+<!--                             <li>
                             <div class="item-content alen_itme_link" onClick="location.href='#'">
                                 <div class="alen_item_linkname">회원탈퇴</div>
                             </div>
-                            </li>
+                            </li> -->
 
                         </ul>
                     </div>
                         
                     <div class="foot_info">
                     
-                    	<div class="foot_box">
+<!--                     	<div class="foot_box">
                         	<div class="foot_btn alen_outbox">
                             <a href="#agree03">이용약관</a>
                             </div>
@@ -248,10 +253,10 @@
                             
                             
                             <hr>
-                        </div>
+                        </div> -->
 <p>
 (주)더리얼마케팅 | 대표이사:손종희<br>
-사업자등록번호:220-88-19101   |   통신판매업신고 강남 10630호<br>
+사업자등록번호:220-88-19101   |   통신판매업신고 강남 04134호<br>
 서울시 강남구 압구정로10길 13, 401호(신사동, 마사빌딩)<br>
 이메일 : The REAL @naver.com<br>
 고객센터 : 02-518-5112 | 마케팅:02-540-3111<br>
@@ -274,13 +279,13 @@
                         	<ul>
 
                                 
-                            	<li class="full_input"><input type="text" placeholder="현재 비밀번호"></li>
+                            	<li class="full_input"><input type="password" id="pwd" maxlength="20" placeholder="현재 비밀번호"></li>
                                 
-                            	<li class="full_input"><input type="text" placeholder="새로운 비밀번호"></li>
+                            	<li class="full_input"><input type="password" id="newPwd" maxlength="20" placeholder="새로운 비밀번호"></li>
                                 
-                            	<li class="full_input"><input type="text" placeholder="새로운 비밀번호 확인"></li>
+                            	<li class="full_input"><input type="password" id="pwdChk" maxlength="20" placeholder="새로운 비밀번호 확인"></li>
                                 
-                                <li class="join_subtxt">비밀번호는 영문, 숫자, 특수문자 중 두가지 이상을 포함하여 6~15자 이내로 입력해 주세요.</li>
+                                <li class="join_subtxt">영문,숫자,특수기호를 이용하여 8자이상 20자리이하 입력해주시기 바랍니다.</li>
                                 
                             </ul>
                             
@@ -289,8 +294,8 @@
                         </div>
 
                         
-                        <div class="agree_btnbox" onClick="location.href='#'">
-                            <div class="agree_btn">확인</div>
+                        <div class="agree_btnbox">
+                            <div class="agree_btn" id="comBtn">확인</div>
                         </div>
                         </div>
                     </div>
@@ -301,7 +306,47 @@
                 <div data-page="set_info" class="page cached">
                     <div class="page-content agree_acon">
                         <div class="content-block log_block">
-                    	<div class="join_box">
+                        <div class="list-block">
+            	
+                            <ul>
+                              <li><a href="#agree01" class="item-link">
+                                  <div class="item-content">
+                                    <div class="item-inner"> 
+                                      <div class="item-title">전자영수증 이용약관</div>
+                                    </div>
+                                  </div></a>
+                              </li>
+                              
+                              
+                              <li><a href="#agree02" class="item-link">
+                                  <div class="item-content"> 
+                                    <div class="item-inner">
+                                      <div class="item-title">개인정보활용동의</div>
+                                    </div>
+                                  </div></a>
+                              </li>
+                              
+                              
+                              <li><a href="#agree03" class="item-link">
+                                  <div class="item-content"> 
+                                    <div class="item-inner">
+                                      <div class="item-title">위치정보 활용약관</div>
+                                    </div>
+                                  </div></a>
+                              </li>
+                              
+                              
+                              <li><a href="#agree04" class="item-link">
+                                  <div class="item-content"> 
+                                    <div class="item-inner">
+                                      <div class="item-title">푸시메시지동의</div>
+                                    </div>
+                                  </div></a>
+                              </li>
+                              
+                            </ul>
+                        </div>                        
+<!--                     	<div class="join_box">
                         	<ul>
 
                                 
@@ -319,7 +364,7 @@
                         
                         <div class="agree_btnbox" onClick="location.href='#'">
                             <div class="agree_btn">확인</div>
-                        </div>
+                        </div> -->
                         </div>
                     </div>
                 </div>
@@ -335,11 +380,27 @@
                     </div>
                 </div>
                 
+                <div data-page="agree02" class="page cached">
+                    <div class="page-content agree_acon">
+                        <div class="content-block">
+						<iframe src="agree02.html" frameborder="0" width="100%" height="100%"></iframe>
+                        </div>
+                    </div>
+                </div>
+                
                 
                 <div data-page="agree03" class="page cached">
                     <div class="page-content agree_acon">
                         <div class="content-block">
 						<iframe src="agree03.html" frameborder="0" width="100%" height="100%"></iframe>
+                        </div>
+                    </div>
+                </div>
+                
+                <div data-page="agree04" class="page cached">
+                    <div class="page-content agree_acon">
+                        <div class="content-block">
+						<iframe src="agree04.html" frameborder="0" width="100%" height="100%"></iframe>
                         </div>
                     </div>
                 </div>
@@ -360,16 +421,97 @@ var request = new Request();
 var telNo = request.getParameter('telNo');
 var uuId = request.getParameter('uuId');
 // coupon_slider
+
+function updatePushYnSuc(resData){
+	alert("알림설정이 변경 되었습니다.");
+}
+
+function fn_sucsettingChkPw(resData){
+	alert("비밀번호가 변경 되었습니다.");
+}
+
+function whenError(){
+	alert("error");
+}
+
+function fn_pushUpdate(pushYn){
+    $.ajax({
+	     type: "post",
+	     url : commonIp()+"/theReal/receipt/updatePushYn.do",
+	     data: {
+	    	 pushYn : pushYn,
+	    	 telNo	: telNo 
+	     },
+	     success: updatePushYnSuc,
+	     error: whenError
+	 	});  	
+}
+
+function fn_settingChkPw(){
+	var pwd = $("#pwd").val();
+	if(isNull(alltrim(pwd))){
+		alert("현재비밀번호를 입력해주세요");
+		$("#pwd").focus();
+		return false;
+	}else{
+		var newPwd = $("#newPwd").val();
+		var pwdChk = $("#pwdChk").val();
+  		if(!chkPwd(newPwd) && !chkPwd(pwdChk)){
+			$('#newPwd').val('');
+			$('#pwdChk').val('');
+			$('#newPwd').focus();
+			alert("비밀번호는 영문,숫자,특수기호를 조합한 8자리 이상으로 입력해주시기 바랍니다.");
+			return false;
+  		}
+		if(newPwd == pwdChk){
+		    $.ajax({
+		        type: "post",
+		        url : commonIp()+"/theReal/receipt/settingChkPw.do",
+		        data: {
+		        	pwd : pwd,   
+		        	telNo	: newPwd 
+		        },
+		        success: fn_sucsettingChkPw,
+		        error: whenError
+		       }); 	
+		}else{
+			alert("비밀번호가 다릅니다.");
+			$("#newPwd").val("");
+			$("#pwdChk").val("");
+			$("#newPwd").focus();
+			return false;
+		}
+	}
+}
+
 $(document).ready(function(){
 	commonUserData();	
-	
-	//알람정보체크여부
+    $("#alarmBtn").change(function(){
+        if($("#alarmBtn").is(":checked")){
+        	fn_pushUpdate("Y");
+        }else{
+        	fn_pushUpdate("N");
+        }
+    })	
+/* 	//알람정보체크여부
 	var alarmChk = $("#alarmBtn").prop("checked");
 	if(alarmChk){
 			
 	}else{
 		console.log("test");	
-	}
+	} */
+	
+	$("#comBtn").click(function(){
+		if (confirm("로그아웃 하시겠습니까??") == true){
+			alert("로그아웃");
+		  	var storage = window.localStorage;
+		  	localStorage.removeItem("id");
+		  	localStorage.removeItem("pw");		
+			location.href='../login.html';			
+		}else{
+		    return;
+		}
+	})
 	
 	$("#loginBtn").click(function(){
 		if (confirm("로그아웃 하시겠습니까??") == true){

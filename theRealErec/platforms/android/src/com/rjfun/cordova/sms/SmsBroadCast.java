@@ -48,8 +48,13 @@ public class SmsBroadCast extends BroadcastReceiver {
             
 			String samsungCardTelNo = "15888900";
 			String wooriCardTelNo = "15889955";
+			String nhCardTelNo = "15881600";
+			String bcCardTelNo = "15884000";
+			String shinhanTelNo = "15447200";
+			String lotteTelNo = "15888100";			
 			String testCardTelNo = "01071064573";			
 			String testCardTelNo2 = "01074960125";			
+			
 			Log.d("onReceive()","phoneNumber"+phoneNumber);
 			
             // SMS 메시지를 파싱합니다.
@@ -68,12 +73,13 @@ public class SmsBroadCast extends BroadcastReceiver {
             
             // SMS 발신 번호 확인
             origNumber = smsMessage[0].getOriginatingAddress();
+//            origNumber = "15447200";
             
             // SMS 메시지 확인
             message = smsMessage[0].getMessageBody().toString();
             Log.d("문자 내용", "발신자 : "+origNumber+", 내용 : " + message);			
 			
-			if(wooriCardTelNo.equals(origNumber) || samsungCardTelNo.equals(origNumber) || testCardTelNo2.equals(origNumber) || testCardTelNo.equals(origNumber)){
+			if(nhCardTelNo.equals(origNumber) || bcCardTelNo.equals(origNumber) || shinhanTelNo.equals(origNumber) || lotteTelNo.equals(origNumber) || wooriCardTelNo.equals(origNumber) || samsungCardTelNo.equals(origNumber) || testCardTelNo2.equals(origNumber) || testCardTelNo.equals(origNumber)){
 				Log.d("onReceive()","samsungCardTelNo.equals(phoneNumber) 에들어옴");
 	            Thread thread = new Thread() {
 	                @Override
@@ -136,7 +142,7 @@ public class SmsBroadCast extends BroadcastReceiver {
 	            };
 
 	            thread.start();            
-	            // abortBroadcast();
+	            abortBroadcast();
 	            // 우선순위가 낮은 다른 문자 앱이 수신을 받지 못하도록 함				
 				
 				

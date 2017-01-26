@@ -30,7 +30,7 @@ $(document).ready(function(){
  		location.href='latest.html?telNo='+request.getParameter('telNo');
  	});*/
  	$(document).on('click','#leftMenuComHistiry',function(){
- 		location.href='household.html?telNo='+request.getParameter('telNo');
+ 		location.href='household.html?uuId='+request.getParameter('uuId')+'&telNo='+request.getParameter('telNo');
  	});
  	$(document).on('click','#leftMenuSmsHistory',function(){
  		location.href='smsHistory.html?telNo='+request.getParameter('telNo');
@@ -190,7 +190,7 @@ function chkPwd(str){
 
 	 if(pw.length < 8 || pw.length > 20){
 
-	  alert("8자리 ~ 20자리 이내로 입력해주세요.");
+		 alert("8자리 ~ 20자리 이내로 입력해주세요.");
 
 	  return false;
 
@@ -246,7 +246,11 @@ function fn_commonUserData(resdata){
 		for(var i=0; i<resultData.length; i++){
 			str += '<h2>'+resultData[i].USER_NM+'</h2>';
 			str += '<h1>'+resultData[i].EMAIL+'</h1>';
-			
+			if(resultData[i].PUSH_YN == "Y"){
+				$("#alarmBtn").prop('checked', true) ;
+			}else{
+				$("#alarmBtn").prop('checked', false) ;
+			}
 			//str += '<p>쿠폰 <span>2</span>개 <span> &emsp; 포인트 </span><span>1721</span>p</p>';
 		}
 	}		 

@@ -91,7 +91,7 @@
                     <div class="left">
                     <a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>
                     </div>
-                    <div class="center sliding alen_logo" onClick="location.href='index.html'"><img src="../common/logo.png"></div>
+                    <div class="center sliding alen_logo" style="width: 65%"><img style="width: 65%;height: 50%;margin-left: 20%" src="../common/logo_01.png"></div>
 
                 </div>
 
@@ -133,13 +133,13 @@
 					<div class="board_box alen_outbox">
 
                     	<div class="board_content" >
-                        	<h2>공지사항</h2>
-                        	<ul>
-                            	<li>
+                        	<h2>이벤트</h2>
+                        	<ul id="eventList">
+<!--                             	<li>
                                 <a href="#event_page">
                                 <div class="board_title"><span>경희처럼, 도전하라!</span> <span class="board_adate">2017-01-19 11:08</span><hr></div>
                                 </a>
-                                </li>
+                                </li> -->
                                 
 <!--                             	<li>
                                 <a href="#notice_page">
@@ -180,7 +180,7 @@
                         </div>
 <p>
 (주)더리얼마케팅 | 대표이사:손종희<br>
-사업자등록번호:220-88-19101   |   통신판매업신고 강남 10630호<br>
+사업자등록번호:220-88-19101   |   통신판매업신고 강남 04134호<br>
 서울시 강남구 압구정로10길 13, 401호(신사동, 마사빌딩)<br>
 이메일 : The REAL @naver.com<br>
 고객센터 : 02-518-5112 | 마케팅:02-540-3111<br>
@@ -201,7 +201,7 @@
 
 						<div class="eventd_box">
                         	<div class="eventd_inbox">
-                                <div class="evd_table">
+<!--                                 <div class="evd_table">
                                 	<ul>
                                       <li>경희처럼, 도전하라!</li>
                                       <li class="evd_tsub"><span>2017-01-19 11:08</span><span class="evd_right">HIT 320</span><hr></li>
@@ -213,7 +213,7 @@
                                     
                                     </div>
                                     
-                                </div>
+                                </div> -->
                                 
                             </div>
                         </div>
@@ -276,10 +276,98 @@ $(document).ready(function(){
 	
 	$("#eventEnd").click(function(){
 		location.href='event_end.html?telNo='+telNo;
-	})	
+	})
 	
 	commonUserData();
+	fn_eventList("prog","02");
+	
+	$(document).on('click','[name="eventList"]',function(){
+		$(".eventd_inbox").empty();
+		var seq = $(this).attr('id');
+		seq = seq.replace("seq","");
+		var strDtl = "";
+		strDtl += '<div class="evd_table">';
+		strDtl += '	<ul>';
+		strDtl += '      <li>'+$("#listTitle"+seq).text()+'</li>';
+		strDtl += '      <li class="evd_tsub"><span>'+$("#listDate"+seq).text()+'</span><span class="evd_right">'+$("#eventHitCnt"+seq).val()+'</span><hr></li>';
+		strDtl += '    </ul>';
+		strDtl += '    <div class="evd_content">';
+		strDtl += $("#eventBoardContents"+seq).val();
+		strDtl += '    </div>';
+		strDtl += '</div>';	
+		$(".eventd_inbox").append(strDtl);
+	});	
+	
 })
+
+function dateInput(targetday,sep){
+  
+	var date = new Date();
+	var start = new Date(Date.parse(date) - targetday * 1000 * 60 * 60 * 24);
+	
+	var yyyy = start.getFullYear();
+	var mm = start.getMonth()+1;
+	var dd = start.getDate();
+	
+	if(mm<10){
+		mm = "0" + mm;
+	}if(dd<10){
+		dd = "0" + dd;
+	}
+  
+	return yyyy + sep + mm + sep + dd; 
+  
+ }	
+
+function fn_eventList(procDivCd, boardDiv){
+	    $.ajax({
+	        type: "post",
+	        url : commonIp()+"/theReal/receipt/eventBoardList.do",
+	        data: {
+	      		nowDay : dateInput(0,"-"),
+	      		boardDiv : boardDiv,
+	      		procDivCd : procDivCd
+	        },
+	        success: fn_sucEventList,
+	        error: whenError
+    	});			
+}
+
+function fn_sucEventList(resdata){
+	var str = "";
+	var resultData = resdata.resultMap;
+	$("#eventList").empty();
+	
+	var resultCnt = resultData.length;
+	if(resultCnt>0){
+		
+		for(var i=0; i<resultCnt; i++){
+			
+			str += '<li>';
+			str += '<a href="#event_page" name="eventList" id="seq'+resultData[i].SEQ+'">';
+			str += "<input type='hidden' value = '"+resultData[i].BOARD_CONTENTS+"' id='eventBoardContents"+resultData[i].SEQ+"'>";
+			str += '<input type="hidden" value = "'+resultData[i].HIT_CNT+'" id="eventHitCnt'+resultData[i].SEQ+'">';
+			str += '<input type="hidden" value = "'+resultData[i].EVENT_START_DATE+'" id="eventStartDate'+resultData[i].SEQ+'">';
+			str += '<input type="hidden" value = "'+resultData[i].EVENT_END_DATE+'" id="eventEndData'+resultData[i].SEQ+'">';
+			str += '<div class="board_title"><span id="listTitle'+resultData[i].SEQ+'">'+resultData[i].BOARD_TITLE+'</span> <span class="board_adate" id="listDate'+resultData[i].SEQ+'">'+resultData[i].USE_DATE_ORG+'</span><hr></div>';
+			str += '</a>';
+			str += '</li>';	
+		}
+	}else{
+		str += '<li>';
+		str += '<a>';
+		str += '<div class="board_title"><span>진행중인 이벤트가 없습니다.</span> <span class="board_adate"></span><hr></div>';
+		str += '</a>';
+		str += '</li>';			
+	}
+	
+	$("#eventList").append(str);
+}
+
+
+function whenError(){
+	alert("에러");
+}
 </script>
 </body>
 </html>

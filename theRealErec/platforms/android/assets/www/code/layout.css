@@ -92,7 +92,7 @@
 .history_title .history_txt { float:left; width:50%; font-size:1rem; color:#fff; line-height:2em; }
 .history_title .history_total { float:right; width:50%; font-size:1em; color:#539bff; text-align:right; padding-top:10px; }
 .history_sort { margin:0 10px; padding:10px 0; text-align:center; }
-.history_sort li { display:inline-block; border:1px solid #ddd; background:#fff; border-radius:3px; padding:3px 10px; }
+.history_sort li { display:inline-block; border:1px solid #ddd; background:#fff; border-radius:3px; padding:8px 10px; }
 .history_sort li.hsort_line { border-width:0; width:10px; padding:0; border-radius:0; }
 .history_sort li.hsort_detail { color:#ddd; background:#333;}
 .history_sort li.asort_up { padding-right:25px; background:#fff url(../common/sup.gif) no-repeat 90% 5px ; }
@@ -123,8 +123,8 @@
 
 
 
-.alen_list_title { margin:20px 30px 0 30px; color:#666; font-size:1.2em; }
-.alen_list_box { margin:10px 20px 25px 20px !important; }
+.alen_list_title { margin:10px 30px 0 30px; color:#666; font-size:1.2em; }
+.alen_list_box { margin:5px 20px 5px 20px !important; }
 .alen_item_title { width:40%; float:left; font-size:0.8em; color:#666; }
 .alen_item_linkname { float:left; font-size:0.8em; color:#666; width:100%; }
 .alen_item_con { width:60%; float:left; font-size:0.8em; color:#666; text-align:right; padding-right:10px; }
