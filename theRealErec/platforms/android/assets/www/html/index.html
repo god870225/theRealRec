@@ -99,7 +99,6 @@
 
     </div>
     
-    
     <div class="views">
 		<div class="view view-main">
         
@@ -110,7 +109,6 @@
                     <a href="javascript:void(0)" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>
                     </div>
                     <div class="center sliding alen_logo"><img src="../common/logo.png"></div>
-
                 </div> -->
                 
                 <div data-page="index" class="navbar-inner">
@@ -123,12 +121,10 @@
                 </div>                
                 
             </div>
-            
         
 			<div class="pages navbar-through toolbar-through">
                 <div data-page="index" class="page">
                     <div class="page-content">
-
 
                     <div class="main_center">
                         <ul class="mainslider">
@@ -413,20 +409,24 @@ var joinTelNo = "";
 $(document).ready(function(){
 	//return false;
 	strMain ="";
-	strMain += '<li><a href="javascript:void(0)"><img src="../banner/main_01.png" /></a></li>';
+	strMain += '<li><a href="javascript:void(0)"><img src="../banner/main_00.png" /></a></li>';
+/* 	strMain += '<li><a href="javascript:void(0)"><img src="../banner/main_01.png" /></a></li>';
 	strMain += '<li><a href="javascript:void(0)"><img src="../banner/main_02.png" /></a></li>';
 	strMain += '<li><a href="javascript:void(0)"><img src="../banner/main_03.png" /></a></li>';
-	strMain += '<li><a href="javascript:void(0)"><img src="../banner/main_04.png" /></a></li>';
+	strMain += '<li><a href="javascript:void(0)"><img src="../banner/main_04.png" /></a></li>'; */
 	$(".mainslider").append(strMain);
+	
 	document.addEventListener("deviceready", onDeviceReady, true);
 	document.addEventListener("backbutton", onBackKeyDown, true);
-	commonUserData();	
+	commonUserData();
+	
 	$("#logOut").click(function(){
 	  	var storage = window.localStorage;
 	  	localStorage.removeItem("id");
 	  	localStorage.removeItem("pw");		
 		location.href='../login.html';
 	})
+	
 	$(".main_event").click(function(){
 		location.href='event.html?telNo='+request.getParameter('telNo');
 	})
@@ -467,7 +467,7 @@ $(document).ready(function(){
   })
   
   $(".main_book").click(function(){
-	  location.href='household.html?uuId='+uuId+'&telNo='+telNo;
+	  location.href='mobile.html?uuId='+uuId+'&telNo='+telNo;
   })
 });
 
@@ -629,7 +629,7 @@ function fnComUuIdSucData(resData){
 		//var startDate = firstDayOfMonth.getFullYear()+""+(firstDayOfMonth.getMonth() > 9 ? ''+firstDayOfMonth.getMonth(): '0'+firstDayOfMonth.getMonth());
 		var lastMonth = new Date ( firstDayOfMonth.setDate( firstDayOfMonth.getDate() - 1 ) );
 		//var endDate = firstDayOfMonth.getFullYear()+""+(firstDayOfMonth.getMonth() > 9 ? ''+firstDayOfMonth.getMonth(): '0'+firstDayOfMonth.getMonth());
-		var endDate = date.getFullYear()+""+(date.getMonth()+1 > 9 ? ''+(date.getMonth()+1): '0'+date.getMonth());
+		var endDate = date.getFullYear()+""+(date.getMonth()+1 > 9 ? ''+(date.getMonth()+1): '0'+(date.getMonth()+1));
 		
 		
 		console.log("@@@@@@@@@@@@@@");
@@ -708,18 +708,19 @@ function fn_startCurData(resdata){
 	if(resultData.length>0){
 		for(var i=0; i<resultData.length; i++){
 			if(isNull(resultData[i].CARD_ICOM)){
-				cardCashDiv = "현금"		
+				cardCashDiv = "현금";	
 			}else{
 				cardCashDiv = resultData[i].CARD_ICOM;	
+				if(cardCashDiv == "LPOINT 적립"){
+				cardCashDiv = "현금";		
+				}
 			}
 			str += '<li>';
 			str += '<div class="mlat01">'+resultData[i].SALES_PRINT_DATE+'</div>';
-			str += '<div class="mlat02">'+cardCashDiv+'</div>';
-			str += '<div class="mlat03">'+resultData[i].SHOP_NAME+'</div>';
-			str += '<div class="mlat04">'+resultData[i].SALES_PAID_AMT+'</div>';
-			
+			/* str += '<div class="mlat02">'+cardCashDiv.substring(0,4)+'</div>'; */
+			str += '<div class="mlat03">'+resultData[i].SHOP_NAME.substring(0,10)+'</div>';
+			str += '<div class="mlat04">'+numberWithCommas(resultData[i].SALES_SUM_AL_AMT)+'</div>';
 			str += '</li>';		            
-            
 		}
 	}		 
 		 
@@ -785,7 +786,7 @@ function fn_startSumData(resdata){
 			}else{
 				totalAm2 = "0";
 			}
-			str += '<h2>가계부</h2>                         ';
+			str += '<h2>지출내역</h2>                         ';
 			str += '<div class="main_item01">               ';
 			str += '	<span class="fleft">전월</span>     ';
 			str += numberWithCommas(totalAm)+'<span>원</span>            ';
@@ -798,7 +799,7 @@ function fn_startSumData(resdata){
 	}		 
 	else{
 		
-		str += '<h2>가계부</h2>                         ';
+		str += '<h2>지출내역</h2>                         ';
 		str += '<div class="main_item01">               ';
 		str += '	<span class="fleft">전월</span>     ';
 		str += '0<span>원</span>            ';

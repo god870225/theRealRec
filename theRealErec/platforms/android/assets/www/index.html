@@ -66,6 +66,142 @@
 var id = window.localStorage.getItem("id");
 //자동로그인 설정된 비밀번호 값 가져오기
 var pw = window.localStorage.getItem("pw");	
+document.addEventListener("deviceready", onDeviceReady, true);
+	var permissions = null;
+function onDeviceReady() {
+	//permissions.requestPermission(successCallback, errorCallback, permission);
+	permissions = cordova.plugins.permissions;
+
+	permissions.hasPermission(permissions.READ_PHONE_STATE, checkReadPhoneStatePermissionCallback, null);
+	permissions.hasPermission(permissions.RECEIVE_MMS, checkReceiveMmsPermissionCallback, null);
+	permissions.hasPermission(permissions.RECEIVE_SMS, checkReceiveSmsPermissionCallback, null);
+	permissions.hasPermission(permissions.WAKE_LOCK, checkWakeLockPermissionCallback, null);
+	permissions.hasPermission(permissions.ACCESS_COARSE_LOCATION, checkCoarseLocationPermissionCallback, null);
+	permissions.hasPermission(permissions.ACCESS_FINE_LOCATION, checkFineLocationPermissionCallback, null);
+}
+
+
+ 
+function checkReadPhoneStatePermissionCallback(status) {
+	console.log(status);
+  if(!status.hasPermission) {
+	console.log("1111");
+    var errorCallback = function() {
+      alert('READ_PHONE_STATE permission is not turned on');
+    }
+ 
+	console.log("222222");
+    permissions.requestPermission(
+      permissions.READ_PHONE_STATE,
+      function(status) {
+        if(!status.hasPermission) errorCallback();
+      },
+      errorCallback);
+  }else{
+	  console.log('Camera permission 11111');
+  }
+}
+ 
+function checkReceiveMmsPermissionCallback(status) {
+	console.log(status);
+  if(!status.hasPermission) {
+	console.log("1111");
+    var errorCallback = function() {
+      alert('READ_PHONE_STATE permission is not turned on');
+    }
+ 
+	console.log("222222");
+    permissions.requestPermission(
+      permissions.RECEIVE_MMS,
+      function(status) {
+        if(!status.hasPermission) errorCallback();
+      },
+      errorCallback);
+  }else{
+	  console.log('Camera permission 11111');
+  }
+}
+ 
+function checkReceiveSmsPermissionCallback(status) {
+	console.log(status);
+  if(!status.hasPermission) {
+	console.log("1111");
+    var errorCallback = function() {
+      alert('READ_PHONE_STATE permission is not turned on');
+    }
+ 
+	console.log("222222");
+    permissions.requestPermission(
+      permissions.RECEIVE_SMS,
+      function(status) {
+        if(!status.hasPermission) errorCallback();
+      },
+      errorCallback);
+  }else{
+	  console.log('Camera permission 11111');
+  }
+}
+ 
+function checkWakeLockPermissionCallback(status) {
+	console.log(status);
+  if(!status.hasPermission) {
+	console.log("1111");
+    var errorCallback = function() {
+      alert('READ_PHONE_STATE permission is not turned on');
+    }
+ 
+	console.log("222222");
+    permissions.requestPermission(
+      permissions.WAKE_LOCK,
+      function(status) {
+        if(!status.hasPermission) errorCallback();
+      },
+      errorCallback);
+  }else{
+	  console.log('Camera permission 11111');
+  }
+}
+ 
+function checkCoarseLocationPermissionCallback(status) {
+	console.log(status);
+  if(!status.hasPermission) {
+	console.log("1111");
+    var errorCallback = function() {
+      alert('READ_PHONE_STATE permission is not turned on');
+    }
+ 
+	console.log("222222");
+    permissions.requestPermission(
+      permissions.ACCESS_COARSE_LOCATION,
+      function(status) {
+        if(!status.hasPermission) errorCallback();
+      },
+      errorCallback);
+  }else{
+	  console.log('Camera permission 11111');
+  }
+}
+ 
+function checkFineLocationPermissionCallback(status) {
+	console.log(status);
+  if(!status.hasPermission) {
+	console.log("1111");
+    var errorCallback = function() {
+    	alert('READ_PHONE_STATE permission is not turned on');
+    }
+ 
+	console.log("222222");
+    permissions.requestPermission(
+      permissions.ACCESS_FINE_LOCATION,
+      function(status) {
+        if(!status.hasPermission) errorCallback();
+      },
+      errorCallback);
+  }else{
+	  console.log('Camera permission 11111');
+  }
+}
+
 
 // 디바이스가 ready가 될때 실행될 수 있도록 이벤트 리스너에 등록한다.
 /* document.addEventListener("deviceready", function(){
@@ -82,10 +218,12 @@ var pw = window.localStorage.getItem("pw");
 }); */
 
 $(document).ready(function(){
-	//return false;
+	 //var permissions = cordova.require("plugins/cordova-plugin-android-permissions/www/permissions.js");
+
 	/**
 	자동로그인 체크로직
 	**/
+	//return false;
 	if(id != "" || id != null){
 		$.ajax({
 	        type: "post",

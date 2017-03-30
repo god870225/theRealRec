@@ -30,7 +30,7 @@
     
     
 	<script src="code/common.js"></script>
-	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+	<!-- <script type="text/javascript" charset="utf-8" src="cordova.js"></script> -->
     <!-- <script type="text/javascript" charset="utf-8" src="cordova.js"></script> -->
     
 </head>
@@ -111,28 +111,30 @@
                     	<div class="join_box">
                         	<ul>
 
-                            	<li class="full_input">
-                                <select>
-                                    <option>SKT</option>
-                                    <option>KT</option>
-                                    <option>LGu+</option>
-                                    <option>알뜰폰 SKT</option>
-                                    <option>알뜰폰 KT</option>
-                                    <option>알뜰폰 LG U+</option>
-                                </select>
+                            	<li class="full_input" id="liTelDivCd">
+	                               <select id="getTelDivCd">
+	                                   <option value="01">SKT</option>
+	                                   <option value="02">KT</option>
+	                                   <option value="03">LGu+</option>
+	                                   <option value="04">알뜰폰 SKT</option>
+	                                   <option value="05">알뜰폰 KT</option>
+	                                   <option value="06">알뜰폰 LGu+</option>
+	                               </select>
                                 </li>
                                 
-                            	<li class="full_input"><input type="text" placeholder="휴대폰 번호"></li>
+                            	<li class="full_input" id="areaGetName"><input type="text" placeholder="이름" id="getName"></li>
+                            	<li class="full_input"><input type="text" placeholder="휴대폰 번호"  id="getTelNum"></li>
+                            	<li class="full_input" id="areaGetID" style="display: none;"><input type="text" id="getId" ></li>
                                 
-                               
+                               <!--
                             	<li>
                                 <div class="alen_table_title">
-                                <div class="tel_btn" onClick="location.href='#'">인증번호 받기</div>
+                                 <div class="tel_btn" onClick="location.href='#'">인증번호 받기</div>
                                 </div>
                                 
-                                <div class="alen_table_con">
+                                <!-- <div class="alen_table_con">
                                 <input type="text" placeholder="인증번호입력">
-                                </div>
+                                </div> -->
                                 
                                 <hr>
                                 </li>
@@ -142,8 +144,8 @@
                             
                         </div>
                         
-                        <div class="agree_btnbox" onClick="location.href='index.html'">
-                            <div class="agree_btn">확인</div>
+                        <div class="agree_btnbox" >
+                            <div class="agree_btn" id="forgotId">찾기</div>
                         </div>
                         </div>
                     </div>
@@ -156,23 +158,96 @@
                         
                     	<div class="join_box">
                         	<ul>
-                            	<li class="full_input"><input type="text" placeholder="아이디"></li>
-                            
-                            	<li class="full_input">
-                                <select>
-                                    <option>SKT</option>
-                                    <option>KT</option>
-                                    <option>LGu+</option>
-                                    <option>알뜰폰 SKT</option>
-                                    <option>알뜰폰 KT</option>
-                                    <option>알뜰폰 LG U+</option>
-                                </select>
+                            	<li class="full_input" id="chanegePw" style="display: none;"><input type="password" id="newPwd" maxlength="20" placeholder="새로운 비밀번호"></li>
+                                
+                            	<li class="full_input" id="chanegeNewPw" style="display: none;"><input type="password" id="pwdChk" maxlength="20" placeholder="새로운 비밀번호 확인"></li>
+                            	
+                            	<li name="certiInfo" class="full_input"><input type="text" placeholder="아이디" id="getPassId"></li>
+                            	<li name="certiInfo" class="full_input" id="areaPassGetName"><input type="text" placeholder="이름" id="getPassName"></li>
+                            	<li name="certiInfo" class="full_input"><input type="text" onkeydown = "onlyNumberInput()" placeholder="생년월일(ex:19901010)"  id="birthDay" maxlength="8"></li>
+                            	<li name="certiInfo" class="full_input" id="liPassTelDivCd">
+	                               <select id="getPassTelDivCd">
+	                                   <option value="01">SKT</option>
+	                                   <option value="02">KT</option>
+	                                   <option value="03">LGu+</option>
+	                                   <option value="04">알뜰폰 SKT</option>
+	                                   <option value="05">알뜰폰 KT</option>
+	                                   <option value="06">알뜰폰 LGu+</option>
+	                               </select>
                                 </li>
                                 
-                            	<li class="full_input"><input type="text" placeholder="휴대폰 번호"></li>
+                            	<li name="certiInfo" class="full_input"><input type="text" placeholder="휴대폰 번호"  id="getPassTelNum"></li>
+                                
+                            	<li name="certiInfo" >
+                                <div class="alen_radio_box" id ="sexDiv">
+                                    <div class="alen_table_half">
+                                    <label class="label-radio item-content">
+                                      <input type="radio" name="sex" value="1">
+                                      <div class="item-inner">
+                                        <div class="item-title" id="man">남자</div>
+                                      </div>
+                                    </label>
+                                    </div>
+                                    
+                                    
+                                    <div class="alen_table_half alen_table_last">
+                                    <label class="label-radio item-content">
+                                      <input type="radio" name="sex" value="0">
+                                      <div class="item-inner">
+                                        <div class="item-title" id="woman">여자</div>
+                                      </div>
+                                    </label>
+                                    </div>
+                                    <hr>
+                                
+                                </div>
+                                </li>
+                            	<li name="certiInfo" >
+                                <div class="alen_radio_box" >
+                                    <div class="alen_table_half">
+                                    <label class="label-radio item-content">
+                                      <input type="radio" name="nation" value="1">
+                                      <div class="item-inner">
+                                        <div class="item-title">내국인</div>
+                                      </div>
+                                    </label>
+                                    </div>
+                                    
+                                    
+                                    <div class="alen_table_half alen_table_last">
+                                    <label class="label-radio item-content">
+                                      <input type="radio" name="nation" value="2">
+                                      <div class="item-inner">
+                                        <div class="item-title">외국인</div>
+                                      </div>
+                                    </label>
+                                    </div>
+                                    <hr>
+                                
+                                </div>
+                                </li>  
+                                
+                            	<li name="certiInfo" >
+                                <div class="alen_table_title">
+                                <div class="tel_btn" id="recNum">인증번호 받기</div>
+                                </div>
+                                
+                                <div class="alen_table_con">
+                                     <div class="alen_table_half2">
+                                      <input type="text" placeholder="인증번호입력" id="certNum" onkeydown = "onlyNumberInput()" maxlength="6">
+                                    </div>
+                                    
+                                    
+                                    <div class="alen_table_half alen_table_last">
+                                      <input readonly="readonly" type="text" placeholder="남은시간" id="certNumView" style="text-align: right;">
+                                    </div>
+                                </div>
+                                
+                                <hr>
+                                </li>                                                                                              
                                 
                                
-                            	<li>
+<!--                             	<li>
                                 <div class="alen_table_title">
                                 <div class="tel_btn" onClick="location.href='#'">인증번호 받기</div>
                                 </div>
@@ -182,15 +257,15 @@
                                 </div>
                                 
                                 <hr>
-                                </li>
+                                </li> -->
                                 
                             </ul>
                             
                             
                         </div>
                         
-                        <div class="agree_btnbox" onClick="location.href='index.html'">
-                            <div class="agree_btn">확인</div>
+                        <div class="agree_btnbox" >
+                            <div class="agree_btn" id="forgotPassId">찾기</div>
                         </div>
                         
                         </div>
@@ -212,9 +287,46 @@
 
 <input value="activate scrollator" id="activate_scrollator4" type="button"  style="display:none;">
 <script type="text/javascript">
+
+//전체동의여부 변수값.
+var agreeDiv = false;
+var reSendYn = false;
+//var smsSvcTxSeqno = "";
+var smsMemId = "V27340000000";           
+var smsServerIp = "x";      
+var smsSiteUrl = "117.52.97.40:80";      
+var smsSiteDomain = "샤샥스토어"; 
+var smsEndPointURL = "http://safe.ok-name.co.kr/KcbWebService/OkNameService";    
+//var smsEndPointURL ="http://tsafe.ok-name.co.kr:29080/KcbWebService/OkNameService";    
+var smsLogPath = "/LOGS";
+var a = "";
+var year = "";
+var month = "";
+var date = "";
+var hours = "";
+var minutes = "";
+var seconds = "";
+var toDay = "";
+var smsSvcTxSeqno = "";
+var smsOption = "";
+
+
+var userNm		= "";
+var eMail       = "";
+var birthDay    = "";
+var sex         = "";
+var nation      = "";
+var tService    = "";
+var smsCertNo     = "";
+var telNo       = "";
+var pwd         = "";
+var pwdChk         = "";
+var uuId        = "";
+var pushKey = "";
+
 //document.addEventListener("deviceready", onPushSet, true);
 	$(document).ready(function(){
-		document.addEventListener("backbutton", onBackKeyDown, true);
+		//document.addEventListener("backbutton", onBackKeyDown, true);
 		$("input[name*='ks-checkbox']").prop('checked', true) ;
 		
     //document.addEventListener("deviceready", onDeviceReady, false);
@@ -241,7 +353,155 @@
 		        error: whenError
 		    	});		
 		})
+		
+		/**
+		id찾기
+		**/
+		$("#forgotId").click(function(){
+			if($("#forgotId").text()=="확인"){
+				location.href='login.html';				
+			}else{
+			$.ajax({
+		        type: "post",
+		        url : commonIp()+"/theReal/receipt/getId.do",
+		        data: {
+		        	telNo	 	: $("#getTelNum").val(),
+		        	telComDiv	 	: $("#getTelDivCd option:selected").val(),
+		        	userNm 		: $("#getName").val()
+		        },
+		        success: fnSucGetIdData,
+		        error: whenError
+		    	});		
+			}
+		})
+		
+		/**
+		pw찾기
+		**/
+		$("#forgotPassId").click(function(){
+			if($("#forgotPassId").text()=="확인"){
+				location.href='login.html';				
+			}else if($("#forgotPassId").text()=="비밀번호변경"){
+				fn_settingChkPw();
+			}else{
+				
+		        smsOption = "MU";
+		        
+		        $.ajax({
+		               type: "post",
+		               url : commonIp()+"/theReal/receipt/KcbVerification.do",
+		               data: {
+		                   smsSvcTxSeqno   : smsSvcTxSeqno,
+		                   smsMbphnNo      : alltrim($("#getPassTelNum").val()),
+		                   smsCertNo      : alltrim($("#certNum").val()),
+		                   smsMemId       : smsMemId, 
+		                   smsServerIp    : smsServerIp, 
+		                   smsEndPointURL   : smsEndPointURL, 
+		                   smsLogPath       : smsLogPath, 
+		                   smsOption       : smsOption 
+		               },
+		               success: fnKcbVerification,
+		               error: whenError
+		           });   				
+				
+
+			}
+		})
+		
+	$("#recNum").click(function(){
+		
+		console.log("@@@pushKey100001@@@"+pushKey);
+	      var smsReSndYn = "";
+	      var smsRsv1 = "0";
+	      var smsRsv2 = "0";
+	      var smsRqstMsrCd ="10";  
+	      var smsRqstCausCd = "00";
+	      var smsOption = "JU";   
+
+	         a  = new Date();   
+	         year  = a.getFullYear();
+	         month = a.getMonth()+1;
+	         date = a.getDate();
+	         hours = a.getHours();
+	         minutes = a.getMinutes();
+	         seconds = a.getSeconds();	      
+	         toDay = String(year)+String(month)+String(date)+String(hours)+String(minutes)+String(seconds);	         
+	      
+	      if(reSendYn){
+	         //재전송시
+	         smsReSndYn = "Y";   
+
+			 smsSvcTxSeqno = toDay+($("#getPassTelNum").val());
+	      }else{
+	         //최초전송시
+			 smsSvcTxSeqno = toDay+($("#getPassTelNum").val());
+	         smsReSndYn = "N";   
+	      }
+//-----------------------------------------
+//KCB 본인확인 번호요청
+//-----------------------------------------
+		
+	        $.ajax({
+	              type: "post",
+	              url : commonIp()+"/theReal/receipt/KcbCertified.do",
+	              data: {
+	                    smsSvcTxSeqno     : smsSvcTxSeqno,
+	                    smsName           : alltrim($("#getPassName").val()),  
+	                    smsBirthday       : alltrim($("#birthDay").val())   ,
+	                    smsGender         : $(':radio[name="sex"]:checked').val(),
+	                    smsNation         : $(':radio[name="nation"]:checked').val(),
+	                    smsComCd          : $("#getPassTelDivCd option:selected").val(),  
+	                    smsMbphnNo        : alltrim($("#getPassTelNum").val()),
+	                    smsReSndYn        : smsReSndYn ,
+	                    smsRsv1           : smsRsv1, 
+	                    smsRsv2           : smsRsv2, 
+	                    smsRqstMsrCd      : smsRqstMsrCd, 
+	                    smsRqstCausCd     : smsRqstCausCd, 
+	                    smsMemId          : smsMemId, 
+	                    smsServerIp       : smsServerIp, 
+	                    smsSiteUrl        : smsSiteUrl, 
+	                    smsSiteDomain     : smsSiteDomain, 
+	                    smsEndPointURL    : smsEndPointURL, 
+	                    smsLogPath        : smsLogPath, 
+	                    smsOption         : smsOption 
+	                 },
+	              success: fnKcbCertified,
+	              error: whenError
+	             });  	
+	})		
+		
 })
+
+
+	// KCB 문자인증번호 요청 
+	function fnKcbCertified(resdata){
+	   if(resdata == 1){
+		reSendYn = true;
+		time = "180";
+		clearInterval(runCount);
+		fncCountDown();		
+	   }else{
+			//reSendYn = true;
+		   alert("인증번호받기에 실패했습니다.");
+	   }
+	}
+
+
+	//문자인증번호 검증 회원 가입 
+	function fnKcbVerification(resdata){
+		   if(resdata == 1){
+			   $("#forgotPassId").text("비밀번호변경");				
+			   $("#chanegePw").show();
+			   $("#chanegeNewPw").show();
+			   $('[name="certiInfo"]').hide();
+		   }
+		
+		console.log("@@@pushKey2222@@@"+pushKey);
+	}
+
+	function fnCertSucData(resdata){
+		alert("인증번호를 3분내에 입력하세요");
+	}
 
 
 	function onBackKeyDown() {
@@ -254,7 +514,87 @@
 	    }
 	}
 
+	
+	function fn_sucsettingChkPw(resData){
+		alert("비밀번호가 변경 되었습니다.");
+		location.href='login.html';
+	}
+	
+	function fn_settingChkPw(){
+			var newPwd = $("#newPwd").val();
+			var pwdChk = $("#pwdChk").val();
+	  		if(!chkPwd(newPwd) && !chkPwd(pwdChk)){
+				$('#newPwd').val('');
+				$('#pwdChk').val('');
+				$('#newPwd').focus();
+				alert("비밀번호는 영문,숫자,특수기호를 조합한 8자리 이상으로 입력해주시기 바랍니다.");
+				return false;
+	  		}
+			if(newPwd == pwdChk){
+			    $.ajax({
+			        type: "post",
+			        url : commonIp()+"/theReal/receipt/settingChkPw.do",
+			        data: {
+			        	pwd : newPwd,   
+			        	telNo	: $("#getPassTelNum").val() 
+			        },
+			        success: fn_sucsettingChkPw,
+			        error: whenError
+			       }); 	
+			}else{
+				alert("비밀번호가 다릅니다.");
+				$("#newPwd").val("");
+				$("#pwdChk").val("");
+				$("#newPwd").focus();
+				return false;
+			}
+	}	
 
+	
+	   var min = 0;
+	   var sec = 0;
+	   var time = 0;
+	   var runCount;
+	   
+	   // 시작 함수 호출 시
+	   function fncCountDown() {
+	   
+	    // 입력 값 셋팅
+	   
+	    if ( time.length > 0 ) {
+	     runCount = setInterval("startCountDown()", 1000);
+	   
+	    } else {
+	     alert("값을 입력 해 주세요");
+	     return;
+	   
+	    }
+	   }
+	   
+	   // 카운트 다운 및 노출하기
+	   function startCountDown() {
+	   
+	    min = parseInt((time%3600)/60);
+	    sec = time%60;
+	    //console.log(min + " : " + sec);
+	    $("#certNumView").val(min + " : " + sec);
+	   
+	    // 시간이 다 됐을 시 timer 정지
+	    if ( parseInt(time) == 0 ) {
+	       $("#certNumView").val("");
+	     stopCountDown();
+	   
+	    } else {
+	     time--;
+	    }
+	   
+	   }
+
+	// 타이머 정지
+	function stopCountDown() {
+	   clearInterval(runCount);
+	}	
+	
 	function fnSucData(resdata){
 			 
 		var resultData = resdata.resultMap;
@@ -276,6 +616,48 @@
 			location.href='./html/index.html?uuId='+uuId+'&telNo='+telNo;
 		}else{
 			alert("로그인 정보가 틀렸습니다.");
+		}
+	};
+	
+	function fnSucGetIdData(resdata){
+			 
+		var resultData = resdata.resultMap;
+		resultCnt = resultData.length;
+		var getId = "";
+		if(resultCnt>0){
+			for(var i=0; i<resultCnt; i++){
+				getId = resultData[i].EMAIL;
+			}
+			$("#areaGetName").hide();
+			$("#liTelDivCd").hide();
+			$("#areaGetID").show();
+			$("#getId").val(getId);
+			$("#getTelNum").val("고객님의 id는 아래와 같습니다.");
+			$("#forgotId").text("확인");
+		}else{
+			alert("입력 정보가 틀렸습니다.");
+		}
+	};
+	
+	function fnSucGetPwData(resdata){
+			 
+		var resultData = resdata.resultMap;
+		resultCnt = resultData.length;
+		var getPw = "";
+		if(resultCnt>0){
+			for(var i=0; i<resultCnt; i++){
+				getPw = resultData[i].PWD;
+			}
+			
+			$("#getPassName").hide();
+			$("#getPassTelNum").hide();
+			$("#liPassTelDivCd").hide();
+			$("#areaPassGetID").show();
+			$("#getPassVal").val(getPw);
+			$("#getPassTelNum").val("고객님의 패스워드는 아래와 같습니다.");
+			$("#forgotPassId").text("확인");
+		}else{
+			alert("입력 정보가 틀렸습니다.");
 		}
 	};
 	

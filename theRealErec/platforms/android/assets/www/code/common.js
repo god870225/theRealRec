@@ -29,17 +29,20 @@ $(document).ready(function(){
 /* 	$(document).on('click','#leftMenuHistory',function(){
  		location.href='latest.html?telNo='+request.getParameter('telNo');
  	});*/
- 	$(document).on('click','#leftMenuComHistiry',function(){
+/* 	$(document).on('click','#leftMenuComHistiry',function(){
  		location.href='household.html?uuId='+request.getParameter('uuId')+'&telNo='+request.getParameter('telNo');
  	});
  	$(document).on('click','#leftMenuSmsHistory',function(){
- 		location.href='smsHistory.html?telNo='+request.getParameter('telNo');
- 	});
+ 		location.href='mobile.html?uuId='+request.getParameter('uuId')+'&telNo='+request.getParameter('telNo');
+ 	});*/
+ 	$(document).on('click','#leftMenuComHistiry',function(){
+ 		location.href='mobile.html?uuId='+request.getParameter('uuId')+'&telNo='+request.getParameter('telNo');
+ 	}); 	
  	$(document).on('click','#leftMenuEvent',function(){
- 		location.href='event.html?telNo='+request.getParameter('telNo');
+ 		location.href='event.html?uuId='+request.getParameter('uuId')+'&telNo='+request.getParameter('telNo');
  	});
  	$(document).on('click','#leftMenuNotice',function(){
- 		location.href='notice.html?telNo='+request.getParameter('telNo');
+ 		location.href='notice.html?uuId='+request.getParameter('uuId')+'&telNo='+request.getParameter('telNo');
  	});
  	$(document).on('click','.alen_logo',function(){
  		location.href='index.html?uuId='+request.getParameter('uuId')+'&telNo='+request.getParameter('telNo');
@@ -62,6 +65,11 @@ alert();
   });*/
  });
  
+function replaceAll(content,before,after)
+{
+    return content.split(before).join(after);
+}	
+
  
  function isNull(val)
 {
@@ -220,6 +228,78 @@ function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+function parseAppCoDiv(appCoCd) {
+	var appCoCdNm ="";
+	switch (appCoCd) {
+	  case 'A01'  : appCoCdNm ='레져/문화'; break;
+	  case 'B01'  : appCoCdNm ='뷰티/미용'; break;
+	  case 'C01'  : appCoCdNm ='카페/베이커리'; break;
+	  case 'E01'  : appCoCdNm ='주유'; break;
+	  case 'E02'  : appCoCdNm ='음식점'; break;
+	  case 'F01'  : appCoCdNm ='프렌차이즈'; break;
+	  case 'M01'  : appCoCdNm ='생활/마트'; break;
+	  case 'M02'  : appCoCdNm ='의료/건강'; break;
+	  case 'S01'  : appCoCdNm ='쇼핑'; break;
+	  case 'T01'  : appCoCdNm ='교통'; break;
+	  case 'T02'  : appCoCdNm ='통신'; break;
+	  default   : appCoCdNm ='기타'; break;
+	}			
+	return appCoCdNm;
+}
+
+
+function to_date_format(date_str, gubun){
+    var yyyyMMdd = String(date_str);
+    var sYear = yyyyMMdd.substring(0,4);
+    var sMonth = yyyyMMdd.substring(4,6);
+    var sDate = yyyyMMdd.substring(6,8);
+
+    return sYear + gubun + sMonth + gubun + sDate;
+}
+
+function instFormat(gubun){
+	var instFormat ="";
+	switch (gubun) {
+		case '일시불'  : instFormat ='일시불'; break;		
+		default   : instFormat =gubun+'개월'; break;
+	}
+	return instFormat;
+}
+
+
+
+function phoneFomatter(num,type){
+    
+    var formatNum = '';
+    
+    if(num.length==11){
+        if(type==0){
+            formatNum = num.replace(/(\d{3})(\d{4})(\d{4})/, '$1-****-$3');
+        }else{
+            formatNum = num.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+        }
+    }else if(num.length==8){
+        formatNum = num.replace(/(\d{4})(\d{4})/, '$1-$2');
+    }else{
+        if(num.indexOf('02')==0){
+            if(type==0){
+                formatNum = num.replace(/(\d{2})(\d{4})(\d{4})/, '$1-****-$3');
+            }else{
+                formatNum = num.replace(/(\d{2})(\d{4})(\d{4})/, '$1-$2-$3');
+            }
+        }else{
+            if(type==0){
+                formatNum = num.replace(/(\d{3})(\d{3})(\d{4})/, '$1-***-$3');
+            }else{
+                formatNum = num.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+            }
+        }
+    }
+    return formatNum;
+    
+}
+
+
 function commonUserData(){
 	
     $.ajax({
@@ -277,12 +357,12 @@ function fn_commonUserData(resdata){
 	str2 += '    </li>';*/
 	str2 += '	<li id="leftMenuComHistiry">';
 	str2 += '    <div class="leftm_box leftm03"></div>';
-	str2 += '    <a href="javascript:void(0)">가계부</a>';
+	str2 += '    <a href="javascript:void(0)">지출내역</a>';
 	str2 += '    </li>';
-	str2 += '	<li id="leftMenuSmsHistory">';
-	str2 += '    <div class="leftm_box leftm03"></div>';
-	str2 += '    <a href="javascript:void(0)">지출통계분석</a>';
-	str2 += '    </li>';
+/*	str2 += '	<li id="leftMenuSmsHistory">';
+	str2 += '    <div class="leftm_box leftm07"></div>';
+	str2 += '    <a href="javascript:void(0)">모바일영수증</a>';
+	str2 += '    </li>';*/
 	str2 += '	<li id="leftMenuEvent">';
 	str2 += '    <div class="leftm_box leftm04"></div>';
 	str2 += '    <a href="javascript:void(0)">이벤트</a>';

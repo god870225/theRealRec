@@ -428,6 +428,8 @@ function updatePushYnSuc(resData){
 
 function fn_sucsettingChkPw(resData){
 	alert("비밀번호가 변경 되었습니다.");
+	window.localStorage.setItem("pw", $('#newPwd').val());			
+	location.href='setting.html?uuId='+request.getParameter('uuId')+'&telNo='+request.getParameter('telNo');
 }
 
 function whenError(){
@@ -468,8 +470,8 @@ function fn_settingChkPw(){
 		        type: "post",
 		        url : commonIp()+"/theReal/receipt/settingChkPw.do",
 		        data: {
-		        	pwd : pwd,   
-		        	telNo	: newPwd 
+		        	pwd : newPwd,   
+		        	telNo	: telNo 
 		        },
 		        success: fn_sucsettingChkPw,
 		        error: whenError
@@ -502,15 +504,7 @@ $(document).ready(function(){
 	} */
 	
 	$("#comBtn").click(function(){
-		if (confirm("로그아웃 하시겠습니까??") == true){
-			alert("로그아웃");
-		  	var storage = window.localStorage;
-		  	localStorage.removeItem("id");
-		  	localStorage.removeItem("pw");		
-			location.href='../login.html';			
-		}else{
-		    return;
-		}
+		fn_settingChkPw();
 	})
 	
 	$("#loginBtn").click(function(){

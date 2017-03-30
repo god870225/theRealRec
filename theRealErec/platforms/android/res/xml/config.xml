@@ -47,13 +47,20 @@
     <feature name="SMS">
         <param name="android-package" value="com.rjfun.cordova.sms.SMSPlugin" />
     </feature>
-    <allow-intent href="market:*" />
     <name>더리얼샵</name>
     <description>
         theReal
     </description>
+    <feature name="Permissions">
+        <param name="android-package" value="com.android.plugins.Permissions" />
+    </feature>
+    <allow-intent href="market:*" />
+    <name>HelloCordova</name>
+    <description>
+        A sample Apache Cordova application that responds to the deviceready event.
+    </description>
     <author email="dev@cordova.apache.org" href="http://cordova.io">
-        더리얼샵
+        Apache Cordova Team
     </author>
     <content src="index.html" />
     <access origin="*" />

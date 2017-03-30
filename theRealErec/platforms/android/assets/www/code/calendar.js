@@ -74,7 +74,9 @@
         TODAY_CLASS = 'now',
         SELECT_CLASS = 'selected',
         MARK_DAY_HTML = '<i class="dot"></i>',
-        MARK_DETAIL_FIRST = '<a href=#house_detail>',
+/*        MARK_DETAIL_FIRST = '<a href=#house_detail>',
+        MARK_DETAIL_END = '</a>',*/
+        MARK_DETAIL_FIRST = '<a href=javascript:void(0)>',
         MARK_DETAIL_END = '</a>',
         DATE_DIS_TPL = '{year}/<span class="m">{month}</span>',
 

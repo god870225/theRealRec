@@ -281,7 +281,9 @@ $(document).ready(function(){
 	fn_eventList("com","02");
 	
 	$(document).on('click','[name="eventList"]',function(){
-		$(".eventd_inbox").empty();
+		alert("종료된 이벤트입니다.");
+		return false;
+/* 		$(".eventd_inbox").empty();
 		var seq = $(this).attr('id');
 		seq = seq.replace("seq","");
 		var strDtl = "";
@@ -294,7 +296,7 @@ $(document).ready(function(){
 		strDtl += $("#eventBoardContents"+seq).val();
 		strDtl += '    </div>';
 		strDtl += '</div>';	
-		$(".eventd_inbox").append(strDtl);
+		$(".eventd_inbox").append(strDtl); */
 	});	
 	
 })
@@ -340,9 +342,8 @@ function fn_sucEventList(resdata){
 	var resultCnt = resultData.length;
 	if(resultCnt>0){
 		for(var i=0; i<resultCnt; i++){
-			
 			str += '<li>';
-			str += '<a href="#event_page" name="eventList" id="seq'+resultData[i].SEQ+'">';
+			str += '<a href="javascript:void(0);" name="eventList" id="seq'+resultData[i].SEQ+'">';
 			str += "<input type='hidden' value = '"+resultData[i].BOARD_CONTENTS+"' id='eventBoardContents"+resultData[i].SEQ+"'>";
 			str += '<input type="hidden" value = "'+resultData[i].HIT_CNT+'" id="eventHitCnt'+resultData[i].SEQ+'">';
 			str += '<input type="hidden" value = "'+resultData[i].EVENT_START_DATE+'" id="eventStartDate'+resultData[i].SEQ+'">';

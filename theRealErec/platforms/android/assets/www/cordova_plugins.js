@@ -276,6 +276,13 @@ module.exports = [
         "clobbers": [
             "window.SMS"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-android-permissions/www/permissions.js",
+        "id": "cordova-plugin-android-permissions.Permissions",
+        "clobbers": [
+            "cordova.plugins.permissions"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -294,7 +301,8 @@ module.exports.metadata =
     "cordova-plugin-media": "2.4.0",
     "com.phonegap.plugins.PushPlugin": "2.5.0",
     "info.asankan.phonegap.smsplugin": "0.2.0",
-    "cordova-plugin-sms": "1.0.5"
+    "cordova-plugin-sms": "1.0.5",
+    "cordova-plugin-android-permissions": "0.10.0"
 };
 // BOTTOM OF METADATA
 });

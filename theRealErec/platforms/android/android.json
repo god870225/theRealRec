@@ -63,6 +63,10 @@
                         {
                             "xml": "<feature name=\"SMS\"><param name=\"android-package\" value=\"com.rjfun.cordova.sms.SMSPlugin\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Permissions\"><param name=\"android-package\" value=\"com.android.plugins.Permissions\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -216,6 +220,9 @@
             "PACKAGE_NAME": "com.theReal.Erec"
         },
         "cordova-plugin-sms": {
+            "PACKAGE_NAME": "com.theReal.Erec"
+        },
+        "cordova-plugin-android-permissions": {
             "PACKAGE_NAME": "com.theReal.Erec"
         }
     },
@@ -497,6 +504,13 @@
             "clobbers": [
                 "window.SMS"
             ]
+        },
+        {
+            "file": "plugins/cordova-plugin-android-permissions/www/permissions.js",
+            "id": "cordova-plugin-android-permissions.Permissions",
+            "clobbers": [
+                "cordova.plugins.permissions"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -513,6 +527,7 @@
         "cordova-plugin-media": "2.4.0",
         "com.phonegap.plugins.PushPlugin": "2.5.0",
         "info.asankan.phonegap.smsplugin": "0.2.0",
-        "cordova-plugin-sms": "1.0.5"
+        "cordova-plugin-sms": "1.0.5",
+        "cordova-plugin-android-permissions": "0.10.0"
     }
 }

@@ -69,7 +69,16 @@
 .house_nav i.prev:before {   content: ""; }
 .house_nav i.next:before {   content: ""; }
 
-.divPage{background: url(../common/divPage2.png) no-repeat 0 0;background-position: 0% 0%; height: 30px;"}
+.oneTabOn {background-color:rgba(146, 221, 255, 0.3); }
+
+.twoTabOn { }
+.threeTabOn { }
+.showOn {display: block; }
+.showOff {display: none; }
+.highPrice{background: url(../common/highPrice.png) no-repeat 0 0;background-position: right; }
+.lowPrice{background: url(../common/lowPrice.png) no-repeat 0 0;background-position: right; }
+
+.divPage{background: url(../common/divPage2.png) no-repeat 0 0;background-position: 50% 50%; height: 30px;"}
 </style>    
     
 </head>
@@ -92,41 +101,11 @@
         	<!-- <div class="pf_photo" style="background:url(../common/profile.jpg) no-repeat center;"></div> -->
             
             <div class="pf_txt">
-            	<h2>김종현</h2>
-                <p>쿠폰 <span>0</span>개</p>
-                <p>포인트 <span>200</span>p</p>
             </div>
             <hr>
         </div>
         
         <div class="left_menu">
-        	<ul>
-            	<li onClick="location.href='latest.html'">
-                <div class="leftm_box leftm01"></div>
-                <a href="#">최근사용내역</a>
-                </li>
-                
-            	<li onClick="location.href='history.html'">
-                <div class="leftm_box leftm02"></div>
-                <a href="#">영수증확인</a>
-                </li>
-                
-            	<li onClick="location.href='household.html'">
-                <div class="leftm_box leftm03"></div>
-                <a href="#">가계부</a>
-                </li>
-                
-            	<li onClick="location.href='event.html'">
-                <div class="leftm_box leftm04"></div>
-                <a href="#">이벤트</a>
-                </li>
-                
-            	<li onClick="location.href='notice.html'">
-                <div class="leftm_box leftm05"></div>
-                <a href="#">공지사항</a>
-                </li>
-                
-            </ul>
         </div>
 
     </div>
@@ -134,10 +113,8 @@
     
     <div class="views">
 		<div class="view view-main">
-        
             <div class="navbar top_menu">
-                <div data-page="index" class="navbar-inner">
-                
+                <div data-page="index" class="navbar-inner" >
                     <div class="left">
                     <a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>
                     </div>
@@ -145,36 +122,35 @@
 
                 </div>
                 
+                <div data-page="receipt_details" class="navbar-inner cached">
+                <div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
+                <div class="center sliding">영수증 상세 내역</div>
+                </div>                
+                
                 <div data-page="house_detail" class="navbar-inner cached">
                 <div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
                 <div class="center sliding">지출 내역</div>
                 </div>
-                
                 
                 <div data-page="agree01" class="navbar-inner cached">
                 <div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
                 <div class="center sliding">개인정보 수집이용취급위탁 동의</div>
                 </div>
                 
-                
                 <div data-page="agree03" class="navbar-inner cached">
                 <div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
                 <div class="center sliding">본인확인서비스 이용약관</div>
                 </div>
                 
-                
             </div>
          
-            
-			
-
 			<div class="pages navbar-through toolbar-through">
-                <div data-page="index" class="page">
+                <div data-page="index" class="page" style="background: white;">
                     <div class="page-content">
 
-                    <div class="history_title">
-                        <div class="history_txt" >전자영수증 내역확인</div>
-                        <div class="history_total divPage" id="totalAmount"></div>
+                    <div class="history_title divPage" style="background-color:#fff; height: 40px;padding: 10px 0 5px 15px;">
+                        <div class="history_txt"  style="font-size:1.2em; color:#539bff; font-weight:600; line-height:20px;">지출내역</div>
+                        <div class="history_total" id="totalAmount" style="font-size:1.0em; color:#539bff; font-weight:600; line-height:20px; padding:0px 0 5px 15px;"></div>
                         <hr>
                     </div>  
 
@@ -186,7 +162,41 @@
 <!--                     <div class="house_graph">
                     </div> -->
 					
-                    <div id="calendar"></div>
+                    <div id="calendar" style="border-top: 1px solid #eee;"></div>
+					<div class="latest_box alen_outbox">
+                    	<div class="latest_content" >
+							<div class="list_tab">
+<!-- 								<ul class="one_tab" style="border-bottom:0px;">
+									<li>
+											<ul class="two_tab showOn" name="two_tab201702" style="border-bottom:0px;">
+												<li>
+ 													<div class="second twoTabOn" id="twoTab2017021" name="twoTab201702">
+														<span>02-15</span>
+														<span>1건/ 28,000원</span>
+													</div>
+														<ul class="three_tab2" id="threeTab2017021" name="threeTab2017021" style="border-bottom:0px;border-top:0px;">
+															<li style="border-top:0px;">	
+																<a href="#receipt_details" name="receiptDetail" id="seq0">
+																	<input type="hidden" value="E02" id="mlaticonM0">
+																	<input type="hidden" value="우리카드법인" id="cardAppCo0">
+																	<input type="hidden" value="일시불" id="instDiv0">
+																	<input type="hidden" value="2017-02-15" id="divMonth0">
+																	<input type="hidden" value="12:41" id="divSec0">
+																	<div class="mlat01M" id="mlat01M0">12:41</div>	
+																	<div class="mlaticonM"><span><img src="../common/E02.png" style="width: 50%;" alt=""></span></div>	
+																	<div class="mlat02M" id="mlat02M0">주식회사 남산돈까스</div>	
+																	<div class="mlat03M" id="mlat03M0">28,000원</div>
+																	<hr>
+																</a>
+															</li>
+														</ul>
+												</li>
+											</ul>
+									</li>
+								</ul> -->
+							</div>
+						</div> <!--last_content-->
+                    </div>                    
                     
                     <div class="foot_info">
                     
@@ -206,7 +216,7 @@
                             
                             <hr>
                         </div> -->
-<p>
+<!-- <p>
 (주)더리얼마케팅 | 대표이사:손종희<br>
 사업자등록번호:220-88-19101   |   통신판매업신고 강남 04134호<br>
 서울시 강남구 압구정로10길 13, 401호(신사동, 마사빌딩)<br>
@@ -214,7 +224,7 @@
 고객센터 : 02-518-5112 | 마케팅:02-540-3111<br>
 </p>
 
-<p class="copytxt">CopyrightⓒThe REAL Co.All rights reserved</p>
+<p class="copytxt">CopyrightⓒThe REAL Co.All rights reserved</p> -->
                     </div>
                     
                     
@@ -313,6 +323,69 @@
                     </div>
                 </div>
                 
+<style type="text/css">
+
+.rtpage_box { background:#f2f2f2; border:1px solid #e5e5e5; margin-bottom:20px; padding:5px; border-radius:5px; }
+.rtpage_inbox { background:#fff; border:1px solid #e5e5e5; padding:10px 30px; border-radius:5px; }
+.rtpage_holl { padding:5px 5px 15px 5px; height:35px; }
+.rtpage_holl div { width:6%; height:100%; margin:0 2%; border-radius:30px; border:1px solid #e5e5e5; float:left; background:#f2f2f2; }
+
+
+.rt_title { padding:20px 0 0px 0; }
+.rt_title h2 { text-align:center; font-size:3em; font-weight:700; color:#000; clear:both; padding:5px 0 15px 0; }
+.rt_title p { text-align:center; font-size:1em; color:#000; clear:both; }
+
+.rt_txt01 { text-align:left; font-size:1em; color:#666; clear:both; /* padding:0px 10px; */ }
+.rt_txt01 span { text-align:right; float:right; }
+
+.rt_total { text-align:left; font-size:1.5em; font-weight:700; color:#000; clear:both; padding:20px 10px; border-bottom:2px dashed #aaa; border-top:2px dashed #aaa; margin-top:20px; }
+.rt_total span { text-align:right; float:right; }
+
+.rt_total { text-align:left; font-size:1.8em; font-weight:700; color:#000; clear:both; padding:20px 10px; border-bottom:1px dashed #aaa; border-top:1px dashed #aaa; margin-top:20px; }
+.rt_total span { text-align:right; float:right; }
+
+.rt_orderno { border-bottom:2px dashed #aaa; border-top:2px dashed #aaa; padding:20px 0; margin-top:20px; }
+.rt_orderno p { text-align:center; font-size:1.2em; color:#666; clear:both; }
+.rt_orderno h2 { text-align:center; font-size:1.8em; color:#000; clear:both; padding:5px 0; }
+
+.rt_table { border-top:1px solid #ddd; border-bottom:1px solid #ddd; margin:20px 5px 0px 5px;  }
+.rt_table .rt_tabletitle { border-bottom:1px solid #ddd; background:#fff;}
+.rt_table li { float:left; padding:5px 0; text-align:center; color:#333; }
+.rt_table li.rt_mlat01 { width:45%; }
+.rt_table li.rt_mlat02 { width:20%; }
+.rt_table li.rt_mlat03 { width:10%; }
+.rt_table li.rt_mlat04 { width:25%; text-align:right; padding-right:5px; }
+
+.rt_etc { text-align:left; font-size:1.3em; font-weight:700; color:#333; clear:both; padding:10px 10px; border-bottom:1px dashed #aaa; }
+.rt_etc span { text-align:right; float:right; }
+
+.rt_copy { text-align:center; font-size:0.7em; }
+
+</style>                
+                
+                
+                
+                <div data-page="receipt_details" class="page cached">
+                    <div class="page-content">
+                        <div class="content-block">
+                        
+						<div class="receipt_box">
+                        	<div class="receipt_inbox" id ="detailRecData">
+                                
+                            </div>
+                        </div>
+                        
+                        <div class="latest_btnbox">
+                            <div class="latest_btn" id="backBtn">확인</div>
+                        </div>
+                        
+                        
+                        
+                        </div>
+                    </div>
+                </div>                
+                                
+                
 			</div>
             
             
@@ -340,25 +413,99 @@
 	var mm = today.getMonth()+1;
 	var yyyy = today.getFullYear();
 	var month = today.getMonth()-1;
+	var nowDay ="";
 	if(dd<10) {
 	    dd='0'+dd
 	} 
-
+	
 	if(mm<10) {
 	    mm='0'+mm
 	} 	
 	
-	function replaceAll(content,before,after){
-	    return content.split(before).join(after);
-	}	
-	
 	$(document).ready(function(){
 		
-		commonUserData();
-
-		$("#totalAmount").click(function(){
-			location.href='latest.html?uuId='+request.getParameter('uuId')+'&telNo='+request.getParameter('telNo');
+		$(document).on('click','[name="receiptDetail"]',function(){
+			
+			seq = $(this).attr('id').replace("seq","");
+			$("#detailRecData").empty();
+			var smsStr = "";
+			
+			smsStr += '<div class="rtpage_holl">												';
+			smsStr += '	<div></div>                                                         ';
+			smsStr += '    <div></div>                                                         ';
+			smsStr += '    <div></div>                                                         ';
+			smsStr += '    <div></div>                                                         ';
+			smsStr += '    <div></div>                                                         ';
+			smsStr += '    <div></div>                                                         ';
+			smsStr += '    <div></div>                                                         ';
+			smsStr += '    <div></div>                                                         ';
+			smsStr += '    <div></div>                                                         ';
+			smsStr += '    <div></div>                                                         ';
+			smsStr += '    <hr>                                                                ';
+			smsStr += '</div>                                                                  ';
+			smsStr += '<div class="rt_title">                                                  ';
+			smsStr += '	<h2>THE REAL #</h2>                                                 ';
+			smsStr += '    <p>                                                                 ';
+			smsStr += '    Mobile Life Service                                                 ';
+			smsStr += '    </p>                                                                ';
+			smsStr += '</div>                                                                  ';
+				
+			smsStr += '<div class="rt_total">사용금액<span>'+$("#mlat03M"+seq).text()+'</span></div>                     ';
+			smsStr += '<div class="rt_etc">사용일시<span>'+to_date_format($("#divMonth"+seq).val(),"-")+' '+$("#divSec"+seq).val()+'</span></div>                    ';
+			smsStr += '<div class="rt_etc" style="border-bottom: 0px dashed #aaa;">할부여부<span>'+$("#instDiv"+seq).val()+'</span></div>                       ';
+			smsStr += '<div class="rt_etc">카드사<span>'+$("#cardAppCo"+seq).val()+'</span></div>                     ';
+			smsStr += '<div class="rt_etc" style="border-bottom: 0px dashed #aaa;">사용매장<span>'+$("#mlat02M"+seq).text()+'</span></div>                     ';
+			smsStr += '<div class="rt_etc">항목<span><img src="../common/'+$("#mlaticonM"+seq).val()+'.png" style="width: 20%;" alt="">'+'   '+parseAppCoDiv($("#mlaticonM"+seq).val())+'</span></div>                     ';
+			
+			smsStr += '<div class="rt_copy">                                                   ';
+			smsStr += '본 전자영수증은 거래의 참고용으로 사용하시기 바랍니다.                                 ';
+			smsStr += '</div>                                                                  ';						
+			
+/* 			
+			seq = $(this).attr('id').replace("seq","");
+			$("#detailRecData").empty();
+			var smsStr = "";
+			smsStr += ' <div class="receipt_holl">	';
+			smsStr += ' 	<div></div>             ';
+			smsStr += '     <div></div>             ';
+			smsStr += '     <div></div>             ';
+			smsStr += '     <div></div>             ';
+			smsStr += '     <div></div>             ';
+			smsStr += '     <div></div>             ';
+			smsStr += '     <div></div>             ';
+			smsStr += '     <div></div>             ';
+			smsStr += '     <div></div>             ';	
+			smsStr += '     <div></div>             ';
+			smsStr += '     <hr>                    ';
+			smsStr += ' </div>					    ';
+			
+			smsStr += '<div class="rec_half">';
+			smsStr += '	<ul>';
+			smsStr += '      <li class="rec_full"><div class="rec_hcon" style="text-align: center;font-size: large;">모바일 영수증 발급내역</div></li>';
+			smsStr += '      <li class="rec_full"><div>카드사</div><div class="rec_hcon">'+$("#cardAppCo"+seq).val()+'</div></li>';
+			smsStr += '      <li class="rec_full"><div>할부여부</div><div class="rec_hcon">'+$("#instDiv"+seq).val()+'</div></li>';
+			smsStr += '      <li class="rec_full"><div>사용일시</div><div class="rec_hcon">'+to_date_format($("#divMonth"+seq).val(), "-")+' '+$("#divSec"+seq).val()+ '</div></li>';
+			smsStr += '      <li class="rec_full"><div>사용매장</div><div class="rec_hcon">'+$("#mlat02M"+seq).text()+'</div></li>';
+			
+			smsStr += '      <li class="rec_full"><div>항목</div><div class="rec_hcon"><img src="../common/'+$("#mlaticonM"+seq).val()+'.png" style="width: 5%;" alt="">'+'   '+parseAppCoDiv($("#mlaticonM"+seq).val())+'</div></li>';
+			smsStr += '      <li class="rec_full"><div>사용금액</div><div class="rec_hcon">'+$("#mlat03M"+seq).text()+'</div></li>';
+			smsStr += '      <hr>';
+			smsStr += '    </ul>';
+			smsStr += '</div>';		 */	
+			$("#detailRecData").append(smsStr);		
 		})		
+		
+		
+		$("#backBtn").click(function(){
+			location.href='household.html?uuId='+request.getParameter('uuId')+'&telNo='+request.getParameter('telNo');
+		})		
+		
+		$(".divPage").click(function(){
+			location.href='mobile.html?uuId='+request.getParameter('uuId')+'&telNo='+request.getParameter('telNo');
+		})
+		
+		commonUserData();
+		
 	    $.ajax({
 	        type: "post",
 	        url : commonIp()+"/theReal/receipt/houseHold.do",
@@ -380,6 +527,12 @@
 	    	});			
 		
 	 	$(document).on('click','.prev',function(){
+	 		$(".list_tab").empty();
+	 		var thisYear = $(".calendar-display").text().substring(0,4);
+	 		var thisMonth = $(".m").text();
+ 			if(parseInt(thisMonth)<10){
+ 				thisMonth = "0"+thisMonth;
+ 			}	 		
 			    $.ajax({
 			        type: "post",
 			        url : commonIp()+"/theReal/receipt/houseHold.do",
@@ -390,10 +543,10 @@
 			        	endDate : "20161031",  */
 		/*   	        	startDate : yyyy+"0101",
 			        	endDate : yyyy+"1231", */
-		   	        	startDate : $(".calendar-display").text().substring(0,4)+$(".m").text()+"01",
-			        	endDate : $(".calendar-display").text().substring(0,4)+$(".m").text()+"31",
-			        	startCurDate : $(".calendar-display").text().substring(0,4)+$(".m").text()+"01",
-			        	endCurDate : $(".calendar-display").text().substring(0,4)+$(".m").text()+"31",
+		   	        	startDate : thisYear+thisMonth+"01",
+			        	endDate : thisYear+thisMonth+"31",
+			        	startCurDate : thisYear+thisMonth+"01",
+			        	endCurDate : thisYear+thisMonth+"31",		
 			        	eMail : telNo,
 			        },
 			        success: startGetB01CalDataSuc2,
@@ -427,6 +580,12 @@
 		});
 		
 	 	$(document).on('click','.next',function(){
+	 		$(".list_tab").empty();
+	 		var thisYear = $(".calendar-display").text().substring(0,4);
+	 		var thisMonth = $(".m").text();
+ 			if(parseInt(thisMonth)<10){
+ 				thisMonth = "0"+thisMonth;
+ 			}
 			    $.ajax({
 			        type: "post",
 			        url : commonIp()+"/theReal/receipt/houseHold.do",
@@ -437,10 +596,10 @@
 			        	endDate : "20161031",  */
 		/*   	        	startDate : yyyy+"0101",
 			        	endDate : yyyy+"1231", */
-		   	        	startDate : $(".calendar-display").text().substring(0,4)+$(".m").text()+"01",
-			        	endDate : $(".calendar-display").text().substring(0,4)+$(".m").text()+"31",
-			        	startCurDate : $(".calendar-display").text().substring(0,4)+$(".m").text()+"01",
-			        	endCurDate : $(".calendar-display").text().substring(0,4)+$(".m").text()+"31",			        	
+		   	        	startDate : thisYear+thisMonth+"01",
+			        	endDate : thisYear+thisMonth+"31",
+			        	startCurDate : thisYear+thisMonth+"01",
+			        	endCurDate : thisYear+thisMonth+"31",			        	
 			        	eMail : telNo,
 			        },
 			        success: startGetB01CalDataSuc2,
@@ -492,7 +651,7 @@
 
 	 	$(document).on('click','.calendar .days li',function(){
 			console.log(this);	 		
-			 var nowDay = $(this).attr('data-calendar-day');
+			 nowDay = $(this).attr('data-calendar-day');
 			 $(".house_now").text(nowDay+" 영수증 발급내역");
 			 
 			 var strArr = nowDay.split("/");
@@ -509,16 +668,6 @@
 				 strArr[2] = "0"+strArr[2];
 			 }
 			 nowDay = strArr[0]+strArr[1]+strArr[2];
-/* 			 nowDay = replaceAll(nowDay,"/","");
-			 var nowYm = nowDay.substring(0,6);
-			 var nowSplitDay = nowDay.substring(6);
-			 console.log(nowDay);
-			 console.log(nowYm);
-			 console.log(nowSplitDay);
-			 if(parseInt(nowSplitDay)<10){
-				 nowSplitDay = "0"+nowSplitDay;
-			 }
-			 nowDay = nowYm+nowSplitDay; */
 			 console.log(nowDay);
 			 
    		    $.ajax({
@@ -548,20 +697,63 @@
 		console.log(resultData);
 		var resultCnt = resultData.length;
 		if(resultCnt > 0){
-			$(".househ_box").empty();
-			var cashCnt = resultData[0].CASH_CNT;
-			var cardCnt =  resultData[0].CARD_CNT;
-			var cashAm =  resultData[0].CASH_AM;
-			var cardAm =  resultData[0].CARD_AM;
-			var totalCnt = cashCnt+cardCnt;
-			var totalAm = parseInt(replaceAll(cashAm,",",""))+parseInt(replaceAll(cardAm,",",""));
+			$(".list_tab").empty();
+			var str = "";
+			str += '<ul class="one_tab" style="border-bottom:0px;">';
+			str += '	<li>';
+/* 			str += '		<div class="first oneTabOn" id="oneTab201702" name="oneTab201702">';
+			str += '			<span style="font-size:18px;" name="28000">02<span>2017</span></span>';
+			str += '			<span style="font-size:14px;" name="oneTab28000">1 건 / 28,000원</span>';
+			str += '		</div>'; */
+			str += '		<ul class="two_tab showOn" name="two_tab" style="border-bottom:0px;">';
+			str += '			<li>';
+			str += '				<div class="second twoTabOn" id="twoTab" name="twoTab">';
+			str += '					<span id="nowDay">'+to_date_format(nowDay,"-")+'</span>';
+			str += '					<span>'+resultCnt+'건/ '+resultData[0].TOTAL_AM+'원</span>';
+			str += '				</div>';
+			str += '					<ul class="three_tab2" id="threeTab'+nowDay+'" name="threeTab'+nowDay+'" style="border-bottom:0px;border-top:0px;">';
+			for(var i=0; i<resultCnt; i++){
+				str += '						<li style="border-top:0px;">	';
+				str += '							<a href="#receipt_details" name="receiptDetail" id="seq'+i+'">';
+				str += '								<input type="hidden" value="'+resultData[i].APP_CO_DIV+'" id="mlaticonM'+i+'">';
+				str += '								<input type="hidden" value="'+resultData[i].CARD_APP_CO+'" id="cardAppCo'+i+'">';
+				str += '								<input type="hidden" value="'+resultData[i].INST_DIV+'" id="instDiv'+i+'">';
+				str += '								<input type="hidden" value="'+nowDay+'" id="divMonth'+i+'">';
+				str += '								<input type="hidden" value="'+resultData[i].CNT_DATE+'" id="divSec'+i+'">';
+				str += '								<div class="mlat01M" id="mlat01M'+i+'">'+resultData[i].CNT_DATE+'</div>	';
+				str += '								<div class="mlaticonM"><span><img src="../common/'+resultData[i].APP_CO_DIV+'.png" style="width: 50%;" alt=""></span></div>	';
+				str += '								<div class="mlat02M" id="mlat02M'+i+'">'+resultData[i].APP_CO+'</div>	';
+				str += '								<div class="mlat03M" id="mlat03M'+i+'">'+numberWithCommas(resultData[i].APP_AMOUNT)+'원</div>';
+				str += '								<hr>';
+				str += '							</a>';
+				str += '						</li>';
+			}
+			str += '					</ul>';			
+			str += '			</li>';
+			str += '		</ul>';
+			str += '	</li>';
+			str += '</ul>';			
+			
+/* 			$(".househ_box").empty();
+			var totalAm = resultData[0].TOTAL_AM;
+			var cntDate =  resultData[0].CNT_DATE;
+			var appCo =  resultData[0].APP_CO;
+			var appCoDiv =  resultData[0].APP_CO_DIV;
+			var appAmount =  resultData[0].APP_AMOUNT;
+			var instDiv =  resultData[0].INST_DIV;
+			var cardAppCo =  resultData[0].CARD_APP_CO;
+			console.log("totalAm:"+totalAm);
+			console.log("cntDate:"+cntDate);
+			console.log("appCo:"+appCo);
+			console.log("appCoDiv:"+appCoDiv);
+			console.log("appAmount:"+appAmount);
+			console.log("instDiv:"+instDiv);
+			console.log("cardAppCo:"+cardAppCo);
 			var str = "";
 			str += '<div class="househ_inbox">';
 			str += '    <div class="hh_half">';
 			str += '    	<ul>';
-			str += '          <li class="hh_full"><div>오늘의 총 영수증 발급</div><div class="hh_hcon">'+totalCnt+'건 / '+numberWithCommas(totalAm)+'원</div></li>';
-			str += '          <li><div>현금결제</div><div class="hh_hcon">'+cashCnt+'건 / '+cashAm+'원</div></li>';
-			str += '          <li><div>카드결제</div><div class="hh_hcon">'+cardCnt+'건 / '+cardAm+'원</div></li>';
+			str += '          <li class="hh_full"><div>오늘의 총 영수증 발급</div><div class="hh_hcon">'+resultCnt+'건 / '+numberWithCommas(totalAm)+'원</div></li>';
 			str += '          <hr>';
 			str += '        </ul>';
 			str += '    </div>';
@@ -569,34 +761,29 @@
 			str += '    	<ul class="hh_tabletitle">';
 			str += '          <li class="hh_mlat01">시간</li>';
 			str += '          <li class="hh_mlat02">업체명</li>';
-			str += '          <li class="hh_mlat03">현금/카드</li>';
+			str += '          <li class="hh_mlat03">카드</li>';
 			str += '          <li class="hh_mlat04">금액</li>';
 			str += '          <hr>';
 			str += '        </ul>';		
 			for(var i=0; i<resultCnt; i++){
 				str += '<ul>';
-				str += '  <li class="hh_mlat01">'+resultData[i].CNT_DATE.substring(5)+'</li>';
-				str += '  <li class="hh_mlat02">'+resultData[i].SHOP_NAME+'</li>';
-				if(isNull(resultData[i].CARD_ICOM)){
-					str += '  <li class="hh_mlat03">현금</li>';
-					str += '  <li class="hh_mlat04">'+numberWithCommas(resultData[i].CASH_AMT)+'원</li>';
-				}else{
-					str += '  <li class="hh_mlat03">'+resultData[i].CARD_ICOM+'</li>';
-					str += '  <li class="hh_mlat04">'+numberWithCommas(resultData[i].CARD_AMT)+'원</li>';
-				}
+				str += '  <li class="hh_mlat01">'+resultData[i].CNT_DATE+'</li>';
+				str += '  <li class="hh_mlat02">'+resultData[i].APP_CO+'</li>';
+				str += '  <li class="hh_mlat03">'+resultData[i].CARD_APP_CO+'</li>';
+				str += '  <li class="hh_mlat04">'+numberWithCommas(resultData[i].APP_AMOUNT)+'원</li>';
 				str += '  <hr>';
 				str += '</ul>';				
 			}		
-			/* for(var i=o; i<resultCnt; i++){
-			} */
 			str += '    </div>';
 			str += '</div>';					
 		}
 	
 		
-		$(".househ_box").append(str);		
-		
+		$(".househ_box").append(str);		 */
+		}
+		$(".list_tab").append(str);	
 	}
+	
 	function startGetB01CalDataSuc(resdata){
 		/* 		<div class="house_txt">
 		김종현 고객님은 10.01부터 10.24일까지<br>
@@ -613,7 +800,7 @@
 				if(resultData[0].TOTAL_CNT == "0" ){
 					$("#totalAmount").text("총0건 / 0원");
 				}else{
-					$("#totalAmount").text("총 "+resultCnt+"건 / "+resultData[0].TOTAL_AM+"원");
+					$("#totalAmount").text("총 "+resultData[0].TOTAL_CNT+"건 / "+resultData[0].TOTAL_AM+"원");
 				}
 				var dtlGoodsObj = new Object();
 	            dtlGoodsObj.date = resultData[i].CNT_DATE;
@@ -703,7 +890,7 @@
 		var data = new Array();
 		if(resultCnt > 0){
 			for(var i=0; i<resultCnt; i++){
-			$("#totalAmount").text("총 "+resultCnt+"건 / "+resultData[0].TOTAL_AM+"원");
+			$("#totalAmount").text("총 "+resultData[0].TOTAL_CNT+"건 / "+resultData[0].TOTAL_AM+"원");
 				var dtlGoodsObj = new Object();
 	            dtlGoodsObj.date = resultData[i].CNT_DATE;
 	            dtlGoodsObj.value = resultData[i].CONUT+"건";

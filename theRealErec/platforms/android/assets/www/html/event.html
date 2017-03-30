@@ -288,6 +288,7 @@
 var request = new Request();
 var telNo = request.getParameter('telNo');
 var uuId = request.getParameter('uuId');
+var seq ="";
 $(document).ready(function(){
 	
 	$("#event").click(function(){
@@ -305,9 +306,13 @@ $(document).ready(function(){
 	commonUserData();
 	fn_eventList("all","02");
 	
+	$(document).on('click','.evd_content',function(){
+		
+		window.open($("#eventLinkUrl"+seq).val(),"_blank","location=yes");
+	})
 	$(document).on('click','[name="eventList"]',function(){
 		$(".eventd_inbox").empty();
-		var seq = $(this).attr('id');
+		seq = $(this).attr('id');
 		seq = seq.replace("seq","");
 		var strDtl = "";
 		strDtl += '<div class="evd_table">';
@@ -372,6 +377,7 @@ function fn_sucEventList(resdata){
 			str += '<input type="hidden" value = "'+resultData[i].HIT_CNT+'" id="eventHitCnt'+resultData[i].SEQ+'">';
 			str += '<input type="hidden" value = "'+resultData[i].EVENT_START_DATE+'" id="eventStartDate'+resultData[i].SEQ+'">';
 			str += '<input type="hidden" value = "'+resultData[i].EVENT_END_DATE+'" id="eventEndData'+resultData[i].SEQ+'">';
+			str += '<input type="hidden" value = "'+resultData[i].LINK_URL+'" id="eventLinkUrl'+resultData[i].SEQ+'">';
 			str += '<div class="board_title"><span id="listTitle'+resultData[i].SEQ+'">'+resultData[i].BOARD_TITLE+'</span> <span class="board_adate" id="listDate'+resultData[i].SEQ+'">'+resultData[i].USE_DATE_ORG+'</span><hr></div>';
 			str += '</a>';
 			str += '</li>';	
